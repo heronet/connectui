@@ -1,22 +1,53 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map, ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { authDto, loginDto } from './authdto';
+import { ChatsService } from '../chats/chats.service';
+import { AuthDto, LoginDto, RegisterDto } from './authdto';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
-  login(data: loginDto) {
-    return this.http.post<authDto>(
-      `${environment.baseUrl}/account/login`,
-      data
-    );
+  private authDataSource = new ReplaySubject<AuthDto | null>(1);
+  authData$ = this.authDataSource.asObservable();
+
+  constructor(private http: HttpClient, private chatService: ChatsService) {}
+  login(data: LoginDto) {
+    return this.http
+      .post<AuthDto>(`${environment.baseUrl}/account/login`, data)
+      .pipe(
+        map((authData) => {
+          if (authData) {
+            this.setData(authData);
+            this.chatService.initSignalR(authData);
+          }
+        })
+      );
   }
-  setData(authDto: authDto) {
+  register(data: RegisterDto) {
+    return this.http
+      .post<AuthDto>(`${environment.baseUrl}/account/register`, data)
+      .pipe(
+        map((authData) => {
+          if (authData) {
+            this.setData(authData);
+            this.chatService.initSignalR(authData);
+          }
+        })
+      );
+  }
+  setData(authDto: AuthDto) {
     localStorage.setItem('email', authDto.email);
     localStorage.setItem('id', authDto.id);
     localStorage.setItem('token', authDto.token);
+    this.authDataSource.next(authDto);
+  }
+  logout() {
+    localStorage.removeItem('email');
+    localStorage.removeItem('id');
+    localStorage.removeItem('token');
+    this.authDataSource.next(null);
+    this.chatService.stopSignalR();
   }
 }
