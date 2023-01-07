@@ -1,9 +1,21 @@
-<div *ngIf="chat">
-  <div *ngFor="let message of chat.messages">
-    <p>{{ message.userId }} - {{ message.text }}</p>
+<div *ngIf="chat" class="chat">
+  <div
+    *ngFor="let message of chat.messages"
+    [ngClass]="message.userId === authData?.id ? 'sent' : 'rcvd'"
+    class="msg"
+    [attr.data-nametime]="message.userName + ' 12:05 pm'"
+  >
+    {{ message.text }}
   </div>
-  <form #f="ngForm" (ngSubmit)="sendMessage(f)">
-    <input type="text" name="messageText" ngModel />
-    <button type="submit">Send</button>
+  <div class="spacer"></div>
+  <form #f="ngForm" class="form" (ngSubmit)="sendMessage(f)">
+    <input
+      type="text"
+      name="messageText"
+      class="input"
+      autocomplete="off"
+      ngModel
+    />
+    <button type="submit" class="button">Send</button>
   </form>
 </div>
