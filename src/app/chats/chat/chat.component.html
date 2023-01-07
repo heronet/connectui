@@ -1,1 +1,9 @@
-<p>chat works!</p>
+<div *ngIf="chat">
+  <div *ngFor="let message of chat.messages">
+    <p>{{ message.userId }} - {{ message.text }}</p>
+  </div>
+  <form #f="ngForm" (ngSubmit)="sendMessage(f)">
+    <input type="text" name="messageText" ngModel />
+    <button type="submit">Send</button>
+  </form>
+</div>

@@ -1,6 +1,6 @@
 <div>
-  <div *ngFor="let chat of chats">
+  <div *ngFor="let chat of chats" class="message" [routerLink]="[chat.id]">
     <p>Name: {{ chat.users[0].email }}</p>
-    <p>Message: {{ chat.id }}</p>
+    <p>Message: {{ chat.lastMessage }}</p>
   </div>
 </div>
