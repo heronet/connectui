@@ -11,12 +11,16 @@ export class ChatsComponent implements OnInit {
   chats: Chat[] = [];
   constructor(private chatService: ChatsService) {}
   ngOnInit(): void {
-    this.chatService.fetchChats().subscribe({
-      next: (res) => {
-        this.chats = res;
-        console.log(res);
-      },
+    this.chatService.chats$.subscribe({
+      next: (chats) => (this.chats = chats),
       error: (err) => console.log(err),
+    });
+    this.chatService.signalrConnected$.subscribe({
+      next: (signalrConnected) => {
+        if (signalrConnected) {
+          this.chatService.fetchChats();
+        }
+      },
     });
   }
 }

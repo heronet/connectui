@@ -1,6 +1,6 @@
 <div>
   <div *ngFor="let chat of chats">
-    <p>Name: {{ chat.users }}</p>
-    <p>Message: {{ chat.lastMessage }}</p>
+    <p>Name: {{ chat.users[0].email }}</p>
+    <p>Message: {{ chat.id }}</p>
   </div>
 </div>

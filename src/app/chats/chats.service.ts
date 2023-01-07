@@ -2,18 +2,30 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
 import { HubConnection } from '@microsoft/signalr';
+import { ReplaySubject, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthDto } from '../auth/authdto';
 import { Chat } from '../models/chat';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChatsService {
   connection: HubConnection | undefined;
-  constructor(private http: HttpClient) {}
+
+  private signalrConnectedSource = new ReplaySubject<boolean>(1);
+  signalrConnected$ = this.signalrConnectedSource.asObservable();
+
+  private chatsSource = new Subject<Chat[]>();
+  chats$ = this.chatsSource.asObservable();
+
+  chats: Chat[] = [];
+
+  constructor() {}
+
   fetchChats() {
-    return this.http.get<Chat[]>(`${environment.baseUrl}/chat`);
+    this.connection?.invoke('GetChats').catch((err) => console.log(err));
   }
 
   initSignalR(authDto: AuthDto) {
@@ -30,9 +42,19 @@ export class ChatsService {
 
     this.connection.on('connected', (user) => {
       console.log(`${user} Connected`);
+      this.signalrConnectedSource.next(true);
     });
     this.connection.on('disconnected', (user) => {
       console.log(`${user} disconnected`);
+      this.signalrConnectedSource.next(false);
+    });
+    this.connection.on('ReceivedChats', (chats: Chat[]) => {
+      this.chats = chats;
+      this.chatsSource.next(this.chats);
+    });
+    this.connection.on('ReceivedChat', (chat: Chat) => {
+      this.chats.push(chat);
+      this.chatsSource.next(this.chats);
     });
   }
   stopSignalR() {

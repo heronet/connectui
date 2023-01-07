@@ -9,6 +9,8 @@ import { ChatsComponent } from './chats/chats.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { UsersComponent } from './users/users.component';
+import { ChatComponent } from './chats/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     ChatsComponent,
     LoginComponent,
     RegisterComponent,
+    UsersComponent,
+    ChatComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [
