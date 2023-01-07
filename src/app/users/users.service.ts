@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, ReplaySubject, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Chat } from '../models/chat';
 import { User } from '../models/user';
 
 @Injectable({
@@ -21,6 +22,11 @@ export class UsersService {
       .pipe(map((users) => this.usersToIds(users)))
       .subscribe({ error: (err) => console.log(err) });
   }
+  fetchOneToOneChatId(recipientId: string) {
+    return this.http.get<Partial<Chat>>(
+      `${environment.baseUrl}/users/connected/${recipientId}`
+    );
+  }
   connectUser(id: string) {
     this.http
       .get<User[]>(`${environment.baseUrl}/users/connect/${id}`)
@@ -28,7 +34,6 @@ export class UsersService {
       .subscribe({ error: (err) => console.log(err) });
   }
   private usersToIds(users: User[]) {
-    console.log(users);
     let userIds = users.map((u) => u.id);
     this.connectedUsersSource.next(userIds);
   }

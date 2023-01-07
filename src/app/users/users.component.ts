@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ChatsService } from '../chats/chats.service';
 import { Chat } from '../models/chat';
 import { User } from '../models/user';
@@ -9,13 +11,15 @@ import { UsersService } from './users.service';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
   users: User[] = [];
   connectedUserIds: string[] = [];
+  connectedUsersSub = new Subscription();
 
-  constructor(private userService: UsersService) {}
+  constructor(private userService: UsersService, private router: Router) {}
+
   ngOnInit(): void {
-    this.userService.connectedUsers$.subscribe({
+    this.connectedUsersSub = this.userService.connectedUsers$.subscribe({
       next: (users) => (this.connectedUserIds = users),
       error: (err) => console.log(err),
     });
@@ -30,5 +34,16 @@ export class UsersComponent implements OnInit {
   }
   isConnected(user: User) {
     return this.connectedUserIds.includes(user.id);
+  }
+  startChat(user: User) {
+    this.userService.fetchOneToOneChatId(user.id).subscribe({
+      next: (c) => {
+        this.router.navigateByUrl(`/chats/${c.id}`);
+      },
+      error: (err) => console.log(err),
+    });
+  }
+  ngOnDestroy(): void {
+    this.connectedUsersSub.unsubscribe();
   }
 }
