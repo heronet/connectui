@@ -36,7 +36,7 @@ export class UsersService {
   }
   connectUser(id: string) {
     this.http
-      .patch<User[]>(`${this.BASE_URL}/connect`, { recipientId: id })
+      .post<User[]>(`${this.BASE_URL}/connect`, { recipientId: id })
       .pipe(map((users) => this.usersToIds(users)))
       .subscribe({ error: (err) => console.log(err) });
   }

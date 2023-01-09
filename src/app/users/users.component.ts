@@ -1,8 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ChatsService } from '../chats/chats.service';
-import { Chat } from '../models/chat';
 import { User } from '../models/user';
 import { UsersService } from './users.service';
 
