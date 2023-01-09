@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { AuthDto } from 'src/app/auth/authdto';
 import { Chat } from 'src/app/models/chat';
 import { Message } from 'src/app/models/message';
+import { UsersService } from 'src/app/users/users.service';
 import { ChatsService } from '../chats.service';
 
 @Component({
@@ -14,6 +15,7 @@ import { ChatsService } from '../chats.service';
   styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit, OnDestroy {
+  titleEditMode = false;
   chat: Chat | undefined;
   authData: AuthDto | null = null;
   chatSub = new Subscription();
@@ -22,6 +24,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   constructor(
     private chatService: ChatsService,
+    private usersService: UsersService,
     private authService: AuthService,
     private route: ActivatedRoute
   ) {}
@@ -58,6 +61,20 @@ export class ChatComponent implements OnInit, OnDestroy {
     };
     if (form.value.messageText.trim()) this.chatService.sendMessage(message);
     form.reset();
+  }
+  changeName(form: NgForm) {
+    if (!form.value.title) {
+      this.titleEditMode = !this.titleEditMode;
+      return;
+    }
+    this.usersService.renameChat(this.chat!.id, form.value.title).subscribe({
+      next: (chat) => {
+        this.chat!.title = chat.title!;
+        form.reset();
+        this.titleEditMode = !this.titleEditMode;
+      },
+      error: (err) => console.log(err),
+    });
   }
   ngOnDestroy(): void {
     this.chatSub.unsubscribe();

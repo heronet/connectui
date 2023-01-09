@@ -2,7 +2,8 @@ export interface Message {
   id: string;
   text: string;
   read: boolean;
-  userName: string;
+  time: string;
+  senderName: string;
   userId: string;
   chatId: string;
 }

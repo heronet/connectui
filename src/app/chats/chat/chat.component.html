@@ -1,23 +1,47 @@
-<div *ngIf="chat" class="chat">
-  <div
-    *ngFor="let message of chat.messages"
-    [ngClass]="message.userId === authData?.id ? 'sent' : 'rcvd'"
-    class="msg"
-    [attr.data-nametime]="message.userName + ' 12:05 pm'"
-  >
-    {{ message.text }}
+<div class="container">
+  <div *ngIf="chat" class="chat">
+    <div class="chat-header">
+      <span *ngIf="!titleEditMode" (click)="titleEditMode = !titleEditMode">{{
+        chat.title
+      }}</span>
+      <form
+        *ngIf="titleEditMode"
+        class="title-edit"
+        #titleForm="ngForm"
+        (ngSubmit)="changeName(titleForm)"
+      >
+        <input type="text" name="title" [ngModel]="chat.title" />
+        <button type="submit">Done</button>
+      </form>
+      <span style="flex: 1 1 auto"></span>
+      <span>...</span>
+    </div>
+    <div class="spacer"></div>
+
+    <div
+      *ngFor="let message of chat.messages"
+      [ngClass]="message.userId === authData?.id ? 'sent' : 'rcvd'"
+      class="msg"
+      [attr.data-nametime]="
+        message.senderName + ' ' + (message.time | date : 'short')
+      "
+    >
+      <span>{{ message.text }}</span>
+    </div>
+    <p *ngIf="chat.messages.length === 0">Say hello</p>
   </div>
   <div class="spacer"></div>
 
   <div class="message-box-container">
     <form class="message-box" #f="ngForm" (ngSubmit)="sendMessage(f)">
-      <input
+      <textarea
         type="text"
         name="messageText"
         class="message-input"
         placeholder="Type message..."
+        autocomplete="off"
         ngModel
-      />
+      ></textarea>
       <button type="submit" class="message-submit">Send</button>
     </form>
   </div>

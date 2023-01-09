@@ -5,17 +5,31 @@
   margin: 0;
   box-sizing: border-box;
 }
-
+.container {
+  max-width: 500px;
+  margin: auto;
+  padding: 0 20px;
+  position: relative;
+  height: 100%;
+}
 .chat {
   --rad: 20px;
   --rad-sm: 3px;
   font: 16px/1.5 sans-serif;
   display: flex;
   flex-direction: column;
-  padding: 20px 20px 0 20px;
-  max-width: 500px;
-  margin: auto;
-  position: relative;
+}
+.chat-header {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 0 10px;
+  color: #555;
+  border-bottom: #f1f1f1 solid 1px;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  backdrop-filter: blur(10px);
 }
 
 .msg {
@@ -67,11 +81,11 @@
 }
 
 .msg.sent::before {
-  right: 15px;
+  right: 10px;
 }
 
 .msg.rcvd::before {
-  left: 15px;
+  left: 10px;
 }
 
 /* Show time only for first message in group */
@@ -89,15 +103,15 @@
 
 .message-box-container {
   width: 100%;
-  background-color: #fff;
+  backdrop-filter: blur(10px);
   position: sticky;
   bottom: 0;
+  padding: 10px;
 }
 .message-box {
   display: flex;
   background: #fff;
   padding: 10px;
-  margin: 10px 0;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;

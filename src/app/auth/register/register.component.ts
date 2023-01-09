@@ -15,6 +15,7 @@ export class RegisterComponent {
     const info: RegisterDto = {
       email: data.value.email,
       password: data.value.password,
+      name: data.value.name,
     };
 
     this.authService.register(info).subscribe({
