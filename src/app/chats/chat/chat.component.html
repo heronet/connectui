@@ -8,14 +8,17 @@
     {{ message.text }}
   </div>
   <div class="spacer"></div>
-  <form #f="ngForm" class="form" (ngSubmit)="sendMessage(f)">
-    <input
-      type="text"
-      name="messageText"
-      class="input"
-      autocomplete="off"
-      ngModel
-    />
-    <button type="submit" class="button">Send</button>
-  </form>
+
+  <div class="message-box-container">
+    <form class="message-box" #f="ngForm" (ngSubmit)="sendMessage(f)">
+      <input
+        type="text"
+        name="messageText"
+        class="message-input"
+        placeholder="Type message..."
+        ngModel
+      />
+      <button type="submit" class="message-submit">Send</button>
+    </form>
+  </div>
 </div>

@@ -51,12 +51,13 @@ export class ChatComponent implements OnInit, OnDestroy {
       },
     });
   }
-  sendMessage({ value: { messageText } }: NgForm) {
+  sendMessage(form: NgForm) {
     const message: Partial<Message> = {
       chatId: this.chat?.id ?? '',
-      text: messageText,
+      text: form.value.messageText,
     };
-    if (messageText.trim()) this.chatService.sendMessage(message);
+    if (form.value.messageText.trim()) this.chatService.sendMessage(message);
+    form.reset();
   }
   ngOnDestroy(): void {
     this.chatSub.unsubscribe();

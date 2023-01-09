@@ -12,7 +12,7 @@
   font: 16px/1.5 sans-serif;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 20px 20px 0 20px;
   max-width: 500px;
   margin: auto;
   position: relative;
@@ -84,48 +84,56 @@
 }
 
 .spacer {
-  height: 50px;
+  height: 10px;
 }
 
-.form {
-  display: flex;
-  flex-direction: row;
-  padding: 10px;
-  position: fixed;
-  bottom: 0;
+.message-box-container {
   width: 100%;
-  max-width: 470px;
   background-color: #fff;
+  position: sticky;
+  bottom: 0;
 }
-input {
-  flex-grow: 2;
-  border-radius: 20px;
-  border-width: 1px;
-  border-color: #555;
+.message-box {
+  display: flex;
+  background: #fff;
   padding: 10px;
+  margin: 10px 0;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
 }
-input:focus {
-  outline: none;
+.message-input {
+  flex-grow: 1;
+  background: none;
+  border: none;
+  outline: none !important;
+  resize: none;
+  font-size: 15px;
+  height: 24px;
+  padding-right: 20px;
+  color: #444;
 }
-
-.button {
+textarea::placeholder {
+  font-family: sans-serif;
+  margin: auto;
+}
+.message-submit {
   position: relative;
-  display: block;
-  width: 50px;
-  height: 36px;
-  margin-left: 10px;
-  border-radius: 12px;
-  background-color: #1c89ff;
-  border: solid 1px transparent;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 300;
-
+  z-index: 1;
+  color: #4a90e2;
+  border: none;
+  background: #fff;
+  font-size: 12px;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 6px 10px;
+  border-radius: 5px;
+  outline: none !important;
+  transition: background 0.2s ease;
   cursor: pointer;
-  transition: all 0.1s ease-in-out;
-  &:hover {
-    background-color: #42a5f5;
-    border-color: #42a5f5;
-    transition: all 0.1s ease-in-out;
-  }
+}
+.message-submit:hover {
+  background: #fff;
+  color: #333;
 }
