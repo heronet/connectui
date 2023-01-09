@@ -1,6 +1,12 @@
-<div>
-  <div *ngFor="let chat of chats" class="message" [routerLink]="[chat.id]">
-    <p>Name: {{ chat.users[0].email }}</p>
-    <p>Message: {{ chat.lastMessage }}</p>
+<div class="container">
+  <div class="header">Chats</div>
+  <div *ngFor="let chat of chats" class="chat" [routerLink]="[chat.id]">
+    <img src="/assets/dummy.png" alt="temp" class="chat-img" />
+    <div class="content">
+      <span class="chat-name text">{{ chat.title }}</span>
+      <span class="last-message text">{{ chat.lastMessage }}</span>
+    </div>
+    <div style="flex: 1 1 auto"></div>
+    <div class="time">{{ "Fri" }}</div>
   </div>
 </div>
