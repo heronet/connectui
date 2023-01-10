@@ -22,9 +22,7 @@
       *ngFor="let message of chat.messages"
       [ngClass]="message.userId === authData?.id ? 'sent' : 'rcvd'"
       class="msg"
-      [attr.data-nametime]="
-        message.senderName + ' ' + (message.time | date : 'short')
-      "
+      [attr.data-nametime]="message.time | date : 'shortTime'"
     >
       <span>{{ message.text }}</span>
     </div>
