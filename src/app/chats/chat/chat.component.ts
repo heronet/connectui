@@ -17,7 +17,7 @@ import { ChatsService } from '../chats.service';
 export class ChatComponent implements OnInit, OnDestroy {
   titleEditMode = false;
   chat: Chat | undefined;
-  authData: AuthDto | null = null;
+  authData: AuthDto | undefined = undefined;
   chatSub = new Subscription();
   messageSub = new Subscription();
   signalRSub = new Subscription();

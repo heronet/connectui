@@ -9,7 +9,7 @@ import { AuthDto, LoginDto, RegisterDto } from './authdto';
   providedIn: 'root',
 })
 export class AuthService {
-  private authDataSource = new ReplaySubject<AuthDto | null>(1);
+  private authDataSource = new ReplaySubject<AuthDto | undefined>(1);
   authData$ = this.authDataSource.asObservable();
 
   constructor(private http: HttpClient, private chatService: ChatsService) {}
@@ -47,7 +47,7 @@ export class AuthService {
     localStorage.removeItem('email');
     localStorage.removeItem('id');
     localStorage.removeItem('token');
-    this.authDataSource.next(null);
+    this.authDataSource.next(undefined);
     this.chatService.stopSignalR();
   }
 }
