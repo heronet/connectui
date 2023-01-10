@@ -11,20 +11,8 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  // justify-content: space-between;
 }
-.header {
-  display: flex;
-  align-items: center;
-  height: 50px;
-  padding: 0 10px;
-  color: #555;
-  border-bottom: #f1f1f1 solid 1px;
-  position: sticky;
-  top: 0;
-  z-index: 9999;
-  backdrop-filter: blur(10px);
-}
+
 .chat {
   display: flex;
   padding: 10px;
