@@ -1,9 +1,14 @@
-<div *ngIf="users.length">
-  <div *ngFor="let u of users">
-    <p>
-      {{ u.email }} -
-      <span *ngIf="isConnected(u)" (click)="startChat(u)">Message</span
-      ><span *ngIf="!isConnected(u)" (click)="connectUser(u)">Connect</span>
-    </p>
+<div class="container">
+  <div class="header">Users</div>
+  <div *ngFor="let user of users" class="user">
+    <img src="/assets/dummy.png" alt="temp" class="user-img" />
+    <span class="name">{{ user.name }}</span>
+    <span style="flex: 1 1 auto"></span>
+    <span class="op" *ngIf="!isConnected(user)" (click)="connectUser(user)"
+      >Connect</span
+    >
+    <span class="op" *ngIf="isConnected(user)" (click)="startChat(user)"
+      >Message</span
+    >
   </div>
 </div>
