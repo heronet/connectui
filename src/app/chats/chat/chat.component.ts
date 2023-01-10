@@ -70,7 +70,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.usersService.renameChat(this.chat!.id, form.value.title).subscribe({
       next: (chat) => {
         this.chat!.title = chat.title!;
-        form.reset();
+        form.resetForm();
         this.titleEditMode = !this.titleEditMode;
       },
       error: (err) => console.log(err),
