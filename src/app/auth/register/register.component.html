@@ -1,8 +1,27 @@
-<div>
-  <form #f="ngForm" (ngSubmit)="login(f)">
-    <input type="text" name="name" ngModel />
-    <input type="text" name="email" ngModel />
-    <input type="text" name="password" ngModel />
-    <button type="submit">Login</button>
+<div class="container">
+  <div class="header">
+    <span>Register</span>
+  </div>
+  <div class="spacer"></div>
+  <p class="intro">Set up your Connect ID</p>
+  <form class="form" #f="ngForm" (ngSubmit)="login(f)">
+    <input
+      class="name input-border"
+      type="text"
+      name="name"
+      ngModel
+      placeholder="Name"
+    />
+    <input
+      class="email input-border"
+      type="text"
+      name="email"
+      ngModel
+      placeholder="Email"
+    />
+    <div class="password input-border">
+      <input type="text" name="password" ngModel placeholder="Password" />
+      <button type="submit">Register</button>
+    </div>
   </form>
 </div>
