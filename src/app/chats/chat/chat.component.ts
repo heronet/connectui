@@ -60,7 +60,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       text: form.value.messageText,
     };
     if (form.value.messageText.trim()) this.chatService.sendMessage(message);
-    form.reset();
+    form.resetForm();
   }
   changeName(form: NgForm) {
     if (!form.value.title) {
