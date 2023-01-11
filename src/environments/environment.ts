@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:5000/api',
-  signalRUrl: 'http://localhost:5000/hubs',
+  baseUrl: 'http://0.0.0.0:5000/api',
+  signalRUrl: 'http://0.0.0.0:5000/hubs',
 };
