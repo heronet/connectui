@@ -2,9 +2,11 @@
   <div class="home-header">
     <span [routerLink]="['/']">Home</span>
     <span style="flex: 1 1 auto"></span>
-    <span [routerLink]="['chats']">Chats</span>
-    <span [routerLink]="['users']">Users</span>
-    <span [routerLink]="['login']">Login</span>
+    <span [routerLink]="['chats']" *ngIf="isAuthenticated">Chats</span>
+    <span [routerLink]="['users']" *ngIf="isAuthenticated">Users</span>
+    <span [routerLink]="['login']" *ngIf="!isAuthenticated">Login</span>
+    <span [routerLink]="['register']" *ngIf="!isAuthenticated">Register</span>
+    <span (click)="logout()" *ngIf="isAuthenticated">Logout</span>
   </div>
   <div class="posts">Posts Will go here</div>
 </div>

@@ -37,11 +37,13 @@ export class AuthService {
         })
       );
   }
-  setData(authDto: AuthDto) {
-    localStorage.setItem('email', authDto.email);
-    localStorage.setItem('id', authDto.id);
-    localStorage.setItem('token', authDto.token);
-    this.authDataSource.next(authDto);
+  setData(authDto: AuthDto | undefined) {
+    if (authDto) {
+      localStorage.setItem('email', authDto.email);
+      localStorage.setItem('id', authDto.id);
+      localStorage.setItem('token', authDto.token);
+      this.authDataSource.next(authDto);
+    } else this.authDataSource.next(undefined);
   }
   logout() {
     localStorage.removeItem('email');

@@ -25,6 +25,8 @@ export class AppComponent implements OnInit {
       let authDto: AuthDto = { email, id, token };
       this.authService.setData(authDto);
       this.chatService.initSignalR(authDto);
+    } else {
+      this.authService.setData(undefined);
     }
   }
 }
