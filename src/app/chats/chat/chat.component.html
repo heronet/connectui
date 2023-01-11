@@ -10,7 +10,7 @@
         #titleForm="ngForm"
         (ngSubmit)="changeName(titleForm)"
       >
-        <input type="text" name="title" [ngModel]="chat.title" />
+        <input type="text" name="title" [(ngModel)]="chatTitle" />
         <button type="submit">Done</button>
       </form>
       <span style="flex: 1 1 auto"></span>

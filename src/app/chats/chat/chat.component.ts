@@ -17,6 +17,7 @@ import { ChatsService } from '../chats.service';
 export class ChatComponent implements OnInit, OnDestroy {
   titleEditMode = false;
   chat: Chat | undefined;
+  chatTitle: string | undefined;
   authData: AuthDto | undefined = undefined;
   chatSub = new Subscription();
   messageSub = new Subscription();
@@ -35,12 +36,14 @@ export class ChatComponent implements OnInit, OnDestroy {
       error: (err) => console.log(err),
     });
     this.chatSub = this.chatService.chat$.subscribe({
-      next: (chat) => (this.chat = chat),
+      next: (chat) => {
+        this.chat = chat;
+        if (!this.titleEditMode) this.chatTitle = chat.title;
+      },
       error: (err) => console.log(err),
     });
     this.messageSub = this.chatService.message$.subscribe({
       next: (message) => {
-        console.log('GOT MSG', message);
         if (message.chatId === this.chat?.id) {
           this.chat.messages.push(message);
         }
@@ -63,11 +66,11 @@ export class ChatComponent implements OnInit, OnDestroy {
     form.resetForm();
   }
   changeName(form: NgForm) {
-    if (!form.value.title) {
+    if (!this.chatTitle) {
       this.titleEditMode = !this.titleEditMode;
       return;
     }
-    this.usersService.renameChat(this.chat!.id, form.value.title).subscribe({
+    this.usersService.renameChat(this.chat!.id, this.chatTitle!).subscribe({
       next: (chat) => {
         this.chat!.title = chat.title!;
         form.resetForm();
