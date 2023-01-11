@@ -4,10 +4,11 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ChatComponent } from './chats/chat/chat.component';
 import { ChatsComponent } from './chats/chats.component';
+import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'chats', pathMatch: 'full' },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'users', component: UsersComponent },
   { path: 'chats', component: ChatsComponent },
   { path: 'chats/:id', component: ChatComponent },

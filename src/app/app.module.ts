@@ -11,6 +11,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { UsersComponent } from './users/users.component';
 import { ChatComponent } from './chats/chat/chat.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ChatComponent } from './chats/chat/chat.component';
     RegisterComponent,
     UsersComponent,
     ChatComponent,
+    HomeComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [
