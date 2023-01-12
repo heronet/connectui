@@ -17,7 +17,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.chatSub = this.chatService.chats$.subscribe({
-      next: (chats) => (this.chats = chats),
+      next: (chats) => (this.chats = chats.filter((c) => c.lastMessage)),
       error: (err) => console.log(err),
     });
     this.signalRSub = this.chatService.signalrConnected$.subscribe({

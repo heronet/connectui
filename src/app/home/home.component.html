@@ -2,7 +2,10 @@
   <div class="home-header">
     <span [routerLink]="['/']">Home</span>
     <span style="flex: 1 1 auto"></span>
-    <span [routerLink]="['chats']" *ngIf="isAuthenticated">Chats</span>
+    <span [routerLink]="['connections']" *ngIf="isAuthenticated"
+      >Connections</span
+    >
+    <span [routerLink]="['chats']" *ngIf="isAuthenticated">Messages</span>
     <span [routerLink]="['users']" *ngIf="isAuthenticated">Users</span>
     <span [routerLink]="['login']" *ngIf="!isAuthenticated">Login</span>
     <span [routerLink]="['register']" *ngIf="!isAuthenticated">Register</span>

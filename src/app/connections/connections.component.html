@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="header">Connections</div>
+  <div
+    *ngFor="let user of connectedUsers"
+    class="user"
+    (click)="startChat(user)"
+  >
+    <img src="/assets/dummy.png" alt="temp" class="user-img" />
+    <span class="name">{{ user.name }}</span>
+  </div>
+</div>

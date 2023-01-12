@@ -12,6 +12,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { UsersComponent } from './users/users.component';
 import { ChatComponent } from './chats/chat/chat.component';
 import { HomeComponent } from './home/home.component';
+import { ConnectionsComponent } from './connections/connections.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HomeComponent } from './home/home.component';
     UsersComponent,
     ChatComponent,
     HomeComponent,
+    ConnectionsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [

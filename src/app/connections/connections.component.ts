@@ -1,17 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from '../models/user';
-import { UsersService } from './users.service';
+import { UsersService } from '../users/users.service';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss'],
+  selector: 'app-connections',
+  templateUrl: './connections.component.html',
+  styleUrls: ['./connections.component.scss'],
 })
-export class UsersComponent implements OnInit, OnDestroy {
-  users: User[] = [];
-  connectedUsers: string[] = [];
+export class ConnectionsComponent {
+  connectedUsers: User[] = [];
   connectedUsersSub = new Subscription();
 
   constructor(private userService: UsersService, private router: Router) {}
@@ -19,21 +18,11 @@ export class UsersComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.connectedUsersSub = this.userService.connectedUsers$.subscribe({
       next: (users) => {
-        this.connectedUsers = users.map((u) => u.id);
+        this.connectedUsers = users;
       },
       error: (err) => console.log(err),
     });
-    this.userService.fetchUsers().subscribe({
-      next: (u) => (this.users = u),
-      error: (err) => console.log(err),
-    });
     this.userService.fetchConnectedUsers();
-  }
-  connectUser(user: User) {
-    this.userService.connectUser(user.id);
-  }
-  isConnected(user: User) {
-    return this.connectedUsers.includes(user.id);
   }
   startChat(user: User) {
     this.userService.fetchOneToOneChatId(user.id).subscribe({
