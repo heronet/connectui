@@ -25,3 +25,20 @@
   margin: auto 10px;
   cursor: pointer;
 }
+.nav {
+  color: #333;
+  max-width: 600px;
+  margin: 10px auto 0 auto;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #d2d2d7;
+  border-radius: 12px;
+  border-width: 1px;
+  border-style: solid;
+  box-sizing: border-box;
+}
+.nav > * {
+  cursor: pointer;
+  margin: 0 10px;
+}
