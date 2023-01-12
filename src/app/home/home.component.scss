@@ -22,14 +22,13 @@
   backdrop-filter: blur(10px);
 }
 .home-header > * {
-  margin: auto 10px;
   cursor: pointer;
 }
 .nav {
   color: #333;
   max-width: 600px;
   margin: 10px auto 0 auto;
-  padding: 10px;
+  padding: 15px;
   display: flex;
   justify-content: space-between;
   border: 1px solid #d2d2d7;
@@ -40,5 +39,8 @@
 }
 .nav > * {
   cursor: pointer;
-  margin: 0 10px;
+  font-size: 14px;
+}
+.nav > *:hover {
+  text-decoration: underline;
 }
