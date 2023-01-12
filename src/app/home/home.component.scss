@@ -21,9 +21,22 @@
   z-index: 9999;
   backdrop-filter: blur(8px);
 }
-.home-header > * {
+
+a {
+  text-decoration: none;
+  color: #555;
+}
+
+.header-link {
+  font-size: 14px;
+  margin-left: 10px;
   cursor: pointer;
 }
+
+.header-link:hover {
+  text-decoration: underline;
+}
+
 .nav {
   color: #333;
   max-width: 600px;
@@ -38,7 +51,6 @@
   box-sizing: border-box;
 }
 .nav > * {
-  cursor: pointer;
   font-size: 14px;
 }
 .nav > *:hover {
