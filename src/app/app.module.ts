@@ -13,6 +13,8 @@ import { UsersComponent } from './users/users.component';
 import { ChatComponent } from './chats/chat/chat.component';
 import { HomeComponent } from './home/home.component';
 import { ConnectionsComponent } from './connections/connections.component';
+import { PostsComponent } from './posts/posts.component';
+import { PostComponent } from './posts/post/post.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { ConnectionsComponent } from './connections/connections.component';
     ChatComponent,
     HomeComponent,
     ConnectionsComponent,
+    PostsComponent,
+    PostComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [

@@ -11,5 +11,7 @@
     <span [routerLink]="['register']" *ngIf="!isAuthenticated">Register</span>
     <span (click)="logout()" *ngIf="isAuthenticated">Logout</span>
   </div>
-  <div class="posts">Posts Will go here</div>
+  <div class="posts">
+    <app-posts></app-posts>
+  </div>
 </div>
