@@ -7,7 +7,7 @@
   flex-direction: column;
 }
 .card {
-  margin: 10px auto;
+  margin: 10px 0;
   border: 1px solid #d2d2d7;
   border-radius: 12px;
   border-width: 1px;
@@ -49,4 +49,13 @@
   display: flex;
   padding: 10px;
   border-top: 1px solid #d2d2d7;
+}
+.action {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.no-post {
+  margin: 20px auto;
+  font-size: 20px;
+  color: #888;
 }

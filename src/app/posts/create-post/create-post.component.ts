@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Post } from 'src/app/models/post';
+import { PostsService } from '../posts.service';
 
 @Component({
   selector: 'app-create-post',
@@ -6,9 +9,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./create-post.component.scss'],
 })
 export class CreatePostComponent {
-  getHeight(content: string) {
-    const v1 = Math.floor(content.length / 50);
-    const v2 = content.split('\n').length;
-    return Math.max(v1, v2);
+  constructor(private postsService: PostsService) {}
+
+  submitPost(form: NgForm) {
+    if (!form.value.postText) return;
+    const post: Partial<Post> = {
+      text: form.value.postText,
+    };
+    this.postsService.createPost(post).subscribe({
+      error: (err) => console.log(err),
+      complete: () => form.resetForm(),
+    });
   }
 }

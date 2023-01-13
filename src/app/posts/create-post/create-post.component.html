@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row-1">
     <img src="/assets/dummy.png" alt="temp" class="profile-img" />
-    <form class="text-box" #f="ngForm">
+    <form class="text-box" #f="ngForm" (ngSubmit)="submitPost(f)">
       <textarea
         type="text"
         name="postText"
