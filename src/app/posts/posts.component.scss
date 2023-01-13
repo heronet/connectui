@@ -48,11 +48,15 @@
 .card-info {
   display: flex;
   padding: 10px;
+  color: #555;
+  font-size: 14px;
   border-top: 1px solid #d2d2d7;
 }
 .action {
   margin-left: 10px;
   cursor: pointer;
+  font-size: 14px;
+  color: #555;
 }
 .no-post {
   margin: 20px auto;
