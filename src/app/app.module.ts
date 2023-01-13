@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { ConnectionsComponent } from './connections/connections.component';
 import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './posts/post/post.component';
+import { CreatePostComponent } from './posts/create-post/create-post.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { PostComponent } from './posts/post/post.component';
     ConnectionsComponent,
     PostsComponent,
     PostComponent,
+    CreatePostComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [
