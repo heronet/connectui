@@ -16,6 +16,7 @@ import { ConnectionsComponent } from './connections/connections.component';
 import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './posts/post/post.component';
 import { CreatePostComponent } from './posts/create-post/create-post.component';
+import { AutosizeDirective } from './autosize.directive';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CreatePostComponent } from './posts/create-post/create-post.component';
     PostsComponent,
     PostComponent,
     CreatePostComponent,
+    AutosizeDirective,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [

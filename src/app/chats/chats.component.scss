@@ -39,6 +39,8 @@
 .text {
   overflow: hidden;
   text-overflow: ellipsis;
+  word-break: break-word;
+  white-space: pre-line;
   display: -webkit-box;
   -webkit-line-clamp: 2; /* number of lines to show */
   line-clamp: 2;
