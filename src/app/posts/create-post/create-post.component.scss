@@ -11,6 +11,7 @@
 }
 .row-1 {
   display: flex;
+  // align-items: center;
 }
 .row-2 {
   display: flex;
@@ -47,12 +48,12 @@
   text-align: justify;
   font-size: 15px;
   padding-right: 20px;
+  margin: auto 0;
   color: #444;
 }
 
 .text-input::placeholder {
   font-family: sans-serif;
-  padding: 2px;
 }
 .btn-submit {
   position: relative;
