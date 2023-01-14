@@ -1,3 +1,5 @@
+import { Photo } from './photo';
+
 export interface Post {
   id: string;
   title: string;
@@ -7,4 +9,5 @@ export interface Post {
   userName: string;
   likesCount: number;
   commentsCount: number;
+  photos: Photo[];
 }

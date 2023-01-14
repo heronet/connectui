@@ -24,11 +24,10 @@ export class CreatePostComponent {
       let reader = new FileReader();
       reader.onload = (e) => {
         this.imageUrls.push(e.target!.result as string);
+        this.initialImage = this.imageUrls[0];
       };
       reader.readAsDataURL(file);
     }
-    this.initialImage = this.imageUrls[0];
-    console.log(this.imageUrls);
   }
   clearPictures() {}
   submitPost(form: NgForm) {
@@ -36,7 +35,7 @@ export class CreatePostComponent {
     const data = form.value;
     const post = new FormData();
     post.append('text', data.postText.trim());
-    this.filesToUpload.forEach((f) => post.append('photos', f));
+    this.filesToUpload.forEach((f) => post.append('uploadPhotos', f));
     this.postsService.createPost(post).subscribe({
       error: (err) => console.log(err),
       complete: () => form.resetForm(),
