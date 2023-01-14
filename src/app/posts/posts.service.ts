@@ -17,7 +17,7 @@ export class PostsService {
   getPosts() {
     return this.http.get<Post[]>(`${this.BASE_URL}`);
   }
-  createPost(post: Partial<Post>) {
+  createPost(post: FormData) {
     return this.http.post<Post>(`${this.BASE_URL}`, post).pipe(
       map((post) => {
         this.postSource.next(post);

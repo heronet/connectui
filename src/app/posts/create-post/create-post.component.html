@@ -15,8 +15,34 @@
       <button type="submit" class="btn-submit">Post</button>
     </form>
   </div>
-  <!-- <div class="row-2">
-    <span class="text">Add Pictures</span>
-    <span class="text">Clear Pictures</span>
-  </div> -->
+  <div class="row-2">
+    <label for="file">Add Pictures</label>
+    <input
+      type="file"
+      id="file"
+      (change)="handleFileInput($event)"
+      accept="image/*"
+      multiple
+      hidden
+    />
+    <span (click)="clearPictures()">Clear Pictures</span>
+  </div>
+  <div class="row-3" *ngIf="imageUrls.length > 0">
+    <div class="preview-main">
+      <img [src]="initialImage" alt="" />
+    </div>
+    <div class="small-imgs" *ngIf="imageUrls.length > 1">
+      <img
+        *ngFor="let imageUrl of imageUrls"
+        [src]="imageUrl"
+        alt=""
+        (click)="initialImage = imageUrl"
+      />
+    </div>
+  </div>
+  <div class="row-4" *ngIf="imageUrls.length > 0">
+    <button type="button" class="btn-submit" (click)="submitPost(f)">
+      Post
+    </button>
+  </div>
 </div>
