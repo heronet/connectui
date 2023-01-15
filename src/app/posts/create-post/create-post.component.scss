@@ -16,14 +16,11 @@
   display: flex;
   justify-content: space-between;
   border-top: 1px solid #d2d2d7;
-  padding-top: 10px;
   align-items: center;
   padding: 10px;
   font-size: 14px;
 }
-.loading {
-  justify-content: center;
-}
+
 .row-2 > * {
   cursor: pointer;
 }
@@ -55,6 +52,9 @@
   align-items: center;
   padding: 5px;
   font-size: 14px;
+}
+.loading {
+  padding: 5px;
 }
 .preview-main > img {
   max-width: 100%;
