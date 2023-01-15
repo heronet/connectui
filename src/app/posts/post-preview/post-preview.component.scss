@@ -72,13 +72,15 @@
   color: #555;
   font-size: 14px;
   border-top: 1px solid #d2d2d7;
+  user-select: none;
 }
-.action {
-  margin-left: 10px;
+.card-info > * {
   cursor: pointer;
-  font-size: 14px;
-  color: #555;
 }
+.card-info > *:hover {
+  text-decoration: underline;
+}
+
 .text-box {
   display: flex;
   flex: 1;
@@ -116,6 +118,7 @@
   outline: none !important;
   transition: background 0.2s ease;
   cursor: pointer;
+  user-select: none;
 }
 .btn:hover {
   background: #fff;

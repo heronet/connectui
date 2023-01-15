@@ -23,6 +23,7 @@
 
 .row-2 > * {
   cursor: pointer;
+  user-select: none;
 }
 .row-2 > *:hover {
   text-decoration: underline;
@@ -111,6 +112,7 @@
   outline: none !important;
   transition: background 0.2s ease;
   cursor: pointer;
+  user-select: none;
 }
 .btn-submit:hover {
   background: #fff;
