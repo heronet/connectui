@@ -51,7 +51,6 @@
 }
 .card-content > .small-imgs {
   display: flex;
-  // justify-content: space-around;
   max-width: 100%;
   height: 100px;
 }
@@ -111,8 +110,9 @@
   z-index: 1;
   color: #4a90e2;
   border: none;
-  background: #fff;
   font-size: 12px;
+  padding: 10px;
+  background-color: transparent;
   text-transform: uppercase;
   line-height: 1;
   outline: none !important;
@@ -121,7 +121,6 @@
   user-select: none;
 }
 .btn:hover {
-  background: #fff;
   color: #333;
 }
 .btn:disabled {
