@@ -43,13 +43,8 @@
       />
     </div>
   </div>
-  <div class="row-4" *ngIf="imageUrls.length > 0">
-    <button
-      *ngIf="!isLoading"
-      type="button"
-      class="btn-submit"
-      (click)="submitPost(f)"
-    >
+  <div class="row-4" *ngIf="imageUrls.length > 0! && !isLoading">
+    <button type="button" class="btn-submit" (click)="submitPost(f)">
       Post
     </button>
   </div>
