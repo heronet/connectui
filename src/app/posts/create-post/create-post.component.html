@@ -16,20 +16,21 @@
     </form>
   </div>
   <div class="row-2">
-    <label for="file">Add Pictures</label>
+    <label for="files">Add Pictures</label>
     <input
       type="file"
-      id="file"
-      (change)="handleFileInput($event)"
+      id="files"
+      (change)="handleFileInput()"
       accept="image/*"
       multiple
       hidden
+      #filesInput
     />
     <span (click)="clearPictures()">Clear Pictures</span>
   </div>
   <div class="row-3" *ngIf="imageUrls.length > 0">
     <div class="preview-main">
-      <img [src]="initialImage" alt="" />
+      <img *ngIf="initialImage" [src]="initialImage" alt="" />
     </div>
     <div class="small-imgs" *ngIf="imageUrls.length > 1">
       <img
