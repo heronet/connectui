@@ -6,16 +6,39 @@
       <span class="card-subtitle">{{ post.createdAt | date : "short" }}</span>
     </div>
     <div style="flex: 1 1 auto"></div>
-    <span class="action" *ngIf="userId && userId == post.userId">Edit</span>
-    <span
-      class="action"
+    <button
+      class="btn"
+      *ngIf="userId && userId == post.userId"
+      (click)="toggleEditMode()"
+      [disabled]="isLoading"
+    >
+      <span *ngIf="!isEditMode">Edit</span>
+      <span *ngIf="isEditMode">Cancel</span>
+    </button>
+    <button
+      class="btn red"
       *ngIf="userId && userId == post.userId"
       (click)="deletePost(post.id)"
-      >Delete</span
+      [disabled]="isLoading"
     >
+      Delete
+    </button>
   </div>
-  <div class="card-content">
-    <p class="text" *ngIf="post.text">
+  <div class="card-content" *ngIf="!isLoading">
+    <form class="text-box" *ngIf="isEditMode" (ngSubmit)="savePost()">
+      <textarea
+        type="text"
+        name="postText"
+        class="text-input"
+        placeholder="Edit your post"
+        autocomplete="off"
+        [(ngModel)]="postText"
+        autosize
+        rows="1"
+      ></textarea>
+      <button type="submit" class="btn">Save</button>
+    </form>
+    <p class="text" *ngIf="post.text && !isEditMode">
       {{ post.text }}
     </p>
     <img
@@ -42,9 +65,12 @@
       </div>
     </div>
   </div>
-  <div class="card-info">
+  <div class="card-info" *ngIf="!isLoading">
     <span>{{ post.likesCount }} Likes</span>
     <span style="flex: 1 1 auto"></span>
     <span>{{ post.commentsCount }} Comments</span>
+  </div>
+  <div class="loading" *ngIf="isLoading">
+    <span>Please wait...</span>
   </div>
 </div>
