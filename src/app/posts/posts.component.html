@@ -6,5 +6,8 @@
     [userId]="userId"
     [deletePost]="deletePost"
   ></app-post-preview>
-  <div class="no-post" *ngIf="posts.length === 0">Be the first to post!</div>
+  <div class="no-post" *ngIf="posts.length === 0 && !isLoading">
+    Be the first to post!
+  </div>
+  <div class="no-post" *ngIf="isLoading">Loading...</div>
 </div>

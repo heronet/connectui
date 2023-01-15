@@ -10,6 +10,7 @@ import { PostsService } from './posts.service';
   styleUrls: ['./posts.component.scss'],
 })
 export class PostsComponent implements OnInit, OnDestroy {
+  isLoading = false;
   userId: string | undefined;
   posts: Post[] = [];
   postsSub = new Subscription();
@@ -38,9 +39,16 @@ export class PostsComponent implements OnInit, OnDestroy {
     this.getPosts();
   }
   getPosts() {
+    this.isLoading = true;
     this.postsService.getPosts().subscribe({
-      next: (posts) => (this.posts = posts),
-      error: (err) => console.log(err),
+      next: (posts) => {
+        this.posts = posts;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.isLoading = false;
+        console.log(err);
+      },
     });
   }
   public deletePost = (id: string) => {
