@@ -17,6 +17,7 @@ import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './posts/post/post.component';
 import { CreatePostComponent } from './posts/create-post/create-post.component';
 import { AutosizeDirective } from './autosize.directive';
+import { PostPreviewComponent } from './posts/post-preview/post-preview.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AutosizeDirective } from './autosize.directive';
     PostComponent,
     CreatePostComponent,
     AutosizeDirective,
+    PostPreviewComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [

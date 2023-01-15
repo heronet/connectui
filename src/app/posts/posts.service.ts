@@ -12,6 +12,9 @@ export class PostsService {
   private postSource = new Subject<Post>();
   post$ = this.postSource.asObservable();
 
+  private deletedPostSource = new Subject<string>();
+  deletedPost$ = this.deletedPostSource.asObservable();
+
   constructor(private http: HttpClient) {}
 
   getPosts() {
@@ -25,6 +28,9 @@ export class PostsService {
     );
   }
   deletePost(postId: string) {
-    return this.http.delete(`${this.BASE_URL}/delete/${postId}`);
+    return this.http.delete(`${this.BASE_URL}/delete/${postId}`).subscribe({
+      next: () => this.deletedPostSource.next(postId),
+      error: (err) => console.log(err),
+    });
   }
 }

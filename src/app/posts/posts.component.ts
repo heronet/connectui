@@ -13,6 +13,7 @@ export class PostsComponent implements OnInit, OnDestroy {
   userId: string | undefined;
   posts: Post[] = [];
   postsSub = new Subscription();
+  deletedPostSub = new Subscription();
   authSub = new Subscription();
 
   constructor(
@@ -25,11 +26,16 @@ export class PostsComponent implements OnInit, OnDestroy {
       next: (post) => this.posts.unshift(post),
       error: (err) => console.log(err),
     });
-    this.getPosts();
+    this.deletedPostSub = this.postsService.deletedPost$.subscribe({
+      next: (id) => {
+        this.posts = this.posts.filter((p) => p.id !== id);
+      },
+    });
     this.authSub = this.authService.authData$.subscribe({
       next: (data) => (this.userId = data?.id ?? undefined),
       error: (err) => console.log(err),
     });
+    this.getPosts();
   }
   getPosts() {
     this.postsService.getPosts().subscribe({
@@ -37,16 +43,12 @@ export class PostsComponent implements OnInit, OnDestroy {
       error: (err) => console.log(err),
     });
   }
-  deletePost(id: string) {
-    this.postsService.deletePost(id).subscribe({
-      next: () => {
-        this.posts = this.posts.filter((p) => p.id !== id);
-      },
-      error: (err) => console.log(err),
-    });
-  }
+  public deletePost = (id: string) => {
+    this.postsService.deletePost(id);
+  };
   ngOnDestroy(): void {
     this.postsSub.unsubscribe();
     this.authSub.unsubscribe();
+    this.deletedPostSub.unsubscribe();
   }
 }

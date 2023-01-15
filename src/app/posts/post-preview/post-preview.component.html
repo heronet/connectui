@@ -1,0 +1,50 @@
+<div class="card" *ngIf="post">
+  <div class="card-header">
+    <img src="/assets/dummy.png" alt="temp" class="card-img" />
+    <div class="header-content">
+      <span class="card-title">{{ post.userName }}</span>
+      <span class="card-subtitle">{{ post.createdAt | date : "short" }}</span>
+    </div>
+    <div style="flex: 1 1 auto"></div>
+    <span class="action" *ngIf="userId && userId == post.userId">Edit</span>
+    <span
+      class="action"
+      *ngIf="userId && userId == post.userId"
+      (click)="deletePost(post.id)"
+      >Delete</span
+    >
+  </div>
+  <div class="card-content">
+    <p class="text" *ngIf="post.text">
+      {{ post.text }}
+    </p>
+    <img
+      class="content-photo"
+      [src]="post.photos[0].imageUrl"
+      alt="content-photo"
+      *ngIf="post.photos.length > 0"
+    />
+    <img
+      class="content-photo"
+      [src]="post.photos[0].imageUrl"
+      alt="content-photo"
+      *ngIf="post.photos.length === 2"
+    />
+    <div class="content-photo-3" *ngIf="post.photos.length === 3">
+      <img [src]="post.photos[1].imageUrl" [alt]="post.photos[1].publicId" />
+      <img [src]="post.photos[2].imageUrl" [alt]="post.photos[2].publicId" />
+    </div>
+    <div class="small-imgs" *ngIf="post.photos.length > 3">
+      <img [src]="post.photos[1].imageUrl" [alt]="post.photos[1].publicId" />
+      <img [src]="post.photos[2].imageUrl" [alt]="post.photos[2].publicId" />
+      <div class="more-img">
+        <span>More</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-info">
+    <span>{{ post.likesCount }} Likes</span>
+    <span style="flex: 1 1 auto"></span>
+    <span>{{ post.commentsCount }} Comments</span>
+  </div>
+</div>
