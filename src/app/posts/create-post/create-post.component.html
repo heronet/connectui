@@ -12,10 +12,12 @@
         autosize
         rows="1"
       ></textarea>
-      <button type="submit" class="btn-submit">Post</button>
+      <button type="submit" class="btn-submit" [disabled]="isLoading">
+        Post
+      </button>
     </form>
   </div>
-  <div class="row-2">
+  <div class="row-2" [class.hidden]="isLoading">
     <label for="files">Add Pictures</label>
     <input
       type="file"
@@ -28,7 +30,7 @@
     />
     <span (click)="clearPictures()">Clear Pictures</span>
   </div>
-  <div class="row-3" *ngIf="imageUrls.length > 0">
+  <div class="row-3" *ngIf="imageUrls.length > 0 && !isLoading">
     <div class="preview-main">
       <img *ngIf="initialImage" [src]="initialImage" alt="" />
     </div>
@@ -42,8 +44,14 @@
     </div>
   </div>
   <div class="row-4" *ngIf="imageUrls.length > 0">
-    <button type="button" class="btn-submit" (click)="submitPost(f)">
+    <button
+      *ngIf="!isLoading"
+      type="button"
+      class="btn-submit"
+      (click)="submitPost(f)"
+    >
       Post
     </button>
+    <span *ngIf="isLoading">Posting...</span>
   </div>
 </div>

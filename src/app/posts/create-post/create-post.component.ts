@@ -9,6 +9,7 @@ import { PostsService } from '../posts.service';
   styleUrls: ['./create-post.component.scss'],
 })
 export class CreatePostComponent {
+  isLoading = false;
   @ViewChild('filesInput', { static: true }) filesInput:
     | ElementRef<HTMLInputElement>
     | undefined;
@@ -19,7 +20,6 @@ export class CreatePostComponent {
   constructor(private postsService: PostsService) {}
   handleFileInput() {
     let files = this.filesInput!.nativeElement.files;
-
     for (let i = 0; i != files!.length; ++i) {
       // Collect files
       const file = files!.item(i)!;
@@ -41,15 +41,20 @@ export class CreatePostComponent {
   }
   submitPost(form: NgForm) {
     if (!form.value.postText && this.filesToUpload.length === 0) return;
+    this.isLoading = true;
     const data = form.value;
     const post = new FormData();
     post.append('text', data.postText.trim());
     this.filesToUpload.forEach((f) => post.append('uploadPhotos', f));
     this.postsService.createPost(post).subscribe({
-      error: (err) => console.log(err),
+      error: (err) => {
+        console.log(err);
+        this.isLoading = false;
+      },
       complete: () => {
         form.resetForm();
         this.clearPictures();
+        this.isLoading = false;
       },
     });
   }

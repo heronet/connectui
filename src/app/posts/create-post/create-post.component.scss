@@ -21,6 +21,9 @@
   padding: 10px;
   font-size: 14px;
 }
+.loading {
+  justify-content: center;
+}
 .row-2 > * {
   cursor: pointer;
 }
@@ -113,13 +116,18 @@
   background: #fff;
   color: #333;
 }
+.btn-submit:disabled {
+  color: #888;
+}
 
 .profile-img {
   height: 45px;
   width: 45px;
   margin-right: 10px;
 }
-
+.hidden {
+  display: none;
+}
 @media only screen and (max-width: 500px) {
   .profile-img {
     display: none;
