@@ -22,10 +22,7 @@ export class PostsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.postsSub = this.postsService.post$.subscribe({
-      next: (post) => {
-        this.posts.unshift(post);
-        console.log(post);
-      },
+      next: (post) => this.posts.unshift(post),
       error: (err) => console.log(err),
     });
     this.getPosts();
