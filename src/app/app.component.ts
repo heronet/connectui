@@ -15,6 +15,11 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.chatService.signalRError$.subscribe({
+      next: (err) => {
+        if (err.message.includes('401')) this.authService.logout();
+      },
+    });
     this.plantAuthData();
   }
   plantAuthData() {

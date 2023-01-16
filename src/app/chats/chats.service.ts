@@ -11,6 +11,9 @@ import { Message } from '../models/message';
   providedIn: 'root',
 })
 export class ChatsService {
+  private signalRErrorSource = new Subject<Error>();
+  signalRError$ = this.signalRErrorSource.asObservable();
+
   connection: HubConnection | undefined;
 
   private signalrConnectedSource = new ReplaySubject<boolean>(1);
@@ -37,9 +40,10 @@ export class ChatsService {
   }
 
   sendMessage(message: Partial<Message>) {
-    this.connection
-      ?.invoke('SendMessage', message)
-      .catch((err) => console.log(err));
+    this.connection?.invoke('SendMessage', message).catch((err: Error) => {
+      console.log(err);
+      this.signalRErrorSource.next(err);
+    });
     console.log('Sent');
   }
   initSignalR(authDto: AuthDto) {
@@ -51,6 +55,7 @@ export class ChatsService {
       .build();
 
     this.connection.start().catch((err) => {
+      this.signalRErrorSource.next(err);
       console.log(err);
     });
 
