@@ -18,6 +18,7 @@ import { PostComponent } from './posts/post/post.component';
 import { CreatePostComponent } from './posts/create-post/create-post.component';
 import { AutosizeDirective } from './autosize.directive';
 import { PostPreviewComponent } from './posts/post-preview/post-preview.component';
+import { LogoutInterceptor } from './auth/logout.interceptor';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,11 @@ import { PostPreviewComponent } from './posts/post-preview/post-preview.componen
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LogoutInterceptor,
       multi: true,
     },
   ],
