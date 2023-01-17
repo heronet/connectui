@@ -81,6 +81,7 @@ export class ChatsService {
     });
   }
   stopSignalR() {
-    this.connection?.stop().catch((err) => console.log(err));
+    if (this.connection?.state === signalR.HubConnectionState.Connected)
+      this.connection.stop().catch((err) => console.log(err));
   }
 }

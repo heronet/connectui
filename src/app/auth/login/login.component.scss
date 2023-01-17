@@ -51,7 +51,7 @@ button {
   z-index: 1;
   color: #4a90e2;
   border: none;
-  background: #fff;
+  background: transparent;
   font-size: 12px;
   margin: auto 5px;
   text-transform: uppercase;
@@ -60,6 +60,5 @@ button {
   cursor: pointer;
 }
 button:hover {
-  background: #fff;
   color: #333;
 }
