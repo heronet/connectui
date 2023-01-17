@@ -15,10 +15,12 @@
 
 .chat {
   display: flex;
+  align-items: center;
   padding: 10px;
   color: #555;
   border-bottom: 1px solid #f1f1f1;
   cursor: pointer;
+  min-height: 70px;
 }
 .chat-img {
   height: 45px;
@@ -27,15 +29,17 @@
 .chat > .content {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   margin-left: 15px;
   flex: 1;
 }
 .content > .chat-title {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 2px;
 }
 .chat-name {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 .last-message {
   font-size: 12px;
