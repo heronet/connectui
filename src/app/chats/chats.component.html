@@ -8,7 +8,12 @@
   >
     <img src="/assets/dummy.png" alt="temp" class="chat-img" />
     <div class="content">
-      <span class="chat-name text">{{ chat.title }}</span>
+      <div class="chat-title">
+        <span class="chat-name text">{{ chat.title }}</span>
+        <div class="time">
+          {{ chat.lastMessageTime | date : "EEE, h:mm a" }}
+        </div>
+      </div>
       <span
         class="last-message text"
         *ngIf="authData?.id === chat.lastMessageSenderId"
@@ -20,8 +25,6 @@
         >{{ chat.lastMessage }}</span
       >
     </div>
-    <div style="flex: 1 1 auto"></div>
-    <div class="time">{{ chat.lastMessageTime | date : "EEE, h:mm a" }}</div>
   </div>
   <div class="empty" *ngIf="!isLoading && chats.length === 0">
     Your chats will appear here.

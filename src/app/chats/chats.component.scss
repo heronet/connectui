@@ -28,8 +28,12 @@
   display: flex;
   flex-direction: column;
   margin-left: 15px;
+  flex: 1;
 }
-
+.content > .chat-title {
+  display: flex;
+  justify-content: space-between;
+}
 .chat-name {
   font-size: 1.2rem;
 }

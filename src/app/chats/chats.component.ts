@@ -44,7 +44,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.chatsService.getChats().subscribe({
       next: (chats) => {
-        this.chats = chats;
+        this.chats = chats.filter((c) => c.lastMessage);
         this.isLoading = false;
       },
       error: (err) => {
