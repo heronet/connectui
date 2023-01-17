@@ -10,8 +10,10 @@ import { RegisterDto } from '../authdto';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
+  isLoading = false;
   constructor(private authService: AuthService, private router: Router) {}
   login(data: NgForm) {
+    this.isLoading = true;
     const info: RegisterDto = {
       email: data.value.email,
       password: data.value.password,
@@ -20,9 +22,13 @@ export class RegisterComponent {
 
     this.authService.register(info).subscribe({
       next: () => {
+        this.isLoading = false;
         this.router.navigateByUrl('/');
       },
-      error: (err) => console.log(err),
+      error: (err) => {
+        console.log(err);
+        this.isLoading = false;
+      },
       complete: () => {},
     });
   }

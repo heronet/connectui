@@ -10,8 +10,10 @@ import { LoginDto } from '../authdto';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  isLoading = false;
   constructor(private authService: AuthService, private router: Router) {}
   login(data: NgForm) {
+    this.isLoading = true;
     const info: LoginDto = {
       email: data.value.email,
       password: data.value.password,
@@ -19,10 +21,13 @@ export class LoginComponent {
 
     this.authService.login(info).subscribe({
       next: () => {
+        this.isLoading = false;
         this.router.navigateByUrl('/');
       },
-      error: (err) => console.log(err),
-      complete: () => {},
+      error: (err) => {
+        console.log(err);
+        this.isLoading = false;
+      },
     });
   }
 }

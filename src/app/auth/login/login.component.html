@@ -7,14 +7,15 @@
   <form class="form" #f="ngForm" (ngSubmit)="login(f)">
     <input
       class="email input-border"
-      type="text"
+      type="email"
       name="email"
       ngModel
       placeholder="Email"
     />
     <div class="password input-border">
-      <input type="text" name="password" ngModel placeholder="Password" />
-      <button type="submit">Login</button>
+      <input type="password" name="password" ngModel placeholder="Password" />
+      <button type="submit" [disabled]="isLoading">Login</button>
     </div>
   </form>
+  <div class="loading" *ngIf="isLoading">Logging in...</div>
 </div>

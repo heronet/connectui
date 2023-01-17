@@ -20,7 +20,6 @@ export class AuthService {
         map((authData) => {
           if (authData) {
             this.setData(authData);
-            this.chatService.initSignalR(authData);
           }
         })
       );
@@ -32,7 +31,6 @@ export class AuthService {
         map((authData) => {
           if (authData) {
             this.setData(authData);
-            this.chatService.initSignalR(authData);
           }
         })
       );
@@ -43,6 +41,7 @@ export class AuthService {
       localStorage.setItem('id', authDto.id);
       localStorage.setItem('token', authDto.token);
       this.authDataSource.next(authDto);
+      this.chatService.initSignalR(authDto);
     } else this.authDataSource.next(undefined);
   }
   logout() {

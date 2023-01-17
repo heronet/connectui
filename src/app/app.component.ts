@@ -31,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if (email && id && token) {
       let authDto: AuthDto = { email, id, token };
       this.authService.setData(authDto);
-      this.chatsService.initSignalR(authDto);
+      // this.chatsService.initSignalR(authDto);
     } else {
       this.authService.setData(undefined);
     }
