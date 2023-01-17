@@ -7,5 +7,7 @@ export interface Chat {
   users: User[];
   messages: Message[];
   lastMessage: string;
-  LastMessageSender: string;
+  lastMessageSender: string;
+  lastMessageSenderId: string;
+  lastMessageTime: string;
 }

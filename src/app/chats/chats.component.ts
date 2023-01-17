@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
+import { AuthDto } from '../auth/authdto';
 import { Chat } from '../models/chat';
 import { ChatsService } from './chats.service';
 
@@ -9,21 +11,29 @@ import { ChatsService } from './chats.service';
   styleUrls: ['./chats.component.scss'],
 })
 export class ChatsComponent implements OnInit, OnDestroy {
+  authSub = new Subscription();
   messageSub = new Subscription();
   isLoading = false;
+  authData: AuthDto | undefined;
 
   chats: Chat[] = [];
-  constructor(private chatsService: ChatsService) {}
+  constructor(
+    private chatsService: ChatsService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.getChats();
-
+    this.authSub = this.authService.authData$.subscribe({
+      next: (data) => (this.authData = data),
+    });
     this.messageSub = this.chatsService.message$.subscribe({
       next: (message) => {
         this.chats.forEach((c) => {
           if (c.id === message.chatId) {
             c.lastMessage = message.text;
-            c.LastMessageSender = message.senderName;
+            c.lastMessageSender = message.senderName;
+            c.lastMessageSenderId = message.userId;
           }
         });
       },
@@ -43,6 +53,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
     });
   }
   ngOnDestroy(): void {
+    this.authSub.unsubscribe();
     this.messageSub.unsubscribe();
   }
 }
