@@ -34,6 +34,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
             c.lastMessage = message.text;
             c.lastMessageSender = message.senderName;
             c.lastMessageSenderId = message.userId;
+            c.lastMessageTime = message.time;
           }
         });
       },
