@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AuthService } from './auth/auth.service';
 import { AuthDto } from './auth/authdto';
 import { ChatsService } from './chats/chats.service';
@@ -8,14 +9,15 @@ import { ChatsService } from './chats/chats.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+  private chatsSub = new Subscription();
   constructor(
     private authService: AuthService,
-    private chatService: ChatsService
+    private chatsService: ChatsService
   ) {}
 
   ngOnInit(): void {
-    this.chatService.signalRError$.subscribe({
+    this.chatsSub = this.chatsService.signalRError$.subscribe({
       next: (err) => {
         if (err.message.includes('401')) this.authService.logout();
       },
@@ -29,9 +31,12 @@ export class AppComponent implements OnInit {
     if (email && id && token) {
       let authDto: AuthDto = { email, id, token };
       this.authService.setData(authDto);
-      this.chatService.initSignalR(authDto);
+      this.chatsService.initSignalR(authDto);
     } else {
       this.authService.setData(undefined);
     }
+  }
+  ngOnDestroy(): void {
+    this.chatsSub.unsubscribe();
   }
 }

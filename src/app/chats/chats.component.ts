@@ -9,14 +9,14 @@ import { ChatsService } from './chats.service';
   styleUrls: ['./chats.component.scss'],
 })
 export class ChatsComponent implements OnInit, OnDestroy {
-  chatSub = new Subscription();
+  chatsSub = new Subscription();
   signalRSub = new Subscription();
 
   chats: Chat[] = [];
   constructor(private chatService: ChatsService) {}
 
   ngOnInit(): void {
-    this.chatSub = this.chatService.chats$.subscribe({
+    this.chatsSub = this.chatService.chats$.subscribe({
       next: (chats) => (this.chats = chats.filter((c) => c.lastMessage)),
       error: (err) => console.log(err),
     });
@@ -29,7 +29,7 @@ export class ChatsComponent implements OnInit, OnDestroy {
     });
   }
   ngOnDestroy(): void {
-    this.chatSub.unsubscribe();
+    this.chatsSub.unsubscribe();
     this.signalRSub.unsubscribe();
   }
 }
