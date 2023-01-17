@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
 import { HubConnection } from '@microsoft/signalr';
@@ -14,8 +15,6 @@ export class ChatsService {
   private signalRErrorSource = new Subject<Error>();
   signalRError$ = this.signalRErrorSource.asObservable();
 
-  connection: HubConnection | undefined;
-
   private signalrConnectedSource = new ReplaySubject<boolean>(1);
   signalrConnected$ = this.signalrConnectedSource.asObservable();
 
@@ -28,15 +27,17 @@ export class ChatsService {
   private messageSource = new Subject<Message>();
   message$ = this.messageSource.asObservable();
 
+  private BASE_URL = environment.baseUrl;
+  connection: HubConnection | undefined;
   chats: Chat[] = [];
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  fetchChats() {
-    this.connection?.invoke('GetChats').catch((err) => console.log(err));
+  getChats() {
+    return this.http.get<Chat[]>(`${this.BASE_URL}/chats`);
   }
-  fetchChat(id: string) {
-    this.connection?.invoke('GetChat', id).catch((err) => console.log(err));
+  getChat(id: string) {
+    return this.http.get<Chat>(`${this.BASE_URL}/chats/${id}`);
   }
 
   sendMessage(message: Partial<Message>) {

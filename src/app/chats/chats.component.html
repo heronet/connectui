@@ -1,6 +1,11 @@
 <div class="container">
-  <div class="header">Chats</div>
-  <div *ngFor="let chat of chats" class="chat" [routerLink]="[chat.id]">
+  <div class="header">Messages</div>
+  <div
+    *ngFor="let chat of chats"
+    class="chat"
+    [routerLink]="[chat.id]"
+    [class.hidden]="isLoading"
+  >
     <img src="/assets/dummy.png" alt="temp" class="chat-img" />
     <div class="content">
       <span class="chat-name text">{{ chat.title }}</span>
@@ -9,4 +14,8 @@
     <div style="flex: 1 1 auto"></div>
     <div class="time">{{ "Fri" }}</div>
   </div>
+  <div class="empty" *ngIf="!isLoading && chats.length === 0">
+    Your chats will appear here.
+  </div>
+  <div class="empty" *ngIf="isLoading">Loading chats...</div>
 </div>

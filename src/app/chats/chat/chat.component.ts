@@ -15,10 +15,12 @@ import { ChatsService } from '../chats.service';
   styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit, OnDestroy {
+  isLoading = false;
   titleEditMode = false;
   chat: Chat | undefined;
   chatTitle: string | undefined;
   authData: AuthDto | undefined = undefined;
+  signalRConnected = false;
   chatSub = new Subscription();
   messageSub = new Subscription();
   signalRSub = new Subscription();
@@ -31,6 +33,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe({
+      next: (params) => this.getChat(params['id']),
+    });
     this.authService.authData$.pipe(take(1)).subscribe({
       next: (authData) => (this.authData = authData),
       error: (err) => console.log(err),
@@ -52,8 +57,21 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
     this.signalRSub = this.chatService.signalrConnected$.subscribe({
       next: (signalrConnected) => {
-        if (signalrConnected)
-          this.chatService.fetchChat(this.route.snapshot.params['id']);
+        if (signalrConnected) this.signalRConnected = signalrConnected;
+      },
+    });
+  }
+  getChat(id: string) {
+    this.isLoading = true;
+    this.chatService.getChat(id).subscribe({
+      next: (chat) => {
+        this.chat = chat;
+        if (!this.titleEditMode) this.chatTitle = chat.title;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.log(err);
+        this.isLoading = false;
       },
     });
   }
@@ -62,7 +80,8 @@ export class ChatComponent implements OnInit, OnDestroy {
       chatId: this.chat?.id ?? '',
       text: form.value.messageText,
     };
-    if (form.value.messageText.trim()) this.chatService.sendMessage(message);
+    if (form.value.messageText.trim() && this.signalRConnected)
+      this.chatService.sendMessage(message);
     form.resetForm();
   }
   changeName(form: NgForm) {

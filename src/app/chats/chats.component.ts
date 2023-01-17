@@ -9,27 +9,40 @@ import { ChatsService } from './chats.service';
   styleUrls: ['./chats.component.scss'],
 })
 export class ChatsComponent implements OnInit, OnDestroy {
-  chatsSub = new Subscription();
-  signalRSub = new Subscription();
+  messageSub = new Subscription();
+  isLoading = false;
 
   chats: Chat[] = [];
-  constructor(private chatService: ChatsService) {}
+  constructor(private chatsService: ChatsService) {}
 
   ngOnInit(): void {
-    this.chatsSub = this.chatService.chats$.subscribe({
-      next: (chats) => (this.chats = chats.filter((c) => c.lastMessage)),
-      error: (err) => console.log(err),
+    this.getChats();
+
+    this.messageSub = this.chatsService.message$.subscribe({
+      next: (message) => {
+        this.chats.forEach((c) => {
+          if (c.id === message.chatId) {
+            c.lastMessage = message.text;
+            c.LastMessageSender = message.senderName;
+          }
+        });
+      },
     });
-    this.signalRSub = this.chatService.signalrConnected$.subscribe({
-      next: (signalrConnected) => {
-        if (signalrConnected) {
-          this.chatService.fetchChats();
-        }
+  }
+  getChats() {
+    this.isLoading = true;
+    this.chatsService.getChats().subscribe({
+      next: (chats) => {
+        this.chats = chats;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.log(err);
+        this.isLoading = false;
       },
     });
   }
   ngOnDestroy(): void {
-    this.chatsSub.unsubscribe();
-    this.signalRSub.unsubscribe();
+    this.messageSub.unsubscribe();
   }
 }
