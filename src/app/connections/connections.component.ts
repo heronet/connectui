@@ -10,19 +10,27 @@ import { UsersService } from '../users/users.service';
   styleUrls: ['./connections.component.scss'],
 })
 export class ConnectionsComponent {
+  isLoading = false;
   connectedUsers: User[] = [];
   connectedUsersSub = new Subscription();
 
   constructor(private userService: UsersService, private router: Router) {}
 
   ngOnInit(): void {
-    this.connectedUsersSub = this.userService.connectedUsers$.subscribe({
+    this.getConnectedUsers();
+  }
+  getConnectedUsers() {
+    this.isLoading = true;
+    this.userService.fetchConnectedUsers().subscribe({
       next: (users) => {
         this.connectedUsers = users;
+        this.isLoading = false;
       },
-      error: (err) => console.log(err),
+      error: (err) => {
+        console.log(err);
+        this.isLoading = false;
+      },
     });
-    this.userService.fetchConnectedUsers();
   }
   startChat(user: User) {
     this.userService.fetchOneToOneChatId(user.id).subscribe({

@@ -4,11 +4,25 @@
     <img src="/assets/dummy.png" alt="temp" class="user-img" />
     <span class="name">{{ user.name }}</span>
     <span style="flex: 1 1 auto"></span>
-    <span class="op" *ngIf="!isConnected(user)" (click)="connectUser(user)"
-      >Connect</span
+    <button
+      class="op"
+      *ngIf="!isConnected(user)"
+      (click)="connectUser(user)"
+      [disabled]="isConnecting"
     >
-    <span class="op" *ngIf="isConnected(user)" (click)="startChat(user)"
-      >Message</span
+      Connect
+    </button>
+    <button
+      class="op"
+      *ngIf="isConnected(user)"
+      (click)="startChat(user)"
+      [disabled]="isConnecting"
     >
+      Message
+    </button>
   </div>
+  <div class="empty" *ngIf="!isLoading && users.length === 0">
+    Users will appear here.
+  </div>
+  <div class="empty" *ngIf="isLoading">Loading users...</div>
 </div>

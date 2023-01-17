@@ -34,13 +34,18 @@
   cursor: pointer;
   color: #4a90e2;
   text-transform: uppercase;
+  border: transparent;
+  background: none;
 }
-
-.text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2; /* number of lines to show */
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
+.op:hover {
+  color: #333;
+}
+.op:disabled {
+  color: #555;
+}
+.empty {
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  color: #888;
 }
