@@ -6,7 +6,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![GPLv3 License][license-shield]][license-url]
+[![License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
@@ -103,7 +103,7 @@ To get a local copy up and running follow these simple steps.
    ```
 3. Run the project
    ```sh
-   ng serve -o
+   ng serve --host="0.0.0.0"
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -180,7 +180,7 @@ Project Link: [https://github.com/heronet/connectui](https://github.com/heronet/
 [issues-shield]: https://img.shields.io/github/issues/heronet/connectui.svg?style=for-the-badge
 [issues-url]: https://github.com/heronet/connectui/issues
 [license-shield]: https://img.shields.io/github/license/heronet/connectui.svg?style=for-the-badge
-[license-url]: https://github.com/heronet/connectui/blob/master/LICENSE
+[license-url]: https://github.com/heronet/connectui/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/siratul-islam
 [screenshot]: images/scr.png
