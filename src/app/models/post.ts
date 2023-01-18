@@ -8,6 +8,7 @@ export interface Post {
   userId: string;
   userName: string;
   likesCount: number;
+  postLiked: boolean;
   commentsCount: number;
   photos: Photo[];
 }

@@ -94,17 +94,17 @@
   color: var(--text-primary);
   font-family: sans-serif;
 }
-.text-input::placeholder {
-  font-family: sans-serif;
-}
 .fav {
   margin: -17px -5px -17px -15px;
   background-position: left;
   background-repeat: no-repeat;
   cursor: pointer;
   display: inline-block;
-  user-select: none;
+  -webkit-tap-highlight-color: transparent;
   &:hover {
+    background-position: right;
+  }
+  &.liked {
     background-position: right;
   }
 }

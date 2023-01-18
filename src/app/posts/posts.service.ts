@@ -36,4 +36,10 @@ export class PostsService {
       error: (err) => console.log(err),
     });
   }
+  likePost(post: Partial<Post>) {
+    return this.http.put<Post>(`${this.BASE_URL}/like`, post);
+  }
+  unLikePost(post: Partial<Post>) {
+    return this.http.put<Post>(`${this.BASE_URL}/unlike`, post);
+  }
 }

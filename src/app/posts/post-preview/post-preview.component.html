@@ -67,11 +67,20 @@
   </div>
   <div class="card-info" *ngIf="!isLoading">
     <div
-      class="fav fav-heart"
-      [class.is-animating]="animate"
-      (click)="like()"
+      *ngIf="post.postLiked && userId"
+      class="fav fav-heart liked"
+      [class.is-animating]="post.postLiked"
+      (click)="unlike(post)"
     ></div>
-    <span>{{ post.likesCount }} Likes</span>
+    <div
+      *ngIf="!post.postLiked"
+      class="fav fav-heart"
+      [class.is-animating]="post.postLiked"
+      (click)="like(post)"
+    ></div>
+    <span
+      >{{ post.likesCount }} {{ post.likesCount > 1 ? "Likes" : "Like" }}</span
+    >
     <span style="flex: 1 1 auto"></span>
     <span>{{ post.commentsCount }} Comments</span>
   </div>

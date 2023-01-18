@@ -43,7 +43,22 @@ export class PostPreviewComponent {
       },
     });
   }
-  like() {
-    this.animate = !this.animate;
+  like(post: Post) {
+    this.postsService.likePost(post).subscribe({
+      next: (post) => {
+        this.post!.postLiked = post.postLiked;
+        this.post!.likesCount += 1;
+      },
+      error: (err) => console.log(err),
+    });
+  }
+  unlike(post: Post) {
+    this.postsService.unLikePost(post).subscribe({
+      next: (post) => {
+        this.post!.postLiked = post.postLiked;
+        this.post!.likesCount -= 1;
+      },
+      error: (err) => console.log(err),
+    });
   }
 }
