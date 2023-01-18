@@ -1,7 +1,7 @@
 .card {
   display: flex;
   flex-direction: column;
-  margin: 10px 0;
+  margin: 10px 0 0 0;
   border: 1px solid var(--border-color);
   border-radius: 12px;
   border-width: 1px;
@@ -105,4 +105,35 @@
 
 .text-input::placeholder {
   font-family: sans-serif;
+}
+.fav {
+  margin: -17px -5px -17px -15px;
+  background-position: left;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  display: inline-block;
+
+  &:hover {
+    background-position: right;
+  }
+}
+
+.fav-heart {
+  background-image: url("/assets/heart.png");
+  background-size: auto 50px; // scale the image for retina
+  height: 50px;
+  width: 50px; // 2900px / 29 frames
+
+  &.is-animating {
+    animation: zoetrope 0.8s steps(28) 1;
+  }
+}
+
+@keyframes zoetrope {
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
 }

@@ -66,6 +66,11 @@
     </div>
   </div>
   <div class="card-info" *ngIf="!isLoading">
+    <div
+      class="fav fav-heart"
+      [class.is-animating]="animate"
+      (click)="like()"
+    ></div>
     <span>{{ post.likesCount }} Likes</span>
     <span style="flex: 1 1 auto"></span>
     <span>{{ post.commentsCount }} Comments</span>
