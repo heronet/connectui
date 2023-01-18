@@ -4,8 +4,6 @@
   margin: 10px 0 0 0;
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  border-width: 1px;
-  border-style: solid;
   box-sizing: border-box;
 }
 .card-img {
@@ -31,7 +29,6 @@
 .card-subtitle {
   font-size: 12px;
 }
-
 .card-content > .text {
   margin: 10px;
   word-break: break-word;
@@ -80,7 +77,6 @@
 .card-info > *:hover {
   text-decoration: underline;
 }
-
 .text-box {
   display: flex;
   flex: 1;
@@ -102,7 +98,6 @@
   color: var(--text-primary);
   font-family: sans-serif;
 }
-
 .text-input::placeholder {
   font-family: sans-serif;
 }
@@ -112,23 +107,19 @@
   background-repeat: no-repeat;
   cursor: pointer;
   display: inline-block;
-
   &:hover {
     background-position: right;
   }
 }
-
 .fav-heart {
   background-image: url("/assets/heart.png");
-  background-size: auto 50px; // scale the image for retina
+  background-size: auto 50px;
   height: 50px;
   width: 50px; // 2900px / 29 frames
-
   &.is-animating {
     animation: zoetrope 0.8s steps(28) 1;
   }
 }
-
 @keyframes zoetrope {
   from {
     background-position: left;
