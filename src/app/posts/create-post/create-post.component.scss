@@ -1,12 +1,12 @@
 .container {
   max-width: 100%;
   margin: 10px auto 0 auto;
-  border: 1px solid #d2d2d7;
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   border-width: 1px;
   border-style: solid;
   box-sizing: border-box;
-  color: #555;
+  color: var(--text-primary);
 }
 .row-1 {
   display: flex;
@@ -15,7 +15,7 @@
 .row-2 {
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid #d2d2d7;
+  border-top: 1px solid var(--border-color);
   align-items: center;
   padding: 10px;
   font-size: 14px;
@@ -31,7 +31,7 @@
 .row-3 {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid #d2d2d7;
+  border-top: 1px solid var(--border-color);
   padding-bottom: 10px;
   align-items: center;
   font-size: 14px;
@@ -49,7 +49,7 @@
 .row-4 {
   display: flex;
   justify-content: center;
-  border-top: 1px solid #d2d2d7;
+  border-top: 1px solid var(--border-color);
   align-items: center;
   padding: 5px;
   font-size: 14px;
@@ -73,12 +73,12 @@
 .text-box {
   display: flex;
   flex: 1;
-  background: #fff;
+  background: var(--bg-alt-color);
   padding: 8px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
 }
 .text-input {
   flex-grow: 1;
@@ -91,7 +91,7 @@
   font-size: 15px;
   padding-right: 20px;
   margin: auto 0;
-  color: #444;
+  color: var(--text-primary);
   font-family: sans-serif;
 }
 
@@ -103,7 +103,7 @@
   z-index: 1;
   color: #4a90e2;
   border: none;
-  background: #fff;
+  background: transparent;
   font-size: 12px;
   text-transform: uppercase;
   line-height: 1;
@@ -115,8 +115,7 @@
   user-select: none;
 }
 .btn-submit:hover {
-  background: #fff;
-  color: #333;
+  color: var(--text-primary);
 }
 .btn-submit:disabled {
   color: #888;

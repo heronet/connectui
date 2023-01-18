@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { ThemeService } from '../theme.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,12 @@ import { AuthService } from '../auth/auth.service';
 export class HomeComponent implements OnInit, OnDestroy {
   private authSub = new Subscription();
   isAuthenticated = false;
-  constructor(private authService: AuthService) {}
+  isDark = this.themeService.checkIfDarkOnInit();
+
+  constructor(
+    private authService: AuthService,
+    private themeService: ThemeService
+  ) {}
   ngOnInit(): void {
     this.authSub = this.authService.authData$.subscribe({
       next: (data) =>
@@ -20,6 +26,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   logout() {
     this.authService.logout();
+  }
+  toggleTheme() {
+    this.themeService.toggleTheme();
+    this.isDark = !this.isDark;
   }
   ngOnDestroy(): void {
     this.authSub.unsubscribe();

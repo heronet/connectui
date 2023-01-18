@@ -2,6 +2,9 @@
   <div class="home-header">
     <a [routerLink]="['/']" class="brand">Connect</a>
     <span style="flex: 1 1 auto"></span>
+    <span class="header-link" (click)="toggleTheme()">{{
+      isDark ? "Light" : "Dark"
+    }}</span>
     <a class="header-link" [routerLink]="['login']" *ngIf="!isAuthenticated"
       >Login</a
     >

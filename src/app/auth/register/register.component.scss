@@ -9,7 +9,7 @@
   font-family: sans-serif;
   text-align: center;
   font-size: 1.2rem;
-  color: #555;
+  color: var(--text-primary);
 }
 .form {
   display: flex;
@@ -18,7 +18,7 @@
   margin: 0 auto;
 }
 .input-border {
-  border: 1px solid #d2d2d7;
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   border-width: 1px;
   border-style: solid;
@@ -28,24 +28,32 @@
   display: flex;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
+  background: var(--bg-alt-color);
 }
 .password > input {
   flex: 1;
   padding: 12px;
   border-bottom-left-radius: 12px;
   background: none;
-  border: none;
+  border: transparent;
   outline: none !important;
   resize: none;
+  color: var(--text-primary);
 }
 .name {
   padding: 12px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
+  background: var(--bg-alt-color);
+  color: var(--text-primary);
 }
 .email {
   padding: 12px;
   border-radius: 0;
+  border-top: none;
+  border-bottom: none;
+  background: var(--bg-alt-color);
+  color: var(--text-primary);
 }
 
 button {
@@ -64,10 +72,10 @@ button {
   cursor: pointer;
 }
 button:hover {
-  color: #333;
+  color: var(--text-primary);
 }
 button:disabled {
-  color: #555;
+  color: var(--text-secondary);
 }
 .loading {
   padding: 10px;

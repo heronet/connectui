@@ -17,8 +17,8 @@
   display: flex;
   align-items: center;
   padding: 10px;
-  color: #555;
-  border-bottom: 1px solid #f1f1f1;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
 }
 .user-img {
   height: 45px;
@@ -38,10 +38,10 @@
   background: none;
 }
 .op:hover {
-  color: #333;
+  color: var(--text-primary);
 }
 .op:disabled {
-  color: #555;
+  color: var(--text-secondary);
 }
 .empty {
   padding: 10px;

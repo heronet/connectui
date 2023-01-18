@@ -12,8 +12,8 @@ body {
   font-family: sans-serif;
   height: 50px;
   padding: 0 20px;
-  color: #555;
-  border-bottom: #f1f1f1 solid 1px;
+  color: var(--text-primary);
+  border-bottom: var(--border-color) solid 1px;
   position: sticky;
   top: 0;
   z-index: 9999;
@@ -21,4 +21,20 @@ body {
 }
 .spacer {
   height: 10px;
+}
+.dark {
+  --bg-color: #000000;
+  --bg-alt-color: #1c1e21;
+  --border-color: #555;
+  --text-primary: #fff;
+  --text-secondary: #fff;
+  background-color: var(--bg-color);
+}
+.light {
+  --bg-color: #ffffff;
+  --bg-alt-color: #ffffff;
+  --border-color: #d2d2d7;
+  --text-primary: #333;
+  --text-secondary: #555;
+  background-color: var(--bg-color);
 }
