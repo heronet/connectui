@@ -25,13 +25,6 @@
   flex-grow: 1;
 }
 
-.no-msg {
-  padding: 10px;
-  text-align: center;
-  font-size: 1.3rem;
-  color: #888;
-}
-
 .msg {
   position: relative;
   max-width: 75%;
@@ -131,4 +124,9 @@
 textarea::placeholder {
   font-family: sans-serif;
   margin: auto;
+}
+.chat-img {
+  height: 35px;
+  width: 35px;
+  margin-right: 10px;
 }

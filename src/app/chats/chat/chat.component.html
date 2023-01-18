@@ -2,6 +2,7 @@
   <div class="empty-loading" *ngIf="isLoading">Loading Messages...</div>
   <div *ngIf="chat && !isLoading" class="chat">
     <div class="header">
+      <img src="/assets/dummy.png" alt="dummy" class="chat-img" />
       <span *ngIf="!titleEditMode" (click)="titleEditMode = !titleEditMode">{{
         chat.title
       }}</span>
@@ -26,7 +27,7 @@
     >
       <span>{{ message.text }}</span>
     </div>
-    <p *ngIf="chat.messages.length === 0" class="no-msg">Say Hello!</p>
+    <p *ngIf="chat.messages.length === 0" class="empty-loading">Say Hello!</p>
   </div>
   <div class="spacer"></div>
   <div class="message-box-container" *ngIf="chat && !isLoading">
