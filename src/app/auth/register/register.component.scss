@@ -55,31 +55,3 @@
   background: var(--bg-alt-color);
   color: var(--text-primary);
 }
-
-button {
-  border-radius: 12px;
-  border-width: 1px;
-  position: relative;
-  z-index: 1;
-  color: #4a90e2;
-  border: none;
-  background: transparent;
-  font-size: 12px;
-  margin: auto 5px;
-  text-transform: uppercase;
-  outline: none !important;
-  transition: background 0.2s ease;
-  cursor: pointer;
-}
-button:hover {
-  color: var(--text-primary);
-}
-button:disabled {
-  color: var(--text-secondary);
-}
-.loading {
-  padding: 10px;
-  text-align: center;
-  font-size: 14px;
-  color: #888;
-}

@@ -21,8 +21,8 @@
       Message
     </button>
   </div>
-  <div class="empty" *ngIf="!isLoading && users.length === 0">
+  <div class="empty-loading" *ngIf="!isLoading && users.length === 0">
     Users will appear here.
   </div>
-  <div class="empty" *ngIf="isLoading">Loading users...</div>
+  <div class="empty-loading" *ngIf="isLoading">Loading users...</div>
 </div>

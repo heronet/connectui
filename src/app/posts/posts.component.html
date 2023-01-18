@@ -5,8 +5,8 @@
     [post]="post"
     [userId]="userId"
   ></app-post-preview>
-  <div class="no-post" *ngIf="posts.length === 0 && !isLoading">
+  <div class="empty-loading" *ngIf="posts.length === 0 && !isLoading">
     Be the first to post!
   </div>
-  <div class="no-post" *ngIf="isLoading">Loading...</div>
+  <div class="empty-loading" *ngIf="isLoading">Loading posts...</div>
 </div>

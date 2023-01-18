@@ -38,3 +38,37 @@ body {
   --text-secondary: #555;
   background-color: var(--bg-color);
 }
+.btn {
+  border-radius: 12px;
+  border-width: 1px;
+  position: relative;
+  z-index: 1;
+  color: #4a90e2;
+  border: transparent;
+  background: transparent;
+  font-size: 12px;
+  margin: auto 5px;
+  text-transform: uppercase;
+  outline: none !important;
+  transition: background 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+}
+.btn:hover {
+  color: var(--text-primary);
+}
+.btn:disabled {
+  color: var(--text-secondary);
+}
+.red {
+  color: rgb(255, 55, 95);
+}
+.hidden {
+  display: none;
+}
+.empty-loading {
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+}

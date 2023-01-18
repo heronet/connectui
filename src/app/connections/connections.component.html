@@ -8,8 +8,8 @@
     <img src="/assets/dummy.png" alt="temp" class="user-img" />
     <span class="name">{{ user.name }}</span>
   </div>
-  <div class="empty" *ngIf="!isLoading && connectedUsers.length === 0">
+  <div class="empty-loading" *ngIf="!isLoading && connectedUsers.length === 0">
     Users will appear here.
   </div>
-  <div class="empty" *ngIf="isLoading">Loading Connections...</div>
+  <div class="empty-loading" *ngIf="isLoading">Loading Connections...</div>
 </div>

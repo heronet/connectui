@@ -26,8 +26,8 @@
       >
     </div>
   </div>
-  <div class="empty" *ngIf="!isLoading && chats.length === 0">
+  <div class="empty-loading" *ngIf="!isLoading && chats.length === 0">
     Your chats will appear here.
   </div>
-  <div class="empty" *ngIf="isLoading">Loading chats...</div>
+  <div class="empty-loading" *ngIf="isLoading">Loading chats...</div>
 </div>

@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="loading" *ngIf="isLoading">Loading Messages...</div>
+  <div class="empty-loading" *ngIf="isLoading">Loading Messages...</div>
   <div *ngIf="chat && !isLoading" class="chat">
     <div class="header">
       <span *ngIf="!titleEditMode" (click)="titleEditMode = !titleEditMode">{{
@@ -41,7 +41,7 @@
         autosize
         rows="1"
       ></textarea>
-      <button type="submit" class="message-submit">Send</button>
+      <button type="submit" class="btn">Send</button>
     </form>
   </div>
 </div>

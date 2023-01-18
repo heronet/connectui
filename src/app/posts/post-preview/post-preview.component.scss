@@ -60,7 +60,7 @@
   backdrop-filter: blur(10px);
   font-size: 1.2em;
   color: var(--text-primary);
-  background-color: #f1f1f1;
+  background-color: var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,7 +86,7 @@
   flex: 1;
   background: var(--bg-alt-color);
   padding: 8px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--border-color);
 }
 .text-input {
   flex-grow: 1;
@@ -105,37 +105,4 @@
 
 .text-input::placeholder {
   font-family: sans-serif;
-}
-.btn {
-  position: relative;
-  z-index: 1;
-  color: #4a90e2;
-  border: none;
-  font-size: 12px;
-  padding: 10px;
-  background-color: transparent;
-  text-transform: uppercase;
-  line-height: 1;
-  outline: none !important;
-  transition: background 0.2s ease;
-  cursor: pointer;
-  user-select: none;
-}
-.btn:hover {
-  color: var(--text-primary);
-}
-.btn:disabled {
-  color: #888;
-}
-.red {
-  color: rgb(255, 55, 95);
-}
-.hidden {
-  display: none;
-}
-.loading {
-  margin: 10px 0;
-  text-align: center;
-  font-size: 14px;
-  color: #888;
 }
