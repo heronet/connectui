@@ -43,23 +43,25 @@ export class PostPreviewComponent {
     });
   }
   like(post: Post) {
-    console.log(post);
-
+    this.post!.postLiked = true;
+    this.post!.likesCount += 1;
     this.postsService.likePost(post).subscribe({
-      next: (post) => {
-        this.post!.postLiked = post.postLiked;
-        this.post!.likesCount += 1;
+      next: (post) => {},
+      error: (err) => {
+        console.log(err);
+        this.post!.likesCount -= 1;
       },
-      error: (err) => console.log(err),
     });
   }
   unlike(post: Post) {
+    this.post!.postLiked = false;
+    this.post!.likesCount -= 1;
     this.postsService.unLikePost(post).subscribe({
-      next: (post) => {
-        this.post!.postLiked = post.postLiked;
-        this.post!.likesCount -= 1;
+      next: (post) => {},
+      error: (err) => {
+        console.log(err);
+        this.post!.likesCount += 1;
       },
-      error: (err) => console.log(err),
     });
   }
 }
