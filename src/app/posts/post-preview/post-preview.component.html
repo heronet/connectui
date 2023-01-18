@@ -73,7 +73,7 @@
       (click)="unlike(post)"
     ></div>
     <div
-      *ngIf="!post.postLiked"
+      *ngIf="!post.postLiked && userId"
       class="fav fav-heart"
       [class.is-animating]="post.postLiked"
       (click)="like(post)"

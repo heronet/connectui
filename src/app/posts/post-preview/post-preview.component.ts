@@ -14,7 +14,6 @@ export class PostPreviewComponent {
   postText: string | undefined;
   isEditMode = false;
   isLoading = false;
-  animate = true;
   toggleEditMode() {
     this.isEditMode = !this.isEditMode;
     if (!this.postText) {
@@ -44,6 +43,8 @@ export class PostPreviewComponent {
     });
   }
   like(post: Post) {
+    console.log(post);
+
     this.postsService.likePost(post).subscribe({
       next: (post) => {
         this.post!.postLiked = post.postLiked;
