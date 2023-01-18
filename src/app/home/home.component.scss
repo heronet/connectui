@@ -21,6 +21,12 @@
   z-index: 9999;
   backdrop-filter: blur(8px);
 }
+.theme-toggle {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
 
 a {
   text-decoration: none;
