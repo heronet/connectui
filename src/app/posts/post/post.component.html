@@ -13,20 +13,12 @@
       [authData]="authData"
       [enableLinks]="false"
       [photosLinear]="true"
+      [redirectOnDelete]="true"
     ></app-post-preview>
     <app-add-comment
       *ngIf="authData && post"
       [postId]="post.id"
     ></app-add-comment>
-    <app-comments
-      *ngIf="post && post.commentsCount > 0"
-      [postId]="post.id"
-    ></app-comments>
-    <div
-      class="empty-loading"
-      *ngIf="!isLoading && post && post.commentsCount === 0"
-    >
-      Be the first to comment!
-    </div>
+    <app-comments *ngIf="post" [postId]="post.id"></app-comments>
   </div>
 </div>

@@ -12,7 +12,7 @@ export class CommentsComponent implements OnInit {
   @Input() postId: string | undefined;
   comments: Comment[] = [];
   commentSub = new Subscription();
-
+  isLoading = false;
   constructor(private postsService: PostsService) {}
   ngOnInit(): void {
     this.commentSub = this.postsService.newComment$.subscribe({
@@ -21,11 +21,16 @@ export class CommentsComponent implements OnInit {
     this.getComments();
   }
   getComments() {
+    this.isLoading = true;
     this.postsService.getComments(this.postId!).subscribe({
       next: (comments) => {
         this.comments = comments;
+        this.isLoading = false;
       },
-      error: (err) => console.log(err),
+      error: (err) => {
+        console.log(err);
+        this.isLoading = false;
+      },
     });
   }
 }

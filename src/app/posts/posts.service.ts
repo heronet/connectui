@@ -38,10 +38,9 @@ export class PostsService {
     return this.http.put<Post>(`${this.BASE_URL}/update`, post);
   }
   deletePost(postId: string) {
-    return this.http.delete(`${this.BASE_URL}/delete/${postId}`).subscribe({
-      next: () => this.deletedPostSource.next(postId),
-      error: (err) => console.log(err),
-    });
+    return this.http
+      .delete(`${this.BASE_URL}/delete/${postId}`)
+      .pipe(map(() => this.deletedPostSource.next(postId)));
   }
   likePost(post: Partial<Post>) {
     return this.http.put<Post>(`${this.BASE_URL}/like`, post);

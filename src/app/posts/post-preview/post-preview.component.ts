@@ -15,7 +15,7 @@ export class PostPreviewComponent {
   @Input() authData: AuthDto | undefined;
   @Input() enableLinks: boolean | undefined;
   @Input() photosLinear: boolean | undefined;
-
+  @Input() redirectOnDelete: boolean | undefined;
   postText: string | undefined;
   isEditMode = false;
   isLoading = false;
@@ -27,7 +27,12 @@ export class PostPreviewComponent {
   }
   deletePost(id: string) {
     this.isLoading = true;
-    this.postsService.deletePost(id);
+    this.postsService.deletePost(id).subscribe({
+      next: () => {
+        if (this.redirectOnDelete) this.router.navigate(['/']);
+      },
+      error: (err) => console.log(err),
+    });
   }
   savePost() {
     this.isLoading = true;
