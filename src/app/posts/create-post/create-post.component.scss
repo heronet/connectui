@@ -70,40 +70,6 @@
 .small-imgs > * {
   max-height: 100%;
 }
-.text-box {
-  display: flex;
-  flex: 1;
-  background: var(--bg-alt-color);
-  padding: 8px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
-  border: 1px solid var(--border-color);
-}
-.text-input {
-  flex-grow: 1;
-  background: none;
-  border: none;
-  outline: none !important;
-  resize: none;
-  overflow: hidden;
-  text-align: justify;
-  font-size: 15px;
-  padding-right: 20px;
-  margin: auto 0;
-  color: var(--text-primary);
-  font-family: sans-serif;
-}
-
-.text-input::placeholder {
-  font-family: sans-serif;
-}
-
-.profile-img {
-  height: 45px;
-  width: 45px;
-  margin-right: 10px;
-}
 .hidden {
   display: none;
 }

@@ -94,7 +94,10 @@ body {
   flex: 1;
   background: var(--bg-alt-color);
   padding: 8px;
-  border-bottom: 1px solid var(--border-color);
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
 }
 .text-input {
   flex-grow: 1;
@@ -105,7 +108,7 @@ body {
   overflow: hidden;
   text-align: justify;
   font-size: 15px;
-  padding-right: 10px;
+  padding-right: 20px;
   margin: auto 0;
   color: var(--text-primary);
   font-family: sans-serif;
@@ -141,6 +144,11 @@ body {
 .avatar {
   height: 45px;
   width: 45px;
+}
+.profile-img {
+  height: 45px;
+  width: 45px;
+  margin-right: 10px;
 }
 .empty-loading {
   padding: 10px;

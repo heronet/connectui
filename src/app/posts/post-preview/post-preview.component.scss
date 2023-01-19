@@ -1,3 +1,24 @@
 .pointer {
   cursor: pointer;
 }
+.text-box {
+  display: flex;
+  flex: 1;
+  background: var(--bg-alt-color);
+  padding: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+.text-input {
+  flex-grow: 1;
+  background: none;
+  border: none;
+  outline: none !important;
+  resize: none;
+  overflow: hidden;
+  text-align: justify;
+  font-size: 15px;
+  padding-right: 10px;
+  margin: auto 0;
+  color: var(--text-primary);
+  font-family: sans-serif;
+}

@@ -20,6 +20,8 @@ import { AutosizeDirective } from './autosize.directive';
 import { PostPreviewComponent } from './posts/post-preview/post-preview.component';
 import { LogoutInterceptor } from './auth/logout.interceptor';
 import { PostImagesComponent } from './posts/post-images/post-images.component';
+import { CommentsComponent } from './posts/comments/comments.component';
+import { AddCommentComponent } from './posts/comments/add-comment/add-comment.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { PostImagesComponent } from './posts/post-images/post-images.component';
     AutosizeDirective,
     PostPreviewComponent,
     PostImagesComponent,
+    CommentsComponent,
+    AddCommentComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [

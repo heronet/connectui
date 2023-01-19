@@ -1,0 +1,17 @@
+<div class="container">
+  <img src="/assets/dummy.png" alt="temp" class="profile-img" />
+  <form class="text-box" #f="ngForm" (ngSubmit)="submitComment(f)">
+    <textarea
+      type="text"
+      name="commentText"
+      class="text-input"
+      placeholder="What's on your mind?"
+      autocomplete="off"
+      ngModel
+      autosize
+      rows="1"
+      required
+    ></textarea>
+    <button type="submit" class="btn" [disabled]="isLoading">Comment</button>
+  </form>
+</div>

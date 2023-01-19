@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Comment } from '../models/comment';
 import { Post } from '../models/post';
 
 @Injectable({
@@ -14,6 +15,9 @@ export class PostsService {
 
   private deletedPostSource = new Subject<string>();
   deletedPost$ = this.deletedPostSource.asObservable();
+
+  private newCommentSource = new Subject<Comment>();
+  newCommentSource$ = this.newCommentSource.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -44,5 +48,17 @@ export class PostsService {
   }
   unLikePost(post: Partial<Post>) {
     return this.http.put<Post>(`${this.BASE_URL}/unlike`, post);
+  }
+  getComments() {
+    return this.http.get<Comment>(`${this.BASE_URL}/comments`);
+  }
+  commentOnPost(comment: Partial<Comment>) {
+    return this.http.post<Comment>(`${this.BASE_URL}/comments`, comment).pipe(
+      map((comment) => {
+        console.log(comment);
+
+        this.newCommentSource.next(comment);
+      })
+    );
   }
 }
