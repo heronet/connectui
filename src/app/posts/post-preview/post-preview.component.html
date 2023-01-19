@@ -1,5 +1,5 @@
 <div class="card" *ngIf="post">
-  <div class="card-header" [routerLink]="[post.id]">
+  <div class="card-header">
     <img src="/assets/dummy.png" alt="temp" class="avatar" />
     <div class="header-content">
       <span class="card-title">{{ post.userName }}</span>
@@ -41,29 +41,7 @@
     <p class="text" *ngIf="post.text && !isEditMode">
       {{ post.text }}
     </p>
-    <img
-      class="content-photo"
-      [src]="post.photos[0].imageUrl"
-      alt="content-photo"
-      *ngIf="post.photos.length > 0"
-    />
-    <img
-      class="content-photo"
-      [src]="post.photos[0].imageUrl"
-      alt="content-photo"
-      *ngIf="post.photos.length === 2"
-    />
-    <div class="content-photo-3" *ngIf="post.photos.length === 3">
-      <img [src]="post.photos[1].imageUrl" [alt]="post.photos[1].publicId" />
-      <img [src]="post.photos[2].imageUrl" [alt]="post.photos[2].publicId" />
-    </div>
-    <div class="small-imgs" *ngIf="post.photos.length > 3">
-      <img [src]="post.photos[1].imageUrl" [alt]="post.photos[1].publicId" />
-      <img [src]="post.photos[2].imageUrl" [alt]="post.photos[2].publicId" />
-      <div class="more-img">
-        <span>More</span>
-      </div>
-    </div>
+    <app-post-images [post]="post" class="images"></app-post-images>
   </div>
   <div class="card-info" *ngIf="!isLoading">
     <div

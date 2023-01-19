@@ -19,6 +19,7 @@ import { CreatePostComponent } from './posts/create-post/create-post.component';
 import { AutosizeDirective } from './autosize.directive';
 import { PostPreviewComponent } from './posts/post-preview/post-preview.component';
 import { LogoutInterceptor } from './auth/logout.interceptor';
+import { PostImagesComponent } from './posts/post-images/post-images.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { LogoutInterceptor } from './auth/logout.interceptor';
     CreatePostComponent,
     AutosizeDirective,
     PostPreviewComponent,
+    PostImagesComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [

@@ -1,0 +1,25 @@
+<div class="container" *ngIf="post">
+  <img
+    class="content-photo"
+    [src]="post.photos[0].imageUrl"
+    alt="content-photo"
+    *ngIf="post.photos.length > 0"
+  />
+  <img
+    class="content-photo"
+    [src]="post.photos[0].imageUrl"
+    alt="content-photo"
+    *ngIf="post.photos.length === 2"
+  />
+  <div class="content-photo-3" *ngIf="post.photos.length === 3">
+    <img [src]="post.photos[1].imageUrl" [alt]="post.photos[1].publicId" />
+    <img [src]="post.photos[2].imageUrl" [alt]="post.photos[2].publicId" />
+  </div>
+  <div class="small-imgs" *ngIf="post.photos.length > 3">
+    <img [src]="post.photos[1].imageUrl" [alt]="post.photos[1].publicId" />
+    <img [src]="post.photos[2].imageUrl" [alt]="post.photos[2].publicId" />
+    <div class="more-img">
+      <span>More</span>
+    </div>
+  </div>
+</div>
