@@ -27,6 +27,18 @@
   margin-right: 10px;
   cursor: pointer;
 }
+.brand {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+}
+.brand > img {
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+  filter: var(--logo-light);
+}
 
 a {
   text-decoration: none;

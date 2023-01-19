@@ -1,6 +1,9 @@
 <div class="container">
   <div class="home-header">
-    <a [routerLink]="['/']" class="brand">Connect</a>
+    <div [routerLink]="['/']" class="brand">
+      <img src="/assets/brand.svg" alt="brand" />
+      <span>Connect</span>
+    </div>
     <span style="flex: 1 1 auto"></span>
     <img
       *ngIf="isDark"

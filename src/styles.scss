@@ -23,6 +23,7 @@ body {
   height: 10px;
 }
 .dark {
+  --logo-light: invert(100%);
   --bg-color: #000000;
   --bg-alt-color: #1c1e21;
   --border-color: #555;
@@ -32,7 +33,6 @@ body {
   --msg-sent-fg: #fff;
   --msg-rcvd-bg: #1d1d1d;
   --msg-rcvd-fg: #bfbfbf;
-
   background-color: var(--bg-color);
 }
 .light {
