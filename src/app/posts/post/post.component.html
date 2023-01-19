@@ -1,14 +1,19 @@
 <div class="container">
-  <div class="header">{{ post?.userName }}'s post</div>
-  <div class="empty-loading" *ngIf="isLoading">Loading post...</div>
-  <div class="empty-loading" *ngIf="!isLoading && !post">
-    Error loading post
+  <div class="header" *ngIf="!isLoading && post">
+    {{ post.userName }}'s post
   </div>
-  <app-post-preview
-    class="post"
-    [post]="post"
-    [authData]="authData"
-    [enableLinks]="false"
-    [photosLinear]="true"
-  ></app-post-preview>
+  <div class="header" *ngIf="isLoading">Post</div>
+  <div class="body">
+    <div class="empty-loading" *ngIf="isLoading">Loading post...</div>
+    <div class="empty-loading" *ngIf="!isLoading && !post">
+      Error loading post
+    </div>
+    <app-post-preview
+      class="post"
+      [post]="post"
+      [authData]="authData"
+      [enableLinks]="false"
+      [photosLinear]="true"
+    ></app-post-preview>
+  </div>
 </div>

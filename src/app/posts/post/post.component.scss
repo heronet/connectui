@@ -1,5 +1,5 @@
 .container {
-  // max-width: 600px;
+  max-width: 100%;
   margin: auto;
   padding: 0 20px;
   position: relative;
@@ -8,7 +8,27 @@
   flex-direction: column;
   overflow-y: auto;
 }
-.post {
+.header {
+  display: flex;
+  align-items: center;
+  font-family: sans-serif;
+  min-height: 50px;
+  padding: 0 10px;
+  color: var(--text-secondary);
+  border-bottom: var(--border-color) solid 1px;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  backdrop-filter: blur(8px);
+}
+.body {
   max-width: 600px;
-  margin: auto;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.post {
+  width: 100%;
 }
