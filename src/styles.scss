@@ -38,6 +38,44 @@ body {
   --text-secondary: #555;
   background-color: var(--bg-color);
 }
+.card {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0 0 0;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+.card-header > .header-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10px;
+}
+.card-title {
+  font-size: 1.2rem;
+}
+.card-subtitle {
+  font-size: 12px;
+}
+.card-content > .text {
+  margin: 10px;
+  word-break: break-word;
+  white-space: pre-line;
+  color: var(--text-primary);
+}
+.card-content > .content-photo {
+  width: 100%;
+  max-height: 100%;
+}
 .btn {
   border-radius: 12px;
   border-width: 1px;

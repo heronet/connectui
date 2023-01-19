@@ -1,5 +1,5 @@
 <div class="card" *ngIf="post">
-  <div class="card-header">
+  <div class="card-header" [routerLink]="[post.id]">
     <img src="/assets/dummy.png" alt="temp" class="avatar" />
     <div class="header-content">
       <span class="card-title">{{ post.userName }}</span>
@@ -24,7 +24,7 @@
       Delete
     </button>
   </div>
-  <div class="card-content" *ngIf="!isLoading">
+  <div class="card-content" *ngIf="!isLoading" [routerLink]="[post.id]">
     <form class="text-box" *ngIf="isEditMode" (ngSubmit)="savePost()">
       <textarea
         type="text"
@@ -82,7 +82,9 @@
       >{{ post.likesCount }} {{ post.likesCount > 1 ? "Likes" : "Like" }}</span
     >
     <span style="flex: 1 1 auto"></span>
-    <span>{{ post.commentsCount }} Comments</span>
+    <span style="cursor: pointer" [routerLink]="[post.id]"
+      >{{ post.commentsCount }} Comments</span
+    >
   </div>
   <div class="empty-loading" *ngIf="isLoading">
     <span>Please wait...</span>

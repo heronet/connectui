@@ -7,10 +7,13 @@ import { ChatComponent } from './chats/chat/chat.component';
 import { ChatsComponent } from './chats/chats.component';
 import { ConnectionsComponent } from './connections/connections.component';
 import { HomeComponent } from './home/home.component';
+import { PostComponent } from './posts/post/post.component';
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '', redirectTo: 'posts', pathMatch: 'full' },
+  { path: 'posts', component: HomeComponent },
+  { path: 'posts/:id', component: PostComponent },
   { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
   {
     path: 'connections',

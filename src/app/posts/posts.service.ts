@@ -20,6 +20,9 @@ export class PostsService {
   getPosts() {
     return this.http.get<Post[]>(`${this.BASE_URL}`);
   }
+  getPost(id: string) {
+    return this.http.get<Post>(`${this.BASE_URL}/${id}`);
+  }
   createPost(post: FormData) {
     return this.http.post<Post>(`${this.BASE_URL}`, post).pipe(
       map((post) => {
