@@ -11,18 +11,25 @@ import { PostsService } from '../../posts.service';
 export class AddCommentComponent {
   @Input() postId: string | undefined;
   isLoading = false;
-  constructor(private postService: PostsService) {}
+  constructor(private postsService: PostsService) {}
 
   submitComment(form: NgForm) {
+    this.isLoading = true;
     const text = form.value.commentText?.trim();
     if (!text) return;
     const comment: Partial<Comment> = {
       postId: this.postId,
       text,
     };
-    this.postService.commentOnPost(comment).subscribe({
-      next: () => form.resetForm(),
-      error: (err) => console.log(err),
+    this.postsService.commentOnPost(comment).subscribe({
+      next: () => {
+        form.resetForm();
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.log(err);
+        this.isLoading = false;
+      },
     });
   }
 }

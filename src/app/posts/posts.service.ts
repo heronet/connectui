@@ -17,7 +17,7 @@ export class PostsService {
   deletedPost$ = this.deletedPostSource.asObservable();
 
   private newCommentSource = new Subject<Comment>();
-  newCommentSource$ = this.newCommentSource.asObservable();
+  newComment$ = this.newCommentSource.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -49,14 +49,12 @@ export class PostsService {
   unLikePost(post: Partial<Post>) {
     return this.http.put<Post>(`${this.BASE_URL}/unlike`, post);
   }
-  getComments() {
-    return this.http.get<Comment>(`${this.BASE_URL}/comments`);
+  getComments(postId: string) {
+    return this.http.get<Comment[]>(`${this.BASE_URL}/comments/${postId}`);
   }
   commentOnPost(comment: Partial<Comment>) {
     return this.http.post<Comment>(`${this.BASE_URL}/comments`, comment).pipe(
       map((comment) => {
-        console.log(comment);
-
         this.newCommentSource.next(comment);
       })
     );
