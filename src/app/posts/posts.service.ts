@@ -31,7 +31,7 @@ export class PostsService {
     );
   }
   updatePost(post: Partial<Post>) {
-    return this.http.put<Post>(`${this.BASE_URL}/update/${post.id}`, post);
+    return this.http.put<Post>(`${this.BASE_URL}/update`, post);
   }
   deletePost(postId: string) {
     return this.http.delete(`${this.BASE_URL}/delete/${postId}`).subscribe({

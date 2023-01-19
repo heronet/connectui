@@ -14,8 +14,9 @@ import { PostsService } from '../posts.service';
 export class PostComponent implements OnInit, OnDestroy {
   post: Post | undefined;
   authData: AuthDto | undefined;
-  private authSub = new Subscription();
   isLoading = false;
+  private authSub = new Subscription();
+
   constructor(
     private route: ActivatedRoute,
     private postsService: PostsService,

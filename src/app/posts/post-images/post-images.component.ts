@@ -8,4 +8,5 @@ import { Post } from 'src/app/models/post';
 })
 export class PostImagesComponent {
   @Input() post: Post | undefined;
+  @Input() linear: boolean | undefined;
 }

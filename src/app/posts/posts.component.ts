@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { AuthDto } from '../auth/authdto';
 import { Post } from '../models/post';
 import { PostsService } from './posts.service';
 
@@ -11,7 +12,7 @@ import { PostsService } from './posts.service';
 })
 export class PostsComponent implements OnInit, OnDestroy {
   isLoading = false;
-  userId: string | undefined;
+  authData: AuthDto | undefined;
   posts: Post[] = [];
   postsSub = new Subscription();
   deletedPostSub = new Subscription();
@@ -33,7 +34,7 @@ export class PostsComponent implements OnInit, OnDestroy {
       },
     });
     this.authSub = this.authService.authData$.subscribe({
-      next: (data) => (this.userId = data?.id ?? undefined),
+      next: (data) => (this.authData = data),
       error: (err) => console.log(err),
     });
     this.getPosts();

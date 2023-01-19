@@ -8,7 +8,7 @@
     <div style="flex: 1 1 auto"></div>
     <button
       class="btn"
-      *ngIf="userId && userId == post.userId"
+      *ngIf="authData && authData.id == post.userId"
       (click)="toggleEditMode()"
       [disabled]="isLoading"
     >
@@ -17,14 +17,19 @@
     </button>
     <button
       class="btn red"
-      *ngIf="userId && userId == post.userId"
+      *ngIf="authData && authData.id == post.userId"
       (click)="deletePost(post.id)"
       [disabled]="isLoading"
     >
       Delete
     </button>
   </div>
-  <div class="card-content" *ngIf="!isLoading" [routerLink]="[post.id]">
+  <div
+    class="card-content"
+    *ngIf="!isLoading"
+    [class.pointer]="enableLinks"
+    (click)="navigate()"
+  >
     <form class="text-box" *ngIf="isEditMode" (ngSubmit)="savePost()">
       <textarea
         type="text"
@@ -41,17 +46,21 @@
     <p class="text" *ngIf="post.text && !isEditMode">
       {{ post.text }}
     </p>
-    <app-post-images [post]="post" class="images"></app-post-images>
+    <app-post-images
+      [post]="post"
+      [linear]="photosLinear"
+      class="images"
+    ></app-post-images>
   </div>
   <div class="card-info" *ngIf="!isLoading">
     <div
-      *ngIf="post.postLiked && userId"
+      *ngIf="post.postLiked && authData"
       class="fav fav-heart liked"
       [class.is-animating]="post.postLiked"
       (click)="unlike(post)"
     ></div>
     <div
-      *ngIf="!post.postLiked && userId"
+      *ngIf="!post.postLiked && authData"
       class="fav fav-heart"
       [class.is-animating]="post.postLiked"
       (click)="like(post)"
@@ -60,7 +69,7 @@
       >{{ post.likesCount }} {{ post.likesCount > 1 ? "Likes" : "Like" }}</span
     >
     <span style="flex: 1 1 auto"></span>
-    <span style="cursor: pointer" [routerLink]="[post.id]"
+    <span [class.pointer]="enableLinks" (click)="navigate()"
       >{{ post.commentsCount }} Comments</span
     >
   </div>

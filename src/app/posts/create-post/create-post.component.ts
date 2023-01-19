@@ -44,7 +44,7 @@ export class CreatePostComponent {
     this.isLoading = true;
     const data = form.value;
     const post = new FormData();
-    post.append('text', data.postText.trim());
+    post.append('text', data.postText?.trim() ?? '');
     this.filesToUpload.forEach((f) => post.append('uploadPhotos', f));
     this.postsService.createPost(post).subscribe({
       error: (err) => {

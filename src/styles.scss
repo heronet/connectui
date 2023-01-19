@@ -10,7 +10,7 @@ body {
   display: flex;
   align-items: center;
   font-family: sans-serif;
-  height: 50px;
+  min-height: 50px;
   padding: 0 20px;
   color: var(--text-primary);
   border-bottom: var(--border-color) solid 1px;
@@ -26,7 +26,7 @@ body {
   --bg-color: #000000;
   --bg-alt-color: #1c1e21;
   --border-color: #555;
-  --text-primary: #fff;
+  --text-primary: #f1f1f1;
   --text-secondary: #fff;
   background-color: var(--bg-color);
 }
@@ -65,11 +65,41 @@ body {
 .card-subtitle {
   font-size: 12px;
 }
+
 .card-content > .text {
   margin: 10px;
   word-break: break-word;
   white-space: pre-line;
   color: var(--text-primary);
+}
+.card-info {
+  display: flex;
+  padding: 10px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  border-top: 1px solid var(--border-color);
+  user-select: none;
+}
+.text-box {
+  display: flex;
+  flex: 1;
+  background: var(--bg-alt-color);
+  padding: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+.text-input {
+  flex-grow: 1;
+  background: none;
+  border: none;
+  outline: none !important;
+  resize: none;
+  overflow: hidden;
+  text-align: justify;
+  font-size: 15px;
+  padding-right: 10px;
+  margin: auto 0;
+  color: var(--text-primary);
+  font-family: sans-serif;
 }
 .btn {
   border-radius: 12px;
@@ -111,4 +141,35 @@ body {
 }
 textarea::placeholder {
   font-family: sans-serif;
+}
+.fav {
+  margin: -17px -5px -17px -15px;
+  background-position: left;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  display: inline-block;
+  -webkit-tap-highlight-color: transparent;
+  &:hover {
+    background-position: right;
+  }
+  &.liked {
+    background-position: right;
+  }
+}
+.fav-heart {
+  background-image: url("/assets/heart.png");
+  background-size: auto 50px;
+  height: 50px;
+  width: 50px; // 2900px / 29 frames
+  &.is-animating {
+    animation: zoetrope 0.8s steps(28) 1;
+  }
+}
+@keyframes zoetrope {
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
 }

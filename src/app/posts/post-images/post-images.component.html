@@ -1,4 +1,12 @@
-<div class="container" *ngIf="post">
+<div class="container" *ngIf="post && linear">
+  <img
+    class="content-photo"
+    [src]="photo.imageUrl"
+    alt="content-photo"
+    *ngFor="let photo of post.photos"
+  />
+</div>
+<div class="container" *ngIf="post && !linear">
   <img
     class="content-photo"
     [src]="post.photos[0].imageUrl"

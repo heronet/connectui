@@ -19,12 +19,14 @@
 .small-imgs {
   display: flex;
   max-width: 100%;
+  overflow-x: auto;
   height: 100px;
 }
 .small-imgs > .more-img {
   flex: 1;
   backdrop-filter: blur(10px);
   font-size: 1.2em;
+  padding: 0 5px;
   color: var(--text-primary);
   background-color: var(--border-color);
   display: flex;
