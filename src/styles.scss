@@ -28,6 +28,11 @@ body {
   --border-color: #555;
   --text-primary: #f1f1f1;
   --text-secondary: #fff;
+  --msg-sent-bg: #000277;
+  --msg-sent-fg: #fff;
+  --msg-rcvd-bg: #1d1d1d;
+  --msg-rcvd-fg: #bfbfbf;
+
   background-color: var(--bg-color);
 }
 .light {
@@ -36,6 +41,10 @@ body {
   --border-color: #d2d2d7;
   --text-primary: #333;
   --text-secondary: #555;
+  --msg-sent-bg: #42a5f5;
+  --msg-sent-fg: #fff;
+  --msg-rcvd-bg: #f1f1f1;
+  --msg-rcvd-fg: #555;
   background-color: var(--bg-color);
 }
 .card {

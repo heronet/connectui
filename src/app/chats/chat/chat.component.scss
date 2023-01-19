@@ -36,16 +36,16 @@
 
 .msg.sent {
   border-radius: var(--rad) var(--rad-sm) var(--rad-sm) var(--rad);
-  background: #42a5f5;
-  color: #fff;
+  background: var(--msg-sent-bg);
+  color: var(--msg-sent-fg);
   /* moves it to the right */
   margin-left: auto;
 }
 
 .msg.rcvd {
   border-radius: var(--rad-sm) var(--rad) var(--rad) var(--rad-sm);
-  background: #f1f1f1;
-  color: #555;
+  background: var(--msg-rcvd-bg);
+  color: var(--msg-rcvd-fg);
   /* moves it to the left */
   margin-right: auto;
 }
