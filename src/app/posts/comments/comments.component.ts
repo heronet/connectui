@@ -16,7 +16,7 @@ export class CommentsComponent implements OnInit {
   constructor(private postsService: PostsService) {}
   ngOnInit(): void {
     this.commentSub = this.postsService.newComment$.subscribe({
-      next: (comment) => this.comments.push(comment),
+      next: (comment) => this.comments.unshift(comment),
     });
     this.getComments();
   }
