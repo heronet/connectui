@@ -19,6 +19,9 @@
       *ngIf="authData && post"
       [postId]="post.id"
     ></app-add-comment>
+    <div class="empty-loading" *ngIf="!authData && post">
+      <a routerLink="/login" class="btn">Login</a> to comment on this post
+    </div>
     <app-comments *ngIf="post" [postId]="post.id"></app-comments>
   </div>
 </div>
