@@ -30,11 +30,11 @@
     [class.pointer]="enableLinks"
     (click)="navigate()"
   >
-    <form class="text-box" *ngIf="isEditMode" (ngSubmit)="savePost()">
+    <form class="text-edit-box" *ngIf="isEditMode" (ngSubmit)="savePost()">
       <textarea
         type="text"
         name="postText"
-        class="text-input"
+        class="text-edit-input"
         placeholder="Edit your post"
         autocomplete="off"
         [(ngModel)]="postText"

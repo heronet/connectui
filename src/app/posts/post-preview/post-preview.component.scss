@@ -1,14 +1,14 @@
 .pointer {
   cursor: pointer;
 }
-.text-box {
+.text-edit-box {
   display: flex;
   flex: 1;
   background: var(--bg-alt-color);
   padding: 8px;
   border-bottom: 1px solid var(--border-color);
 }
-.text-input {
+.text-edit-input {
   flex-grow: 1;
   background: none;
   border: none;
@@ -20,5 +20,5 @@
   padding-right: 10px;
   margin: auto 0;
   color: var(--text-primary);
-  font-family: sans-serif;
+  font-family: "Roboto", "Arial", sans-serif;
 }

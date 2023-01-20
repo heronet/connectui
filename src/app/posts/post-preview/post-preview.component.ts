@@ -75,6 +75,7 @@ export class PostPreviewComponent {
     });
   }
   navigate() {
-    if (this.enableLinks) this.router.navigate(['/posts', this.post?.id]);
+    if (this.enableLinks && !this.isEditMode)
+      this.router.navigate(['/posts', this.post?.id]);
   }
 }
