@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,6 +12,7 @@ import { LoginDto } from '../authdto';
 })
 export class LoginComponent {
   isLoading = false;
+  errorText = '';
   constructor(private authService: AuthService, private router: Router) {}
   login(data: NgForm) {
     this.isLoading = true;
@@ -22,10 +24,12 @@ export class LoginComponent {
     this.authService.login(info).subscribe({
       next: () => {
         this.isLoading = false;
+        this.errorText = '';
         this.router.navigateByUrl('/');
       },
-      error: (err) => {
+      error: (err: HttpErrorResponse) => {
         console.log(err);
+        this.errorText = err.error;
         this.isLoading = false;
       },
     });
