@@ -4,7 +4,7 @@
   </div>
   <div class="spacer"></div>
   <p class="intro">Set up your Connect ID</p>
-  <form class="form" #f="ngForm" (ngSubmit)="login(f)">
+  <form class="form" #f="ngForm" (ngSubmit)="register(f)">
     <input
       class="name input-border"
       type="text"
@@ -25,4 +25,5 @@
     </div>
   </form>
   <div class="empty-loading" *ngIf="isLoading">Please wait...</div>
+  <div class="empty-loading" *ngFor="let error of errors">{{ error }}</div>
 </div>

@@ -18,7 +18,7 @@
     </div>
   </form>
   <div class="empty-loading" *ngIf="isLoading">Logging in...</div>
-  <div class="empty-loading" *ngIf="!isLoading && errorText">
-    {{ errorText }}
+  <div class="empty-loading" *ngFor="let error of errors">
+    {{ error }}
   </div>
 </div>

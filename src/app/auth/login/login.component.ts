@@ -12,25 +12,34 @@ import { LoginDto } from '../authdto';
 })
 export class LoginComponent {
   isLoading = false;
-  errorText = '';
+  errors: string[] = [];
   constructor(private authService: AuthService, private router: Router) {}
-  login(data: NgForm) {
-    this.isLoading = true;
+  login({ value }: NgForm) {
+    this.errors = [];
+
+    const email = value.email?.trim();
+    const password = value.password?.trim();
+    if (!email) this.errors.push('Email is required');
+    if (!password) this.errors.push('Password is required');
+
+    if (!email || !password) return;
     const info: LoginDto = {
-      email: data.value.email,
-      password: data.value.password,
+      email,
+      password,
     };
 
+    this.isLoading = true;
     this.authService.login(info).subscribe({
       next: () => {
         this.isLoading = false;
-        this.errorText = '';
+        this.errors = [];
         this.router.navigateByUrl('/');
       },
       error: (err: HttpErrorResponse) => {
-        console.log(err);
-        this.errorText = err.error;
         this.isLoading = false;
+        console.log(err);
+        if (typeof err.error === 'string') this.errors = [err.error];
+        else this.errors = [err.statusText];
       },
     });
   }

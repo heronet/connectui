@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,25 +12,41 @@ import { RegisterDto } from '../authdto';
 })
 export class RegisterComponent {
   isLoading = false;
+  errors: string[] = [];
   constructor(private authService: AuthService, private router: Router) {}
-  login(data: NgForm) {
-    this.isLoading = true;
+  register({ value }: NgForm) {
+    this.errors = [];
+
+    const email = value.email?.trim();
+    const password = value.password?.trim();
+    const name = value.name?.trim();
+
+    if (!name) this.errors.push('Name is required');
+    if (!email) this.errors.push('Email is required');
+    if (!password) this.errors.push('Password is required');
+
+    if (!email || !name || !password) return;
+
     const info: RegisterDto = {
-      email: data.value.email,
-      password: data.value.password,
-      name: data.value.name,
+      email,
+      password,
+      name,
     };
 
+    this.isLoading = true;
     this.authService.register(info).subscribe({
       next: () => {
         this.isLoading = false;
+        this.errors = [];
         this.router.navigateByUrl('/');
       },
-      error: (err) => {
-        console.log(err);
+      error: (err: HttpErrorResponse) => {
         this.isLoading = false;
+        console.log(err);
+        if (err.error.errors)
+          this.errors = err.error.errors.map((obj: any) => obj.description);
+        else this.errors = [err.statusText];
       },
-      complete: () => {},
     });
   }
 }
