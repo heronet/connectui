@@ -40,9 +40,12 @@
   filter: var(--logo-light);
 }
 
-a {
+.home-header > a {
   text-decoration: none;
   color: var(--text-secondary);
+}
+a:hover {
+  text-decoration: underline;
 }
 
 .header-link {
@@ -50,10 +53,6 @@ a {
   margin-left: 10px;
   cursor: pointer;
   user-select: none;
-}
-
-.header-link:hover {
-  text-decoration: underline;
 }
 
 .nav {
@@ -65,14 +64,19 @@ a {
   justify-content: space-between;
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  border-width: 1px;
-  border-style: solid;
   box-sizing: border-box;
 }
-.nav > * {
+.nav > a {
   font-size: 14px;
   user-select: none;
+  text-decoration: none;
+  color: var(--text-primary);
 }
-.nav > *:hover {
+.nav > a:hover {
   text-decoration: underline;
+}
+.prompt {
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
 }

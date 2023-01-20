@@ -36,6 +36,13 @@
       <a [routerLink]="['/connections']" *ngIf="isAuthenticated">Connections</a>
       <a [routerLink]="['/users']" *ngIf="isAuthenticated">Users</a>
     </div>
+    <div class="nav prompt" *ngIf="!isAuthenticated">
+      <span
+        >Please <a routerLink="/login" class="btn">login</a> to enable like,
+        comment or chat</span
+      >
+    </div>
     <app-posts></app-posts>
+    <div class="spacer"></div>
   </div>
 </div>
