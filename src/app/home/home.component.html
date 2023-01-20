@@ -39,7 +39,9 @@
   <div class="posts">
     <div class="nav" *ngIf="isAuthenticated">
       <a [routerLink]="['/chats']" *ngIf="isAuthenticated">Messages</a>
-      <a [routerLink]="['/connections']" *ngIf="isAuthenticated">Connections</a>
+      <a [routerLink]="['/users/connections']" *ngIf="isAuthenticated"
+        >Connections</a
+      >
       <a [routerLink]="['/users']" *ngIf="isAuthenticated">Users</a>
     </div>
     <div class="nav prompt" *ngIf="!isAuthenticated">

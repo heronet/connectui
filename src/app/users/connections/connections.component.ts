@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { User } from '../models/user';
-import { UsersService } from '../users/users.service';
+import { User } from '../../models/user';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-connections',
