@@ -24,6 +24,11 @@
       <button class="btn" type="submit" [disabled]="isLoading">Register</button>
     </div>
   </form>
+  <p class="sub">
+    Already a member? <a class="btn" routerLink="/login">Login</a>
+  </p>
   <div class="empty-loading" *ngIf="isLoading">Please wait...</div>
-  <div class="empty-loading" *ngFor="let error of errors">{{ error }}</div>
+  <div class="empty-loading error" *ngFor="let error of errors">
+    {{ error }}
+  </div>
 </div>

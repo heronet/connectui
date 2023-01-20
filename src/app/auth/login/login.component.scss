@@ -49,3 +49,13 @@
   border-bottom-left-radius: 0;
   border-bottom: none;
 }
+.sub {
+  color: var(--text-secondary);
+  text-align: center;
+  font-size: 12px;
+  padding: 0;
+}
+
+.error {
+  padding-bottom: 0;
+}

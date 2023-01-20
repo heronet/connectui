@@ -11,6 +11,12 @@
   font-size: 1.2rem;
   color: var(--text-primary);
 }
+.sub {
+  color: var(--text-secondary);
+  text-align: center;
+  font-size: 12px;
+  padding: 0;
+}
 .form {
   display: flex;
   flex-direction: column;
@@ -54,4 +60,7 @@
   border-bottom: none;
   background: var(--bg-alt-color);
   color: var(--text-primary);
+}
+.error {
+  padding-bottom: 0;
 }

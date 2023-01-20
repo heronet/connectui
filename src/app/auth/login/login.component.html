@@ -17,8 +17,11 @@
       <button class="btn" type="submit" [disabled]="isLoading">Login</button>
     </div>
   </form>
+  <p class="sub">
+    New to Connect? <a class="btn" routerLink="/register">Register</a>
+  </p>
   <div class="empty-loading" *ngIf="isLoading">Logging in...</div>
-  <div class="empty-loading" *ngFor="let error of errors">
+  <div class="empty-loading error" *ngFor="let error of errors">
     {{ error }}
   </div>
 </div>
