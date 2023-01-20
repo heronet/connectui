@@ -27,13 +27,13 @@ export class AuthGuard implements CanActivate {
       take(1),
       map((data: AuthDto | undefined) => {
         if (data) {
-          return state.url === '/login' || state.url === '/register'
+          return state.url === '/auth/login' || state.url === '/auth/register'
             ? this.router.createUrlTree([''])
             : true;
         } else {
-          return state.url === '/login' || state.url === '/register'
+          return state.url === '/auth/login' || state.url === '/auth/register'
             ? true
-            : this.router.createUrlTree(['login']);
+            : this.router.createUrlTree(['auth/login']);
         }
       })
     );

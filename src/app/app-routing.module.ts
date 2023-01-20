@@ -12,18 +12,36 @@ import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'posts', pathMatch: 'full' },
-  { path: 'posts', component: HomeComponent },
-  { path: 'posts/:id', component: PostComponent },
-  { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
+  {
+    path: 'posts',
+    children: [
+      { path: '', component: HomeComponent },
+      { path: ':id', component: PostComponent },
+    ],
+  },
+  {
+    path: 'chats',
+    children: [
+      { path: '', component: ChatsComponent },
+      { path: ':id', component: ChatComponent },
+    ],
+    canActivate: [AuthGuard],
+  },
   {
     path: 'connections',
     component: ConnectionsComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'chats', component: ChatsComponent, canActivate: [AuthGuard] },
-  { path: 'chats/:id', component: ChatComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-  { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
+  { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
+  {
+    path: 'auth',
+    children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
+    ],
+    canActivate: [AuthGuard],
+  },
+  { path: '**', redirectTo: 'posts' },
 ];
 
 @NgModule({
