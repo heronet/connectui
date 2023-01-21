@@ -6,6 +6,12 @@
     </div>
     <span style="flex: 1 1 auto"></span>
     <img
+      src="/assets/dummy.png"
+      alt="profile-img"
+      class="profile-link"
+      *ngIf="authData"
+    />
+    <img
       *ngIf="isDark"
       (click)="toggleTheme()"
       src="/assets/sun.svg"
@@ -19,32 +25,26 @@
       class="theme-toggle"
       alt="moon"
     />
-
-    <a
-      class="header-link"
-      [routerLink]="['/auth/login']"
-      *ngIf="!isAuthenticated"
+    <a class="header-link" [routerLink]="['/auth/login']" *ngIf="!authData"
       >Login</a
     >
-    <a
-      class="header-link"
-      [routerLink]="['/auth/register']"
-      *ngIf="!isAuthenticated"
+    <a class="header-link" [routerLink]="['/auth/register']" *ngIf="!authData"
       >Register</a
     >
-    <span class="header-link" (click)="logout()" *ngIf="isAuthenticated"
-      >Logout</span
-    >
+    <img
+      src="/assets/logout.svg"
+      class="header-icon"
+      (click)="logout()"
+      *ngIf="authData"
+    />
   </div>
   <div class="posts">
-    <div class="nav" *ngIf="isAuthenticated">
-      <a [routerLink]="['/chats']" *ngIf="isAuthenticated">Messages</a>
-      <a [routerLink]="['/users/connections']" *ngIf="isAuthenticated"
-        >Connections</a
-      >
-      <a [routerLink]="['/users']" *ngIf="isAuthenticated">Users</a>
+    <div class="nav" *ngIf="authData">
+      <a [routerLink]="['/chats']" *ngIf="authData">Messages</a>
+      <a [routerLink]="['/users/connections']" *ngIf="authData">Connections</a>
+      <a [routerLink]="['/users']" *ngIf="authData">Users</a>
     </div>
-    <div class="nav prompt" *ngIf="!isAuthenticated">
+    <div class="nav prompt" *ngIf="!authData">
       <span
         >Please <a routerLink="/auth/login" class="btn">login</a> to post, like,
         comment or chat</span

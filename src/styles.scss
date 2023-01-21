@@ -23,7 +23,7 @@ body {
   height: 10px;
 }
 .dark {
-  --logo-light: invert(100%);
+  --logo-invert: invert(100%);
   --bg-color: #000000;
   --bg-alt-color: #1c1e21;
   --border-color: #555;
@@ -36,7 +36,7 @@ body {
   background-color: var(--bg-color);
 }
 .light {
-  --logo-dark: invert(0%);
+  --logo-invert: invert(0%);
   --bg-color: #ffffff;
   --bg-alt-color: #ffffff;
   --border-color: #d2d2d7;

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { AuthDto } from '../auth/authdto';
 import { ThemeService } from '../theme.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { ThemeService } from '../theme.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private authSub = new Subscription();
-  isAuthenticated = false;
+  authData: AuthDto | undefined;
   isDark = this.themeService.checkIfDarkOnInit();
 
   constructor(
@@ -19,8 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
   ngOnInit(): void {
     this.authSub = this.authService.authData$.subscribe({
-      next: (data) =>
-        data ? (this.isAuthenticated = true) : (this.isAuthenticated = false),
+      next: (data) => (this.authData = data),
       error: (err) => console.log(err),
     });
   }
