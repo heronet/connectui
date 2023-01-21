@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { PostsRoutingModule } from './posts-routing.module';
 import { HomeComponent } from '../home/home.component';
@@ -10,7 +9,7 @@ import { CommentsComponent } from './comments/comments.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { PostImagesComponent } from './post-images/post-images.component';
 import { PostPreviewComponent } from './post-preview/post-preview.component';
-import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +22,6 @@ import { FormsModule } from '@angular/forms';
     CommentsComponent,
     AddCommentComponent,
   ],
-  imports: [CommonModule, PostsRoutingModule, FormsModule],
+  imports: [PostsRoutingModule, SharedModule],
 })
 export class PostsModule {}

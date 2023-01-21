@@ -5,11 +5,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { AutosizeDirective } from './autosize.directive';
 import { LogoutInterceptor } from './auth/logout.interceptor';
 
 @NgModule({
-  declarations: [AppComponent, AutosizeDirective],
+  declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
     {
