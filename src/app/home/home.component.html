@@ -41,9 +41,18 @@
   </div>
   <div class="posts">
     <div class="nav" *ngIf="authData">
-      <a [routerLink]="['/chats']" *ngIf="authData">Messages</a>
-      <a [routerLink]="['/users/connections']" *ngIf="authData">Connections</a>
-      <a [routerLink]="['/users']" *ngIf="authData">Users</a>
+      <div class="nav-link" [routerLink]="['/chats']">
+        <img src="/assets/chat.svg" />
+        <span>Messages</span>
+      </div>
+      <div class="nav-link" [routerLink]="['/users/connections']">
+        <img src="/assets/brand.svg" />
+        <span>Connections</span>
+      </div>
+      <div class="nav-link" [routerLink]="['/users']">
+        <img src="/assets/search.svg" />
+        <span>Users</span>
+      </div>
     </div>
     <div class="nav prompt" *ngIf="!authData">
       <span
