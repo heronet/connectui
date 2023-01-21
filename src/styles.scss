@@ -157,6 +157,14 @@ body {
   font-size: 14px;
   color: #888;
 }
+.load-more {
+  // text-decoration: underline;
+  color: #4a90e2;
+  cursor: pointer;
+}
+.load-more:hover {
+  color: var(--text-primary);
+}
 textarea::placeholder {
   font-family: sans-serif;
 }

@@ -4,7 +4,7 @@ import { ChatComponent } from './chat/chat.component';
 import { ChatsComponent } from './chats.component';
 
 const routes: Routes = [
-  { path: '', component: ChatsComponent },
+  { path: '', component: ChatsComponent, pathMatch: 'full' },
   { path: ':id', component: ChatComponent },
 ];
 

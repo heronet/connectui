@@ -10,6 +10,7 @@
       alt="profile-img"
       class="profile-link"
       *ngIf="authData"
+      [routerLink]="['/users/profile', authData.id]"
     />
     <img
       *ngIf="isDark"
@@ -51,6 +52,5 @@
       >
     </div>
     <app-posts></app-posts>
-    <div class="spacer"></div>
   </div>
 </div>

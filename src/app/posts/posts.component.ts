@@ -17,7 +17,9 @@ export class PostsComponent implements OnInit, OnDestroy {
   postsSub = new Subscription();
   deletedPostSub = new Subscription();
   authSub = new Subscription();
-
+  postsSkip = 0;
+  postsTake = 20;
+  canLoadMore: boolean | undefined;
   constructor(
     private postsService: PostsService,
     private authService: AuthService
@@ -41,9 +43,12 @@ export class PostsComponent implements OnInit, OnDestroy {
   }
   getPosts() {
     this.isLoading = true;
-    this.postsService.getPosts().subscribe({
+    this.postsService.getPosts(this.postsSkip, this.postsTake).subscribe({
       next: (posts) => {
-        this.posts = posts;
+        this.posts.push(...posts);
+        this.postsSkip += this.postsTake;
+        if (posts.length < this.postsTake) this.canLoadMore = false;
+        else this.canLoadMore = true;
         this.isLoading = false;
       },
       error: (err) => {
@@ -52,7 +57,6 @@ export class PostsComponent implements OnInit, OnDestroy {
       },
     });
   }
-
   ngOnDestroy(): void {
     this.postsSub.unsubscribe();
     this.authSub.unsubscribe();

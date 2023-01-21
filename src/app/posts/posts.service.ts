@@ -21,8 +21,8 @@ export class PostsService {
 
   constructor(private http: HttpClient) {}
 
-  getPosts() {
-    return this.http.get<Post[]>(`${this.BASE_URL}`);
+  getPosts(skip: number, take: number) {
+    return this.http.get<Post[]>(`${this.BASE_URL}?skip=${skip}&take=${take}`);
   }
   getPost(id: string) {
     return this.http.get<Post>(`${this.BASE_URL}/${id}`);

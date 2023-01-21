@@ -11,5 +11,18 @@
   <div class="empty-loading" *ngIf="posts.length === 0 && !isLoading">
     Be the first to post!
   </div>
+  <div
+    class="empty-loading"
+    *ngIf="posts.length > 0 && !canLoadMore && !isLoading"
+  >
+    That's all for now.
+  </div>
+  <div
+    class="empty-loading load-more"
+    (click)="getPosts()"
+    *ngIf="canLoadMore && !isLoading"
+  >
+    Load more posts...
+  </div>
   <div class="empty-loading" *ngIf="isLoading">Loading posts...</div>
 </div>
