@@ -25,7 +25,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   messageSub = new Subscription();
   signalRSub = new Subscription();
   messagesSkip = 0;
-  messagesTake = 20;
+  messagesTake = 50;
   canLoadMore: boolean | undefined;
   constructor(
     private chatService: ChatsService,
