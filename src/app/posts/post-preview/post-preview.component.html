@@ -7,26 +7,25 @@
     </div>
     <div style="flex: 1 1 auto"></div>
     <button
-      class="btn"
-      *ngIf="authData && authData.id == post.userId"
+      class="action-btn"
+      *ngIf="authData && authData.id == post.userId && !isEditMode"
       (click)="toggleEditMode()"
       [disabled]="isLoading"
     >
-      <img
-        *ngIf="!isEditMode"
-        src="/assets/edit.svg"
-        alt="edit"
-        class="action-icon"
-      />
-      <span *ngIf="isEditMode">Cancel</span>
+      <img src="/assets/edit.svg" alt="edit" class="action-icon" />
+      <span>Edit</span>
+    </button>
+    <button class="btn" *ngIf="isEditMode" (click)="toggleEditMode()">
+      <span>Cancel</span>
     </button>
     <button
-      class="btn"
+      class="action-btn"
       *ngIf="authData && authData.id == post.userId"
       (click)="deletePost(post.id)"
       [disabled]="isLoading"
     >
       <img src="/assets/delete.svg" alt="delete" class="action-icon" />
+      <span>Delete</span>
     </button>
   </div>
   <div
