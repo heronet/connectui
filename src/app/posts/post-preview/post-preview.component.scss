@@ -22,3 +22,8 @@
   color: var(--text-primary);
   font-family: "Roboto", "Arial", sans-serif;
 }
+.action-icon {
+  height: 15px;
+  width: 15px;
+  filter: var(--logo-invert);
+}

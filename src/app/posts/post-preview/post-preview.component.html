@@ -12,16 +12,21 @@
       (click)="toggleEditMode()"
       [disabled]="isLoading"
     >
-      <span *ngIf="!isEditMode">Edit</span>
+      <img
+        *ngIf="!isEditMode"
+        src="/assets/edit.svg"
+        alt="edit"
+        class="action-icon"
+      />
       <span *ngIf="isEditMode">Cancel</span>
     </button>
     <button
-      class="btn red"
+      class="btn"
       *ngIf="authData && authData.id == post.userId"
       (click)="deletePost(post.id)"
       [disabled]="isLoading"
     >
-      Delete
+      <img src="/assets/delete.svg" alt="delete" class="action-icon" />
     </button>
   </div>
   <div
