@@ -1,5 +1,6 @@
 <div class="container">
   <div class="empty-loading" *ngIf="isLoading">Loading Messages...</div>
+
   <div *ngIf="chat && !isLoading" class="chat">
     <div class="header">
       <img src="/assets/dummy.png" alt="dummy" class="chat-img" />
@@ -18,7 +19,14 @@
       <span style="flex: 1 1 auto"></span>
       <span>...</span>
     </div>
-    <div class="spacer"></div>
+    <div
+      class="empty-loading load-more"
+      (click)="getChat(chat.id)"
+      *ngIf="chat && canLoadMore && !isLoading"
+    >
+      Load older messages...
+    </div>
+    <div class="spacer" *ngIf="!canLoadMore"></div>
     <div
       *ngFor="let message of chat.messages"
       [ngClass]="message.userId === authData?.id ? 'sent' : 'rcvd'"

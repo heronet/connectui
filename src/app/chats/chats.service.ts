@@ -36,8 +36,10 @@ export class ChatsService {
   getChats() {
     return this.http.get<Chat[]>(`${this.BASE_URL}/chats`);
   }
-  getChat(id: string) {
-    return this.http.get<Chat>(`${this.BASE_URL}/chats/${id}`);
+  getChat(id: string, skip: number, take: number) {
+    return this.http.get<Chat>(
+      `${this.BASE_URL}/chats/${id}?skip=${skip}&take=${take}`
+    );
   }
 
   sendMessage(message: Partial<Message>) {

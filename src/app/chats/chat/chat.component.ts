@@ -24,7 +24,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   chatSub = new Subscription();
   messageSub = new Subscription();
   signalRSub = new Subscription();
-
+  messagesSkip = 0;
+  messagesTake = 20;
+  canLoadMore: boolean | undefined;
   constructor(
     private chatService: ChatsService,
     private usersService: UsersService,
@@ -63,17 +65,27 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
   getChat(id: string) {
     this.isLoading = true;
-    this.chatService.getChat(id).subscribe({
-      next: (chat) => {
-        this.chat = chat;
-        if (!this.titleEditMode) this.chatTitle = chat.title;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        console.log(err);
-        this.isLoading = false;
-      },
-    });
+    this.chatService
+      .getChat(id, this.messagesSkip, this.messagesTake)
+      .subscribe({
+        next: (chat) => {
+          if (!this.titleEditMode) this.chatTitle = chat.title;
+          if (!this.chat) {
+            this.chat = chat;
+          } else {
+            this.chat.messages.unshift(...chat.messages);
+          }
+          this.messagesSkip += this.messagesTake;
+          if (chat.messages.length < this.messagesTake)
+            this.canLoadMore = false;
+          else this.canLoadMore = true;
+          this.isLoading = false;
+        },
+        error: (err) => {
+          console.log(err);
+          this.isLoading = false;
+        },
+      });
   }
   sendMessage(form: NgForm) {
     const text = form.value.messageText?.trim();
