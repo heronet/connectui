@@ -1,2 +1,52 @@
-<div class="empty-loading">WIP... On an exam break</div>
-<a [routerLink]="['edit']">Edit Profile</a>
+<div class="container">
+  <div class="header">Profile</div>
+  <div class="card" *ngIf="!isLoading && user">
+    <div class="info">
+      <div class="row-1">
+        <img
+          [src]="user.avatar?.imageUrl ?? '/assets/dummy.png'"
+          alt="avatar"
+          class="profile-avatar"
+        />
+        <div class="name-joined">
+          <span class="name">{{ user.name }}</span>
+          <span class="joined">
+            Joined at {{ user.createdAt | date : "mediumDate" }}</span
+          >
+        </div>
+        <span style="flex: 1 1 auto"></span>
+        <a
+          routerLink="edit"
+          class="action-btn"
+          *ngIf="authData && authData.id == user.id"
+        >
+          <img src="/assets/edit.svg" alt="edit" class="action-icon" />
+          <span>Edit Profile</span>
+        </a>
+      </div>
+      <p class="bio" *ngIf="user.bio">{{ user.bio }}</p>
+      <p class="bio" *ngIf="!user.bio">
+        <a routerLink="edit">Add your bio</a>
+      </p>
+      <div class="contact">
+        <div class="contact-item">
+          <img src="/assets/location.svg" alt="location" class="icon" />
+          <span *ngIf="user.location">{{ user.location }}</span>
+          <span *ngIf="!user.location && authData?.id !== user.id"
+            >Unknown Location</span
+          >
+          <a
+            routerLink="edit"
+            *ngIf="!user.location && authData?.id === user.id"
+            >Add location</a
+          >
+        </div>
+        <div class="contact-item">
+          <img src="/assets/mail.svg" alt="email" class="icon" />
+          <a href="mailto:{{ user.email }}">{{ user.email }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="empty-loading" *ngIf="isLoading"></div>
+</div>

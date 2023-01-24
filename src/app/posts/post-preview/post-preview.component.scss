@@ -22,22 +22,3 @@
   color: var(--text-primary);
   font-family: "Roboto", "Arial", sans-serif;
 }
-.action-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-left: 5px;
-  font-size: 10px;
-  color: var(--text-secondary);
-  cursor: pointer;
-  background: transparent;
-  border: transparent;
-}
-.action-btn > img {
-  filter: var(--logo-invert);
-  width: 15px;
-  height: 15px;
-  margin-bottom: 5px;
-  cursor: pointer;
-}

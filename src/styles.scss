@@ -28,7 +28,7 @@ body {
   --bg-alt-color: #1c1e21;
   --border-color: #555;
   --text-primary: #f1f1f1;
-  --text-secondary: #fff;
+  --text-secondary: #bfbfbf;
   --msg-sent-bg: #000277;
   --msg-sent-fg: #fff;
   --msg-rcvd-bg: #1d1d1d;
@@ -136,6 +136,26 @@ body {
 .btn:disabled {
   color: var(--text-secondary);
 }
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+  font-size: 10px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  background: transparent;
+  border: transparent;
+}
+.action-btn > img {
+  filter: var(--logo-invert);
+  width: 15px;
+  height: 15px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
 .red {
   color: rgb(255, 55, 95);
 }
