@@ -1,56 +1,57 @@
-<div class="container">
-  <div class="empty-loading" *ngIf="isLoading">Loading Messages...</div>
-
-  <div *ngIf="chat && !isLoading" class="chat">
-    <div class="header">
-      <img src="/assets/dummy.png" alt="dummy" class="chat-img" />
-      <span *ngIf="!titleEditMode" (click)="titleEditMode = !titleEditMode">{{
-        chat.title
-      }}</span>
-      <form
-        *ngIf="titleEditMode"
-        class="title-edit"
-        #titleForm="ngForm"
-        (ngSubmit)="changeName(titleForm)"
+<div class="container" #scrollable>
+  <div class="chat-container">
+    <div class="empty-loading" *ngIf="isLoading">Loading Messages...</div>
+    <div *ngIf="chat && !isLoading" class="chat">
+      <div class="header">
+        <img src="/assets/dummy.png" alt="dummy" class="chat-img" />
+        <span *ngIf="!titleEditMode" (click)="titleEditMode = !titleEditMode">{{
+          chat.title
+        }}</span>
+        <form
+          *ngIf="titleEditMode"
+          class="title-edit"
+          #titleForm="ngForm"
+          (ngSubmit)="changeName(titleForm)"
+        >
+          <input type="text" name="title" [(ngModel)]="chatTitle" />
+          <button type="submit">Done</button>
+        </form>
+        <span style="flex: 1 1 auto"></span>
+        <span>...</span>
+      </div>
+      <div
+        class="empty-loading load-more"
+        (click)="getChat(chat.id)"
+        *ngIf="chat && canLoadMore && !isLoading"
       >
-        <input type="text" name="title" [(ngModel)]="chatTitle" />
-        <button type="submit">Done</button>
+        Load older messages...
+      </div>
+      <div class="spacer" *ngIf="!canLoadMore"></div>
+      <div
+        *ngFor="let message of chat.messages"
+        [ngClass]="message.userId === authData?.id ? 'sent' : 'rcvd'"
+        class="msg"
+        [attr.data-nametime]="message.time | date : 'shortTime'"
+      >
+        <span>{{ message.text }}</span>
+      </div>
+      <p *ngIf="chat.messages.length === 0" class="empty-loading">Say Hello!</p>
+    </div>
+    <div class="spacer"></div>
+    <div class="message-box-container" *ngIf="chat && !isLoading">
+      <form class="message-box" #f="ngForm" (ngSubmit)="sendMessage(f)">
+        <textarea
+          type="text"
+          name="messageText"
+          class="message-input"
+          placeholder="Type message..."
+          autocomplete="off"
+          ngModel
+          autosize
+          rows="1"
+        ></textarea>
+        <button type="submit" class="btn">Send</button>
       </form>
-      <span style="flex: 1 1 auto"></span>
-      <span>...</span>
     </div>
-    <div
-      class="empty-loading load-more"
-      (click)="getChat(chat.id)"
-      *ngIf="chat && canLoadMore && !isLoading"
-    >
-      Load older messages...
-    </div>
-    <div class="spacer" *ngIf="!canLoadMore"></div>
-    <div
-      *ngFor="let message of chat.messages"
-      [ngClass]="message.userId === authData?.id ? 'sent' : 'rcvd'"
-      class="msg"
-      [attr.data-nametime]="message.time | date : 'shortTime'"
-    >
-      <span>{{ message.text }}</span>
-    </div>
-    <p *ngIf="chat.messages.length === 0" class="empty-loading">Say Hello!</p>
-  </div>
-  <div class="spacer"></div>
-  <div class="message-box-container" *ngIf="chat && !isLoading">
-    <form class="message-box" #f="ngForm" (ngSubmit)="sendMessage(f)">
-      <textarea
-        type="text"
-        name="messageText"
-        class="message-input"
-        placeholder="Type message..."
-        autocomplete="off"
-        ngModel
-        autosize
-        rows="1"
-      ></textarea>
-      <button type="submit" class="btn">Send</button>
-    </form>
   </div>
 </div>

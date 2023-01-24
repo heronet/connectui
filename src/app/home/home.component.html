@@ -39,27 +39,25 @@
       *ngIf="authData"
     />
   </div>
-  <div class="posts">
-    <div class="nav" *ngIf="authData">
-      <div class="nav-link" [routerLink]="['/chats']">
-        <img src="/assets/chat.svg" />
-        <span>Messages</span>
-      </div>
-      <div class="nav-link" [routerLink]="['/users/connections']">
-        <img src="/assets/brand.svg" />
-        <span>Connections</span>
-      </div>
-      <div class="nav-link" [routerLink]="['/users']">
-        <img src="/assets/search.svg" />
-        <span>Users</span>
-      </div>
+  <div class="nav" *ngIf="authData">
+    <div class="nav-link" [routerLink]="['/chats']">
+      <img src="/assets/chat.svg" />
+      <span>Messages</span>
     </div>
-    <div class="nav prompt" *ngIf="!authData">
-      <span
-        >Please <a routerLink="/auth/login" class="btn">login</a> to post, like,
-        comment or chat</span
-      >
+    <div class="nav-link" [routerLink]="['/users/connections']">
+      <img src="/assets/brand.svg" />
+      <span>Connections</span>
     </div>
-    <app-posts></app-posts>
+    <div class="nav-link" [routerLink]="['/users']">
+      <img src="/assets/search.svg" />
+      <span>Users</span>
+    </div>
   </div>
+  <div class="nav prompt" *ngIf="!authData">
+    <span
+      >Please <a routerLink="/auth/login" class="btn">login</a> to post, like,
+      comment or chat</span
+    >
+  </div>
+  <app-posts></app-posts>
 </div>

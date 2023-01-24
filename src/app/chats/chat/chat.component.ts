@@ -1,4 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  DoCheck,
+  ElementRef,
+  IterableDiffers,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, take } from 'rxjs';
@@ -14,7 +23,13 @@ import { ChatsService } from '../chats.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
 })
-export class ChatComponent implements OnInit, OnDestroy {
+export class ChatComponent
+  implements OnInit, OnDestroy, DoCheck, AfterViewChecked
+{
+  @ViewChild('scrollable') private scrollable: ElementRef | undefined;
+  private shouldScrollDown: boolean | undefined;
+  private iterableDiffer: any;
+  numberOfMessagesChanged: boolean | undefined;
   isLoading = false;
   titleEditMode = false;
   chat: Chat | undefined;
@@ -31,8 +46,11 @@ export class ChatComponent implements OnInit, OnDestroy {
     private chatService: ChatsService,
     private usersService: UsersService,
     private authService: AuthService,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private iterableDiffers: IterableDiffers
+  ) {
+    this.iterableDiffer = this.iterableDiffers.find([]).create(undefined);
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe({
@@ -53,6 +71,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       next: (message) => {
         if (message.chatId === this.chat?.id) {
           this.chat.messages.push(message);
+          this.scrollToBottom();
         }
       },
       error: (err) => console.log(err),
@@ -110,6 +129,34 @@ export class ChatComponent implements OnInit, OnDestroy {
       },
       error: (err) => console.log(err),
     });
+  }
+  ngDoCheck(): void {
+    if (this.iterableDiffer.diff(this.chat?.messages)) {
+      this.numberOfMessagesChanged = true;
+    }
+  }
+
+  ngAfterViewChecked(): void {
+    const isScrolledDown =
+      Math.abs(
+        this.scrollable?.nativeElement.scrollHeight -
+          this.scrollable?.nativeElement.scrollTop -
+          this.scrollable?.nativeElement.clientHeight
+      ) <= 3.0;
+
+    if (this.numberOfMessagesChanged && !isScrolledDown) {
+      this.scrollToBottom();
+      this.numberOfMessagesChanged = false;
+    }
+  }
+
+  scrollToBottom() {
+    try {
+      this.scrollable!.nativeElement.scrollTop =
+        this.scrollable!.nativeElement.scrollHeight;
+    } catch (e) {
+      console.error(e);
+    }
   }
   ngOnDestroy(): void {
     this.chatSub.unsubscribe();
