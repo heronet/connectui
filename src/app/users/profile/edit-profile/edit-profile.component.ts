@@ -19,7 +19,11 @@ export class EditProfileComponent {
   fileToUpload: File | undefined;
   imageUrl: string | undefined;
 
-  constructor(private usersService: UsersService, private router: Router) {}
+  constructor(
+    private usersService: UsersService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
   handleFileInput() {
     const file = this.fileInput!.nativeElement.files![0];
     this.fileToUpload = file;
@@ -42,6 +46,7 @@ export class EditProfileComponent {
     userData.append('uploadAvatar', this.fileToUpload!);
     if (data.name?.trim()) userData.append('name', data.name.trim());
     this.usersService.updateUserData(userData).subscribe({
+      next: (data) => this.authService.updateAvatar(data),
       error: (err) => {
         console.log(err);
         this.isLoading = false;

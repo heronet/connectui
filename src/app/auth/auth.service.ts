@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ChatsService } from '../chats/chats.service';
+import { User } from '../models/user';
 import { AuthDto, LoginDto, RegisterDto } from './authdto';
 
 @Injectable({
@@ -53,5 +54,14 @@ export class AuthService {
     localStorage.removeItem('userAvatarUrl');
     this.authDataSource.next(undefined);
     this.chatService.stopSignalR();
+  }
+  updateAvatar(user: Partial<User>) {
+    localStorage.setItem('userAvatarUrl', user.avatar!.imageUrl);
+    let email = localStorage.getItem('email')!;
+    let id = localStorage.getItem('id')!;
+    let token = localStorage.getItem('token')!;
+    let userAvatarUrl = localStorage.getItem('userAvatarUrl')!;
+    let authDto: AuthDto = { email, id, token, userAvatarUrl };
+    this.authDataSource.next(authDto);
   }
 }

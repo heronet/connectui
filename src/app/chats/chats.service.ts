@@ -50,6 +50,7 @@ export class ChatsService {
     console.log('Sent');
   }
   initSignalR(authDto: AuthDto) {
+    if (this.connection?.state === signalR.HubConnectionState.Connected) return;
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl(`${environment.signalRUrl}/chat`, {
         accessTokenFactory: () => authDto.token,
