@@ -109,7 +109,6 @@ body {
   overflow: hidden;
   text-align: justify;
   font-size: 15px;
-  padding-right: 20px;
   margin: auto 0;
   color: var(--text-primary);
   font-family: "Roboto", "Arial", sans-serif;
@@ -124,6 +123,7 @@ body {
   background: transparent;
   font-size: 12px;
   margin: auto 5px;
+  padding: 0;
   text-transform: uppercase;
   outline: none !important;
   transition: background 0.2s ease;
@@ -145,11 +145,13 @@ body {
 .avatar {
   height: 45px;
   width: 45px;
+  border-radius: 100%;
 }
 .profile-img {
   height: 45px;
   width: 45px;
   margin-right: 10px;
+  border-radius: 100%;
 }
 .empty-loading {
   padding: 10px;

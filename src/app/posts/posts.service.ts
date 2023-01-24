@@ -55,6 +55,7 @@ export class PostsService {
     return this.http.post<Comment>(`${this.BASE_URL}/comments`, comment).pipe(
       map((comment) => {
         this.newCommentSource.next(comment);
+        console.log(comment);
       })
     );
   }

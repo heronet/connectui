@@ -1,0 +1,27 @@
+<div class="container">
+  <form class="text-box" #f="ngForm" (ngSubmit)="submitData(f)">
+    <input
+      type="text"
+      name="name"
+      class="text-input"
+      placeholder="Change your name"
+      autocomplete="off"
+      ngModel
+    />
+    <button type="submit" class="btn" [disabled]="isLoading">Save</button>
+  </form>
+  <div class="row-2" [class.hidden]="isLoading">
+    <label for="file">Change profile picture</label>
+    <input
+      type="file"
+      id="file"
+      (change)="handleFileInput()"
+      accept="image/*"
+      hidden
+      #fileInput
+    />
+    <span (click)="clearPicture()">Cancel</span>
+  </div>
+  <img *ngIf="imageUrl" [src]="imageUrl" alt="pic" style="width: 200px" />
+  <div class="empty-loading" *ngIf="isLoading">Saving...</div>
+</div>

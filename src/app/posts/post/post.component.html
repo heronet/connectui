@@ -18,6 +18,7 @@
     <app-add-comment
       *ngIf="authData && post"
       [postId]="post.id"
+      [avatarUrl]="authData.userAvatarUrl"
     ></app-add-comment>
     <div class="empty-loading prompt" *ngIf="!authData && post">
       <a routerLink="/auth/login" class="btn">Login</a> to comment on this post

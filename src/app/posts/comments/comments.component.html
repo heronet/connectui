@@ -1,6 +1,10 @@
 <div class="container" *ngIf="comments.length > 0">
   <div class="comment" *ngFor="let comment of comments">
-    <img src="/assets/dummy.png" alt="dummy" class="profile-img" />
+    <img
+      [src]="comment.userAvatarUrl ?? '/assets/dummy.png'"
+      alt="dummy"
+      class="profile-img"
+    />
     <div class="data">
       <div class="nametime">
         <span class="name">{{ comment.userName }}</span>

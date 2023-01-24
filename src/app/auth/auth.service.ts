@@ -40,6 +40,8 @@ export class AuthService {
       localStorage.setItem('email', authDto.email);
       localStorage.setItem('id', authDto.id);
       localStorage.setItem('token', authDto.token);
+      if (authDto.userAvatarUrl)
+        localStorage.setItem('userAvatarUrl', authDto.userAvatarUrl);
       this.authDataSource.next(authDto);
       this.chatService.initSignalR(authDto);
     } else this.authDataSource.next(undefined);
@@ -48,6 +50,7 @@ export class AuthService {
     localStorage.removeItem('email');
     localStorage.removeItem('id');
     localStorage.removeItem('token');
+    localStorage.removeItem('userAvatarUrl');
     this.authDataSource.next(undefined);
     this.chatService.stopSignalR();
   }

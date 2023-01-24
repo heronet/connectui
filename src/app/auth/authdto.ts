@@ -12,4 +12,5 @@ export interface AuthDto {
   id: string;
   roles?: string[];
   token: string;
+  userAvatarUrl?: string;
 }

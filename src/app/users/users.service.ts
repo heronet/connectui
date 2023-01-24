@@ -8,7 +8,7 @@ import { User } from '../models/user';
   providedIn: 'root',
 })
 export class UsersService {
-  private BASE_URL = `${environment.baseUrl}/connections`;
+  private BASE_URL = `${environment.baseUrl}/users`;
   constructor(private http: HttpClient) {}
   fetchUsers() {
     return this.http.get<User[]>(`${this.BASE_URL}`);
@@ -31,5 +31,8 @@ export class UsersService {
     return this.http.post<User>(`${this.BASE_URL}/connect`, {
       recipientId: id,
     });
+  }
+  updateUserData(user: FormData) {
+    return this.http.put<User>(`${this.BASE_URL}/update`, user);
   }
 }

@@ -1,5 +1,8 @@
 <div class="container">
-  <app-create-post *ngIf="authData"></app-create-post>
+  <app-create-post
+    *ngIf="authData"
+    [avatarUrl]="authData.userAvatarUrl"
+  ></app-create-post>
   <app-post-preview
     *ngFor="let post of posts"
     [post]="post"

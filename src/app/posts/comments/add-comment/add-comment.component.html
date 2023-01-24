@@ -1,5 +1,9 @@
 <div class="container">
-  <img src="/assets/dummy.png" alt="temp" class="profile-img" />
+  <img
+    [src]="avatarUrl ?? '/assets/dummy.png'"
+    alt="temp"
+    class="profile-img"
+  />
   <form class="text-box" #f="ngForm" (ngSubmit)="submitComment(f)">
     <textarea
       type="text"

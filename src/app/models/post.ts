@@ -7,6 +7,7 @@ export interface Post {
   createdAt: string;
   userId: string;
   userName: string;
+  userAvatarUrl?: string;
   likesCount: number;
   postLiked: boolean;
   commentsCount: number;

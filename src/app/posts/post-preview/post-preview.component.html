@@ -1,6 +1,10 @@
 <div class="card" *ngIf="post">
   <div class="card-header">
-    <img src="/assets/dummy.png" alt="temp" class="avatar" />
+    <img
+      [src]="post.userAvatarUrl ?? '/assets/dummy.png'"
+      alt="temp"
+      class="avatar"
+    />
     <div class="header-content">
       <span class="card-title">{{ post.userName }}</span>
       <span class="card-subtitle">{{ post.createdAt | date : "short" }}</span>

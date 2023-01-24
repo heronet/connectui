@@ -4,5 +4,6 @@ export interface Comment {
   time: string;
   userId: string;
   userName: string;
+  userAvatarUrl?: string;
   postId: string;
 }

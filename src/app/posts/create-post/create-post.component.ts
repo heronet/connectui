@@ -1,6 +1,6 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Post } from 'src/app/models/post';
+import { AuthDto } from 'src/app/auth/authdto';
 import { PostsService } from '../posts.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { PostsService } from '../posts.service';
   styleUrls: ['./create-post.component.scss'],
 })
 export class CreatePostComponent {
+  @Input() avatarUrl: string | undefined;
   isLoading = false;
   @ViewChild('filesInput', { static: true }) filesInput:
     | ElementRef<HTMLInputElement>

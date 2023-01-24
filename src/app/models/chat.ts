@@ -4,6 +4,7 @@ import { User } from './user';
 export interface Chat {
   id: string;
   title: string;
+  avatarUrl?: string;
   users: User[];
   messages: Message[];
   lastMessage: string;

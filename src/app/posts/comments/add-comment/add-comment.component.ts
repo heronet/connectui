@@ -10,6 +10,7 @@ import { PostsService } from '../../posts.service';
 })
 export class AddCommentComponent {
   @Input() postId: string | undefined;
+  @Input() avatarUrl: string | undefined;
   isLoading = false;
   constructor(private postsService: PostsService) {}
 

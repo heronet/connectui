@@ -6,7 +6,7 @@
     </div>
     <span style="flex: 1 1 auto"></span>
     <img
-      src="/assets/dummy.png"
+      [src]="authData.userAvatarUrl ?? '/assets/dummy.png'"
       alt="profile-img"
       class="profile-link"
       *ngIf="authData"
