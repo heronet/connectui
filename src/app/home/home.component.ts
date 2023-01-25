@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { AuthDto } from '../auth/authdto';
@@ -16,7 +17,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.authSub = this.authService.authData$.subscribe({
@@ -30,6 +32,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   toggleTheme() {
     this.themeService.toggleTheme();
     this.isDark = !this.isDark;
+  }
+  isFeed() {
+    return this.router.url === '/posts';
+  }
+  isChat() {
+    return this.router.url.includes('chats/');
   }
   ngOnDestroy(): void {
     this.authSub.unsubscribe();

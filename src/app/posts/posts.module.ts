@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 
 import { PostsRoutingModule } from './posts-routing.module';
-import { HomeComponent } from '../home/home.component';
 import { PostComponent } from './post/post.component';
 import { PostsComponent } from './posts.component';
 import { AddCommentComponent } from './comments/add-comment/add-comment.component';
@@ -13,7 +12,6 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
-    HomeComponent,
     PostsComponent,
     PostComponent,
     CreatePostComponent,

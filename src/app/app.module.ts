@@ -6,9 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { LogoutInterceptor } from './auth/logout.interceptor';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomeComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
     {

@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="home-header">
+  <div class="home-header" *ngIf="!isChat()">
     <div [routerLink]="['/']" class="brand">
       <img src="/assets/brand.svg" alt="brand" />
       <span>Connect</span>
@@ -39,25 +39,27 @@
       *ngIf="authData"
     />
   </div>
-  <div class="nav" *ngIf="authData">
-    <div class="nav-link" [routerLink]="['/chats']">
-      <img src="/assets/chat.svg" />
-      <span>Messages</span>
+  <div class="home-container">
+    <div class="nav" *ngIf="authData && isFeed()">
+      <div class="nav-link" [routerLink]="['/chats']">
+        <img src="/assets/chat.svg" />
+        <span>Messages</span>
+      </div>
+      <div class="nav-link" [routerLink]="['/users/connections']">
+        <img src="/assets/brand.svg" />
+        <span>Connections</span>
+      </div>
+      <div class="nav-link" [routerLink]="['/users']">
+        <img src="/assets/search.svg" />
+        <span>Users</span>
+      </div>
     </div>
-    <div class="nav-link" [routerLink]="['/users/connections']">
-      <img src="/assets/brand.svg" />
-      <span>Connections</span>
+    <div class="nav prompt" *ngIf="!authData && isFeed()">
+      <span
+        >Please <a routerLink="/auth/login" class="btn">login</a> to post, like,
+        comment or chat</span
+      >
     </div>
-    <div class="nav-link" [routerLink]="['/users']">
-      <img src="/assets/search.svg" />
-      <span>Users</span>
-    </div>
+    <router-outlet></router-outlet>
   </div>
-  <div class="nav prompt" *ngIf="!authData">
-    <span
-      >Please <a routerLink="/auth/login" class="btn">login</a> to post, like,
-      comment or chat</span
-    >
-  </div>
-  <app-posts></app-posts>
 </div>

@@ -1,8 +1,4 @@
 <div class="container">
-  <div class="header" *ngIf="!isLoading && post">
-    {{ post.userName }}'s post
-  </div>
-  <div class="header" *ngIf="isLoading">Post</div>
   <div class="body post">
     <div class="empty-loading" *ngIf="isLoading">Loading post...</div>
     <div class="empty-loading" *ngIf="!isLoading && !post">
