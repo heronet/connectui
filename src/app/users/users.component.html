@@ -1,7 +1,11 @@
 <div class="container">
   <div class="header">Users</div>
   <div *ngFor="let user of users" class="user">
-    <img src="/assets/dummy.png" alt="temp" class="avatar" />
+    <img
+      [src]="user.avatar?.imageUrl ?? '/assets/dummy.png'"
+      alt="temp"
+      class="avatar"
+    />
     <span class="name">{{ user.name }}</span>
     <span style="flex: 1 1 auto"></span>
     <button
