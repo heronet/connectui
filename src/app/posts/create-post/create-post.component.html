@@ -20,7 +20,10 @@
     </form>
   </div>
   <div class="row-2" [class.hidden]="isLoading">
-    <label for="files">Add Pictures</label>
+    <label for="files" class="icon-btn">
+      <img class="icon" src="/assets/pictures.svg" alt="pictures" />
+      <span>Add Pictures</span>
+    </label>
     <input
       type="file"
       id="files"
@@ -30,7 +33,10 @@
       hidden
       #filesInput
     />
-    <span (click)="clearPictures()">Clear Pictures</span>
+    <button (click)="clearPictures()" class="icon-btn">
+      <img class="icon" src="/assets/remove-image.svg" alt="remove photo" />
+      <span>Clear Pictures</span>
+    </button>
   </div>
   <div class="row-3" *ngIf="imageUrls.length > 0 && !isLoading">
     <div class="preview-main">

@@ -78,7 +78,8 @@
     >
     <span style="flex: 1 1 auto"></span>
     <span [class.pointer]="enableLinks" (click)="navigate()"
-      >{{ post.commentsCount }} Comments</span
+      >{{ post.commentsCount }}
+      {{ post.commentsCount > 1 ? "Comments" : "Comment" }}</span
     >
   </div>
   <div class="empty-loading" *ngIf="isLoading">

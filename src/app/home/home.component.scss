@@ -86,7 +86,6 @@ a:hover {
 .nav {
   color: var(--text-primary);
   margin: 10px 0;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -101,7 +100,7 @@ a:hover {
   justify-content: center;
   margin: 8px 15px;
   font-size: 10px;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   cursor: pointer;
 }
 .nav-link > img {
