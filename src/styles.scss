@@ -17,7 +17,7 @@ body {
   color: var(--text-primary);
   border-bottom: var(--border-color) solid 1px;
   position: sticky;
-  top: 0;
+  top: 50px;
   z-index: 9999;
   backdrop-filter: blur(10px);
 }
@@ -124,7 +124,7 @@ body {
   border: transparent;
   background: transparent;
   font-size: 12px;
-  margin: auto 5px;
+  margin: auto 10px;
   padding: 0;
   text-transform: uppercase;
   outline: none !important;

@@ -5,3 +5,8 @@
   border: 1px solid var(--border-color);
   border-radius: 8px;
 }
+@media only screen and (max-width: 500px) {
+  .profile-img {
+    display: none;
+  }
+}
