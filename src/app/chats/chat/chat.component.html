@@ -2,7 +2,7 @@
   <div class="chat-container">
     <div class="empty-loading" *ngIf="isLoading">Loading Messages...</div>
     <div *ngIf="chat && !isLoading" class="chat">
-      <div class="header">
+      <div class="chat-header">
         <img src="/assets/dummy.png" alt="dummy" class="chat-img" />
         <span *ngIf="!titleEditMode" (click)="titleEditMode = !titleEditMode">{{
           chat.title
