@@ -17,32 +17,43 @@
   align-items: center;
   min-height: 50px;
   padding: 0 20px;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   border-bottom: var(--border-color) solid 1px;
   position: sticky;
   top: 0;
   z-index: 9999;
   backdrop-filter: blur(8px);
 }
-.theme-toggle {
-  width: 20px;
-  height: 20px;
-  margin: 0 10px;
+.icon-toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer;
+  user-select: none;
+  margin-left: 10px;
+  border: transparent;
+  background-color: transparent;
+  color: var(--text-primary);
+}
+.icon-toggle > span {
+  font-size: 10px;
+}
+.theme-toggle-icon {
+  width: 15px;
+  height: 15px;
+  margin-bottom: 5px;
 }
 .profile-link {
   height: 30px;
   width: 30px;
-  margin: 0 10px;
   cursor: pointer;
   border-radius: 100%;
 }
 .header-icon {
   filter: var(--logo-invert);
-  width: 20px;
-  height: 20px;
-  margin: 0 10px;
-  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  margin-bottom: 5px;
 }
 .brand {
   display: flex;

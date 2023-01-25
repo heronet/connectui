@@ -12,32 +12,35 @@
       *ngIf="authData"
       [routerLink]="['/users/profile', authData.id]"
     />
-    <img
-      *ngIf="isDark"
-      (click)="toggleTheme()"
-      src="/assets/sun.svg"
-      class="theme-toggle"
-      alt="sun"
-    />
-    <img
-      *ngIf="!isDark"
-      (click)="toggleTheme()"
-      src="/assets/moon.svg"
-      class="theme-toggle"
-      alt="moon"
-    />
-    <a class="header-link" [routerLink]="['/auth/login']" *ngIf="!authData"
-      >Login</a
+    <button class="icon-toggle" *ngIf="isDark" (click)="toggleTheme()">
+      <img src="/assets/sun.svg" class="theme-toggle-icon" alt="sun" />
+      <span>Light Mode</span>
+    </button>
+    <button class="icon-toggle" *ngIf="!isDark" (click)="toggleTheme()">
+      <img src="/assets/moon.svg" class="theme-toggle-icon" alt="moon" />
+      <span>Dark Mode</span>
+    </button>
+    <button
+      class="icon-toggle"
+      [routerLink]="['/auth/login']"
+      *ngIf="!authData"
     >
-    <a class="header-link" [routerLink]="['/auth/register']" *ngIf="!authData"
-      >Register</a
+      <img src="/assets/login.svg" class="header-icon" alt="login" />
+      <span>Login</span>
+    </button>
+    <button
+      class="icon-toggle"
+      [routerLink]="['/auth/register']"
+      *ngIf="!authData"
     >
-    <img
-      src="/assets/logout.svg"
-      class="header-icon"
-      (click)="logout()"
-      *ngIf="authData"
-    />
+      <img src="/assets/register.svg" class="header-icon" alt="register" />
+      <span>Register</span>
+    </button>
+
+    <button class="icon-toggle" (click)="logout()" *ngIf="authData">
+      <img src="/assets/logout.svg" class="header-icon" alt="logout" />
+      <span>Logout</span>
+    </button>
   </div>
   <div class="home-container">
     <div class="nav" *ngIf="authData && isFeed()">
