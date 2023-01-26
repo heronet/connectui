@@ -4,14 +4,7 @@
   position: relative;
   overflow-y: auto;
 }
-.home-container {
-  max-width: 600px;
-  padding: 0 20px;
-  height: 100%;
-}
-.container > * {
-  margin: 0 auto;
-}
+
 .home-header {
   display: flex;
   align-items: center;
@@ -82,10 +75,14 @@ a:hover {
   cursor: pointer;
   user-select: none;
 }
-
+.nav-container {
+  margin: 10px auto;
+  padding: 0 20px;
+}
 .nav {
   color: var(--text-primary);
-  margin: 10px 0;
+  max-width: var(--max-width);
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;

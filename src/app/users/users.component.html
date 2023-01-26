@@ -1,34 +1,33 @@
 <div class="container">
   <div class="header">Users</div>
-  <div class="users-container">
-    <div *ngFor="let user of users" class="user">
-      <img
-        [src]="user.avatar?.imageUrl ?? '/assets/dummy.png'"
-        alt="temp"
-        class="avatar"
-      />
-      <span class="name">{{ user.name }}</span>
-      <span style="flex: 1 1 auto"></span>
-      <button
-        class="op"
-        *ngIf="!isConnected(user)"
-        (click)="connectUser(user)"
-        [disabled]="isConnecting"
-      >
-        Connect
-      </button>
-      <button
-        class="op"
-        *ngIf="isConnected(user)"
-        (click)="startChat(user)"
-        [disabled]="isConnecting"
-      >
-        Message
-      </button>
-    </div>
-    <div class="empty-loading" *ngIf="!isLoading && users.length === 0">
-      Users will appear here.
-    </div>
-    <div class="empty-loading" *ngIf="isLoading">Loading users...</div>
+
+  <div *ngFor="let user of users" class="user">
+    <img
+      [src]="user.avatar?.imageUrl ?? '/assets/dummy.png'"
+      alt="temp"
+      class="avatar"
+    />
+    <span class="name">{{ user.name }}</span>
+    <span style="flex: 1 1 auto"></span>
+    <button
+      class="op"
+      *ngIf="!isConnected(user)"
+      (click)="connectUser(user)"
+      [disabled]="isConnecting"
+    >
+      Connect
+    </button>
+    <button
+      class="op"
+      *ngIf="isConnected(user)"
+      (click)="startChat(user)"
+      [disabled]="isConnecting"
+    >
+      Message
+    </button>
   </div>
+  <div class="empty-loading" *ngIf="!isLoading && users.length === 0">
+    Users will appear here.
+  </div>
+  <div class="empty-loading" *ngIf="isLoading">Loading users...</div>
 </div>

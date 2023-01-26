@@ -1,8 +1,8 @@
 .container {
-  max-width: 600px;
-  margin: auto;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
   position: relative;
-  height: 100%;
 }
 .intro {
   font-family: sans-serif;

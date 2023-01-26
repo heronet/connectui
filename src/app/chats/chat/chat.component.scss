@@ -8,12 +8,13 @@
 .container {
   overflow-y: auto;
   scroll-behavior: smooth;
-  height: 100%;
+  height: 100vh;
+  height: 100dvh;
 }
 .chat-container {
-  max-width: 600px;
+  max-width: var(--max-width);
   height: 100%;
-  margin: auto;
+  margin: 0 auto;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -38,6 +39,7 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  width: 100%;
 }
 
 .msg {
@@ -55,6 +57,7 @@
   color: var(--msg-sent-fg);
   /* moves it to the right */
   margin-left: auto;
+  margin-right: 10px;
 }
 
 .msg.rcvd {
@@ -63,6 +66,7 @@
   color: var(--msg-rcvd-fg);
   /* moves it to the left */
   margin-right: auto;
+  margin-left: 10px;
 }
 
 /* Improve radius for messages group */

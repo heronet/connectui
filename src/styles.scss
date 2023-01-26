@@ -8,6 +8,7 @@ body {
   height: 100%;
   overflow-x: auto; // Fixes white bottom space on chrome mobile
   font-family: "Roboto", "Arial", sans-serif;
+  --max-width: 600px;
 }
 .header {
   display: flex;
@@ -182,7 +183,6 @@ body {
   color: #888;
 }
 .load-more {
-  // text-decoration: underline;
   color: #4a90e2;
   cursor: pointer;
 }

@@ -1,24 +1,22 @@
 <div class="container">
-  <div class="body post">
-    <div class="empty-loading" *ngIf="isLoading">Loading post...</div>
-    <div class="empty-loading" *ngIf="!isLoading && !post">
-      Error loading post
-    </div>
-    <app-post-preview
-      [post]="post"
-      [authData]="authData"
-      [enableLinks]="false"
-      [photosLinear]="true"
-      [redirectOnDelete]="true"
-    ></app-post-preview>
-    <app-add-comment
-      *ngIf="authData && post"
-      [postId]="post.id"
-      [avatarUrl]="authData.userAvatarUrl"
-    ></app-add-comment>
-    <div class="empty-loading prompt" *ngIf="!authData && post">
-      <a routerLink="/auth/login" class="btn">Login</a> to comment on this post
-    </div>
-    <app-comments *ngIf="post" [postId]="post.id"></app-comments>
+  <div class="empty-loading" *ngIf="isLoading">Loading post...</div>
+  <div class="empty-loading" *ngIf="!isLoading && !post">
+    Error loading post
   </div>
+  <app-post-preview
+    [post]="post"
+    [authData]="authData"
+    [enableLinks]="false"
+    [photosLinear]="true"
+    [redirectOnDelete]="true"
+  ></app-post-preview>
+  <app-add-comment
+    *ngIf="authData && post"
+    [postId]="post.id"
+    [avatarUrl]="authData.userAvatarUrl"
+  ></app-add-comment>
+  <div class="empty-loading prompt" *ngIf="!authData && post">
+    <a routerLink="/auth/login" class="btn">Login</a> to comment on this post
+  </div>
+  <app-comments *ngIf="post" [postId]="post.id"></app-comments>
 </div>
