@@ -8,8 +8,7 @@
 .container {
   overflow-y: auto;
   scroll-behavior: smooth;
-  height: 100vh;
-  height: 100dvh;
+  height: 100%;
 }
 .chat-container {
   max-width: var(--max-width);
