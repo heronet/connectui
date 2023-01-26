@@ -6,8 +6,16 @@
       [src]="user.avatar?.imageUrl ?? '/assets/dummy.png'"
       alt="temp"
       class="avatar"
+      [routerLink]="['/users', 'profile', user.id]"
     />
-    <span class="name">{{ user.name }}</span>
+    <div class="info">
+      <span class="name" [routerLink]="['/users', 'profile', user.id]">{{
+        user.name
+      }}</span>
+      <span class="location" [routerLink]="['/users', 'profile', user.id]">{{
+        user.location ?? "Unknown Location"
+      }}</span>
+    </div>
     <span style="flex: 1 1 auto"></span>
     <button
       class="op"

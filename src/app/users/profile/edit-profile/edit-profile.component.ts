@@ -19,7 +19,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   isLoading = false;
   isAvatarUploading = false;
   user: User | undefined;
-  @ViewChild('fileInput', { static: true }) fileInput:
+  @ViewChild('fileInput', { static: false }) fileInput:
     | ElementRef<HTMLInputElement>
     | undefined;
   fileToUpload: File | undefined;
@@ -66,10 +66,10 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.fileInput!.nativeElement.value = '';
   }
   submitData() {
+    if (!this.user!.name?.trim()) return;
     this.isLoading = true;
     const userData = new FormData();
-    if (this.user!.name?.trim())
-      userData.append('name', this.user!.name.trim());
+    userData.append('name', this.user!.name.trim());
     userData.append('bio', this.user!.bio?.trim() ?? '');
     userData.append('location', this.user!.location?.trim() ?? '');
     this.usersService.updateUserData(userData).subscribe({
@@ -81,7 +81,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       complete: () => {
         this.clearPicture();
         this.isLoading = false;
-        this.router.navigateByUrl(`/users/${this.user!.id}`);
+        this.router.navigateByUrl(`/users/profile/${this.user!.id}`);
       },
     });
   }

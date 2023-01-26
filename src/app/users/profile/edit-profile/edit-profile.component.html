@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" [class.hidden]="isLoading && !user">
   <div class="header">
     <span>Edit profile</span>
     <span style="flex: 1 1 auto"></span>
@@ -41,14 +41,14 @@
       autocomplete="off"
       [(ngModel)]="user.name"
     />
-    <input
+    <textarea
       type="text"
       name="bio"
       class="bio input"
       placeholder="Bio"
       autocomplete="off"
       [(ngModel)]="user.bio"
-    />
+    ></textarea>
     <input
       type="text"
       name="location"
@@ -59,3 +59,4 @@
     />
   </form>
 </div>
+<div class="empty-loading" *ngIf="isLoading && !user">Loading profile...</div>

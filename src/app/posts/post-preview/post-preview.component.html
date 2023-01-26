@@ -4,8 +4,12 @@
       [src]="post.userAvatarUrl ?? '/assets/dummy.png'"
       alt="temp"
       class="avatar"
+      [routerLink]="['/users', 'profile', post.userId]"
     />
-    <div class="header-content">
+    <div
+      class="header-content"
+      [routerLink]="['/users', 'profile', post.userId]"
+    >
       <span class="card-title">{{ post.userName }}</span>
       <span class="card-subtitle">{{ post.createdAt | date : "short" }}</span>
     </div>

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { map, ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ChatsService } from '../chats/chats.service';
@@ -13,7 +14,11 @@ export class AuthService {
   private authDataSource = new ReplaySubject<AuthDto | undefined>(1);
   authData$ = this.authDataSource.asObservable();
 
-  constructor(private http: HttpClient, private chatService: ChatsService) {}
+  constructor(
+    private http: HttpClient,
+    private chatService: ChatsService,
+    private router: Router
+  ) {}
   login(data: LoginDto) {
     return this.http
       .post<AuthDto>(`${environment.baseUrl}/account/login`, data)
@@ -63,5 +68,6 @@ export class AuthService {
     let userAvatarUrl = localStorage.getItem('userAvatarUrl')!;
     let authDto: AuthDto = { email, id, token, userAvatarUrl };
     this.authDataSource.next(authDto);
+    this.router.navigateByUrl('/');
   }
 }

@@ -20,6 +20,9 @@
   color: var(--text-primary);
   padding: 12px;
 }
+textarea {
+  resize: vertical;
+}
 .name {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
