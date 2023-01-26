@@ -1,3 +1,4 @@
+import { HttpEventType } from '@angular/common/http';
 import {
   Component,
   ElementRef,
@@ -18,6 +19,7 @@ import { UsersService } from '../../users.service';
 export class EditProfileComponent implements OnInit, OnDestroy {
   isLoading = false;
   isAvatarUploading = false;
+  uploadProgress = 0;
   user: User | undefined;
   @ViewChild('fileInput', { static: false }) fileInput:
     | ElementRef<HTMLInputElement>
@@ -73,15 +75,26 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     userData.append('bio', this.user!.bio?.trim() ?? '');
     userData.append('location', this.user!.location?.trim() ?? '');
     this.usersService.updateUserData(userData).subscribe({
-      next: (data) => (this.user = data),
+      next: (event) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          const total: number = event.total ?? 1;
+          this.uploadProgress = Math.round((event.loaded / total) * 100);
+        }
+        if (event.type === HttpEventType.Response) {
+          this.user = event.body!;
+          this.uploadProgress = 0;
+        }
+      },
       error: (err) => {
         console.log(err);
         this.isLoading = false;
+        this.uploadProgress = 0;
       },
       complete: () => {
         this.clearPicture();
         this.isLoading = false;
-        this.router.navigateByUrl(`/users/profile/${this.user!.id}`);
+        this.uploadProgress = 0;
+        this.router.navigate(['/users', 'profile', this.user?.id]);
       },
     });
   }
@@ -90,17 +103,25 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     const userData = new FormData();
     userData.append('uploadAvatar', this.fileToUpload!);
     this.usersService.updateUserData(userData).subscribe({
-      next: (data) => {
-        this.authService.updateAvatar(data);
-        this.user!.avatar = data.avatar;
+      next: (event) => {
+        if (event.type === HttpEventType.UploadProgress) {
+          const total: number = event.total ?? 1;
+          this.uploadProgress = Math.round((event.loaded / total) * 100);
+        }
+        if (event.type === HttpEventType.Response) {
+          this.user!.avatar = event.body?.avatar;
+          this.authService.updateAvatar(event.body!);
+        }
       },
       error: (err) => {
         console.log(err);
         this.isAvatarUploading = false;
+        this.uploadProgress = 0;
       },
       complete: () => {
         this.clearPicture();
         this.isAvatarUploading = false;
+        this.uploadProgress = 0;
       },
     });
   }

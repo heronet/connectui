@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -12,6 +12,9 @@ export class PostsService {
   private BASE_URL = `${environment.baseUrl}/posts`;
   private postSource = new Subject<Post>();
   post$ = this.postSource.asObservable();
+
+  private uploadProgressSource = new Subject<number>();
+  uploadProgress$ = this.uploadProgressSource.asObservable();
 
   private deletedPostSource = new Subject<string>();
   deletedPost$ = this.deletedPostSource.asObservable();
@@ -28,11 +31,24 @@ export class PostsService {
     return this.http.get<Post>(`${this.BASE_URL}/${id}`);
   }
   createPost(post: FormData) {
-    return this.http.post<Post>(`${this.BASE_URL}`, post).pipe(
-      map((post) => {
-        this.postSource.next(post);
+    return this.http
+      .post<Post>(`${this.BASE_URL}`, post, {
+        reportProgress: true,
+        observe: 'events',
       })
-    );
+      .pipe(
+        map((event) => {
+          if (event.type === HttpEventType.UploadProgress) {
+            const total: number = event.total ?? 1;
+            const progress = Math.round((event.loaded / total) * 100);
+            this.uploadProgressSource.next(progress);
+          }
+          if (event.type === HttpEventType.Response) {
+            this.postSource.next(event.body!);
+            this.uploadProgressSource.next(0);
+          }
+        })
+      );
   }
   updatePost(post: Partial<Post>) {
     return this.http.put<Post>(`${this.BASE_URL}/update`, post);

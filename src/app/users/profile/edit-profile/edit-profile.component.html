@@ -20,7 +20,7 @@
     <div [class.hidden]="isLoading">
       <label for="file" class="btn" *ngIf="!isAvatarUploading">Change</label>
       <span class="empty-loading" *ngIf="isAvatarUploading"
-        >Please wait...</span
+        >Uploading... {{ uploadProgress }}%</span
       >
       <input
         type="file"

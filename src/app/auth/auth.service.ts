@@ -52,14 +52,6 @@ export class AuthService {
       this.chatService.initSignalR(authDto);
     } else this.authDataSource.next(undefined);
   }
-  logout() {
-    localStorage.removeItem('email');
-    localStorage.removeItem('id');
-    localStorage.removeItem('token');
-    localStorage.removeItem('userAvatarUrl');
-    this.authDataSource.next(undefined);
-    this.chatService.stopSignalR();
-  }
   updateAvatar(user: Partial<User>) {
     localStorage.setItem('userAvatarUrl', user.avatar!.imageUrl);
     let email = localStorage.getItem('email')!;
@@ -68,6 +60,14 @@ export class AuthService {
     let userAvatarUrl = localStorage.getItem('userAvatarUrl')!;
     let authDto: AuthDto = { email, id, token, userAvatarUrl };
     this.authDataSource.next(authDto);
+  }
+  logout() {
+    localStorage.removeItem('email');
+    localStorage.removeItem('id');
+    localStorage.removeItem('token');
+    localStorage.removeItem('userAvatarUrl');
+    this.authDataSource.next(undefined);
+    this.chatService.stopSignalR();
     this.router.navigateByUrl('/');
   }
 }

@@ -36,6 +36,9 @@ export class UsersService {
     return this.http.get<User>(`${this.BASE_URL}/${id}`);
   }
   updateUserData(user: FormData) {
-    return this.http.put<User>(`${this.BASE_URL}/update`, user);
+    return this.http.put<User>(`${this.BASE_URL}/update`, user, {
+      reportProgress: true,
+      observe: 'events',
+    });
   }
 }

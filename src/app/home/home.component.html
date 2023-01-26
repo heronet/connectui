@@ -42,8 +42,8 @@
       <span>Logout</span>
     </button>
   </div>
-  <div class="nav-container" *ngIf="authData && isFeed()">
-    <div class="nav">
+  <div class="nav-container" *ngIf="isFeed()">
+    <div class="nav" *ngIf="authData">
       <div class="nav-link" [routerLink]="['/chats']">
         <img src="/assets/chat.svg" />
         <span>Messages</span>
@@ -57,7 +57,7 @@
         <span>Users</span>
       </div>
     </div>
-    <div class="nav prompt" *ngIf="!authData && isFeed()">
+    <div class="nav prompt" *ngIf="!authData">
       <span
         >Please <a routerLink="/auth/login" class="btn">login</a> to post, like,
         comment or chat</span

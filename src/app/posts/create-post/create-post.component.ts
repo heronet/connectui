@@ -1,6 +1,13 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthDto } from 'src/app/auth/authdto';
+import { Subscription } from 'rxjs';
 import { PostsService } from '../posts.service';
 
 @Component({
@@ -8,9 +15,11 @@ import { PostsService } from '../posts.service';
   templateUrl: './create-post.component.html',
   styleUrls: ['./create-post.component.scss'],
 })
-export class CreatePostComponent {
+export class CreatePostComponent implements OnInit, OnDestroy {
   @Input() avatarUrl: string | undefined;
   isLoading = false;
+  uploadProgress = 0;
+  uploadProgressSub = new Subscription();
   @ViewChild('filesInput', { static: true }) filesInput:
     | ElementRef<HTMLInputElement>
     | undefined;
@@ -19,6 +28,11 @@ export class CreatePostComponent {
   initialImage: string | undefined;
 
   constructor(private postsService: PostsService) {}
+  ngOnInit(): void {
+    this.postsService.uploadProgress$.subscribe({
+      next: (progress) => (this.uploadProgress = progress),
+    });
+  }
   handleFileInput() {
     let files = this.filesInput!.nativeElement.files;
     for (let i = 0; i != files!.length; ++i) {
@@ -51,12 +65,17 @@ export class CreatePostComponent {
       error: (err) => {
         console.log(err);
         this.isLoading = false;
+        this.uploadProgress = 0;
       },
       complete: () => {
         form.resetForm();
         this.clearPictures();
         this.isLoading = false;
+        this.uploadProgress = 0;
       },
     });
+  }
+  ngOnDestroy(): void {
+    this.uploadProgressSub.unsubscribe();
   }
 }
