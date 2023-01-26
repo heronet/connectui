@@ -1,4 +1,45 @@
 .container {
   color: var(--text-primary);
   max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 10px auto;
+}
+.input {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  border-width: 1px;
+  border-style: solid;
+  box-sizing: border-box;
+  background: var(--bg-alt-color);
+  color: var(--text-primary);
+  padding: 12px;
+}
+.name {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.bio {
+  border-radius: 0;
+}
+.location {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+.preview {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.avatar-view {
+  height: 180px;
+  width: 180px;
+  margin: 10px;
+  border-radius: 50%;
 }

@@ -32,7 +32,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.usersService.getUserData(id).subscribe({
       next: (data) => {
         this.user = data;
-        console.log(data);
         this.isLoading = false;
       },
       error: (err) => {

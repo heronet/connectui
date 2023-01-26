@@ -24,7 +24,7 @@
         </a>
       </div>
       <p class="bio" *ngIf="user.bio">{{ user.bio }}</p>
-      <p class="bio" *ngIf="!user.bio">
+      <p class="bio" *ngIf="!user.bio && user.id === authData?.id">
         <a routerLink="edit">Add your bio</a>
       </p>
       <div class="contact">
