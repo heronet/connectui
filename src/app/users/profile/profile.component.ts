@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { AuthDto } from 'src/app/auth/authdto';
@@ -17,14 +18,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
   user: User | undefined;
   constructor(
     private usersService: UsersService,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
     this.authSub = this.authService.authData$.subscribe({
       next: (data) => {
         this.authData = data;
-        this.getUserInfo(data!.id);
       },
+    });
+    this.route.params.subscribe({
+      next: (params) => this.getUserInfo(params['id']),
     });
   }
   getUserInfo(id: string) {
