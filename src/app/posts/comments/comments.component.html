@@ -5,12 +5,23 @@
       alt="dummy"
       class="profile-img"
     />
-    <div class="data">
-      <div class="nametime">
-        <span class="name">{{ comment.userName }}</span>
-        <span class="time">{{ comment.time | date : "d MMM, h:mm a" }}</span>
+    <div class="content">
+      <div class="data">
+        <div class="nametime">
+          <span class="name">{{ comment.userName }}</span>
+          <span class="time">{{ comment.time | date : "d MMM, h:mm a" }}</span>
+        </div>
+        <div class="text">{{ comment.text }}</div>
       </div>
-      <div class="text">{{ comment.text }}</div>
+      <div class="action" *ngIf="authData && authData.id === comment.userId">
+        <button>Edit</button>
+        <button
+          (click)="deleteComment(comment.id)"
+          [disabled]="processingComment"
+        >
+          Delete
+        </button>
+      </div>
     </div>
   </div>
 </div>
