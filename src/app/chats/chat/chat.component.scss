@@ -136,8 +136,10 @@
   font-family: sans-serif;
   overflow: hidden;
   text-align: justify;
-  padding-right: 20px;
   color: var(--text-primary);
+}
+.btn-send {
+  margin: 0 5px;
 }
 .chat-img {
   height: 35px;
