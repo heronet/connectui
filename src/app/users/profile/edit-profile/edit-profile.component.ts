@@ -75,16 +75,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     userData.append('bio', this.user!.bio?.trim() ?? '');
     userData.append('location', this.user!.location?.trim() ?? '');
     this.usersService.updateUserData(userData).subscribe({
-      next: (event) => {
-        if (event.type === HttpEventType.UploadProgress) {
-          const total: number = event.total ?? 1;
-          this.uploadProgress = Math.round((event.loaded / total) * 100);
-        }
-        if (event.type === HttpEventType.Response) {
-          this.user = event.body!;
-          this.uploadProgress = 0;
-        }
-      },
+      next: (data) => (this.user = data),
       error: (err) => {
         console.log(err);
         this.isLoading = false;
@@ -102,7 +93,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     this.isAvatarUploading = true;
     const userData = new FormData();
     userData.append('uploadAvatar', this.fileToUpload!);
-    this.usersService.updateUserData(userData).subscribe({
+    this.usersService.uploadAvatar(userData).subscribe({
       next: (event) => {
         if (event.type === HttpEventType.UploadProgress) {
           const total: number = event.total ?? 1;
