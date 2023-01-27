@@ -13,7 +13,7 @@ import { UsersService } from './users.service';
 })
 export class UsersComponent implements OnInit, OnDestroy {
   isLoading = false;
-  isConnecting = false;
+  isConnectLoading = false;
   authSub = new Subscription();
   users: User[] = [];
   authData: AuthDto | undefined;
@@ -34,15 +34,15 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.getConnectedUsers();
   }
   connectUser(user: User) {
-    this.isConnecting = true;
+    this.isConnectLoading = true;
     this.usersService.connectUser(user.id).subscribe({
       next: (user) => {
-        this.isConnecting = false;
+        this.isConnectLoading = false;
         this.connectedUsers.push(user.id);
       },
       error: (err) => {
         console.log(err);
-        this.isConnecting = false;
+        this.isConnectLoading = false;
       },
     });
   }
@@ -63,19 +63,29 @@ export class UsersComponent implements OnInit, OnDestroy {
     });
   }
   getConnectedUsers() {
+    this.isConnectLoading = true;
     this.usersService.fetchConnectedUsers().subscribe({
       next: (users) => {
         this.connectedUsers = users.map((u) => u.id);
+        this.isConnectLoading = false;
       },
-      error: (err) => console.log(err),
+      error: (err) => {
+        console.log(err);
+        this.isConnectLoading = false;
+      },
     });
   }
   startChat(user: User) {
+    this.isConnectLoading = true;
     this.usersService.fetchOneToOneChatId(user.id).subscribe({
       next: (c) => {
+        this.isConnectLoading = false;
         this.router.navigateByUrl(`/chats/${c.id}`);
       },
-      error: (err) => console.log(err),
+      error: (err) => {
+        console.log(err);
+        this.isConnectLoading = false;
+      },
     });
   }
   ngOnDestroy(): void {

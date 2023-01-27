@@ -21,7 +21,7 @@
       class="op"
       *ngIf="!isConnected(user)"
       (click)="connectUser(user)"
-      [disabled]="isConnecting"
+      [disabled]="isConnectLoading"
     >
       Connect
     </button>
@@ -29,7 +29,7 @@
       class="op"
       *ngIf="isConnected(user)"
       (click)="startChat(user)"
-      [disabled]="isConnecting"
+      [disabled]="isConnectLoading"
     >
       Message
     </button>
