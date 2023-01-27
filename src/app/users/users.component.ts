@@ -18,10 +18,9 @@ export class UsersComponent implements OnInit, OnDestroy {
   users: User[] = [];
   authData: AuthDto | undefined;
   connectedUsers: string[] = [];
-  connectedUsersSub = new Subscription();
 
   constructor(
-    private userService: UsersService,
+    private usersService: UsersService,
     private authService: AuthService,
     private router: Router
   ) {}
@@ -36,7 +35,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
   connectUser(user: User) {
     this.isConnecting = true;
-    this.userService.connectUser(user.id).subscribe({
+    this.usersService.connectUser(user.id).subscribe({
       next: (user) => {
         this.isConnecting = false;
         this.connectedUsers.push(user.id);
@@ -52,7 +51,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
   getUsers() {
     this.isLoading = true;
-    this.userService.fetchUsers().subscribe({
+    this.usersService.fetchUsers().subscribe({
       next: (users) => {
         this.users = users.filter((u) => u.id !== this.authData?.id);
         this.isLoading = false;
@@ -64,7 +63,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     });
   }
   getConnectedUsers() {
-    this.userService.fetchConnectedUsers().subscribe({
+    this.usersService.fetchConnectedUsers().subscribe({
       next: (users) => {
         this.connectedUsers = users.map((u) => u.id);
       },
@@ -72,7 +71,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     });
   }
   startChat(user: User) {
-    this.userService.fetchOneToOneChatId(user.id).subscribe({
+    this.usersService.fetchOneToOneChatId(user.id).subscribe({
       next: (c) => {
         this.router.navigateByUrl(`/chats/${c.id}`);
       },
@@ -81,6 +80,5 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.authSub.unsubscribe();
-    this.connectedUsersSub.unsubscribe();
   }
 }

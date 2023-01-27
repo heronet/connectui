@@ -14,14 +14,33 @@
           >
         </div>
         <span style="flex: 1 1 auto"></span>
-        <a
-          routerLink="edit"
-          class="action-btn"
-          *ngIf="authData && authData.id == user.id"
-        >
-          <img src="/assets/edit.svg" alt="edit" class="action-icon" />
-          <span>Edit Profile</span>
-        </a>
+        <div class="action" *ngIf="authData && !isChatLoading">
+          <a
+            routerLink="edit"
+            class="action-btn"
+            *ngIf="authData.id === user.id"
+          >
+            <img src="/assets/edit.svg" alt="edit" class="action-icon" />
+            <span>Edit Profile</span>
+          </a>
+          <a
+            class="action-btn"
+            *ngIf="authData.id !== user.id && !isConnected()"
+            (click)="connectUser()"
+          >
+            <img src="/assets/register.svg" alt="edit" class="action-icon" />
+            <span>Connect</span>
+          </a>
+          <a
+            class="action-btn"
+            *ngIf="authData.id !== user.id && isConnected()"
+            (click)="startChat()"
+          >
+            <img src="/assets/chat.svg" alt="message" class="action-icon" />
+            <span>Message</span>
+          </a>
+        </div>
+        <div class="empty-loading" *ngIf="isChatLoading">Working...</div>
       </div>
       <p class="bio" *ngIf="user.bio">{{ user.bio }}</p>
       <p class="bio" *ngIf="!user.bio && user.id === authData?.id">

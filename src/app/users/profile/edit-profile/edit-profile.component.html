@@ -1,4 +1,4 @@
-<div class="container" [class.hidden]="isLoading && !user">
+<div class="container" [class.hidden]="!user">
   <div class="header">
     <span>Edit profile</span>
     <span style="flex: 1 1 auto"></span>
@@ -47,6 +47,7 @@
       class="bio input"
       placeholder="Bio"
       autocomplete="off"
+      autosize
       [(ngModel)]="user.bio"
     ></textarea>
     <input
