@@ -55,7 +55,9 @@
           autosize
           rows="1"
         ></textarea>
-        <button type="submit" class="btn">Send</button>
+        <button type="submit" class="btn" (mousedown)="$event.preventDefault()">
+          Send
+        </button>
       </form>
     </div>
   </div>
