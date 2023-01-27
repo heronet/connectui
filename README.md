@@ -123,7 +123,7 @@ To get a local copy up and running follow these simple steps.
 - [x] Add likes
 - [x] Add comments
 - [x] Add pagination
-- [ ] Add profile page
+- [x] Add profile page
 
 See the [open issues](https://github.com/heronet/connectui/issues) for a full list of proposed features (and known issues).
 

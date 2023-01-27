@@ -27,7 +27,6 @@ export class ChatComponent
   implements OnInit, OnDestroy, DoCheck, AfterViewChecked
 {
   @ViewChild('scrollable') private scrollable: ElementRef | undefined;
-  private shouldScrollDown: boolean | undefined;
   private iterableDiffer: any;
   numberOfMessagesChanged: boolean | undefined;
   isLoading = false;
@@ -108,7 +107,10 @@ export class ChatComponent
   }
   sendMessage(form: NgForm) {
     const text = form.value.messageText?.trim();
-    if (!text) return;
+    if (!text) {
+      form.reset();
+      return;
+    }
     const message: Partial<Message> = {
       chatId: this.chat?.id ?? '',
       text,

@@ -39,12 +39,17 @@
     </div>
     <div class="spacer"></div>
     <div class="message-box-container" *ngIf="chat && !isLoading">
-      <form class="message-box" #f="ngForm" (ngSubmit)="sendMessage(f)">
+      <form
+        class="message-box"
+        #f="ngForm"
+        (ngSubmit)="sendMessage(f)"
+        (keyup.shift.enter)="sendMessage(f)"
+      >
         <textarea
           type="text"
           name="messageText"
           class="message-input"
-          placeholder="Type message..."
+          placeholder="Type your message..."
           autocomplete="off"
           ngModel
           autosize
