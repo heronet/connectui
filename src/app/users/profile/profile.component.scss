@@ -75,3 +75,14 @@ a:hover {
   display: flex;
   align-items: center;
 }
+.show-posts {
+  display: inline-block;
+  width: 100%;
+  color: #4a90e2;
+  text-align: center;
+  cursor: pointer;
+  margin: 0 auto;
+}
+.show-posts:hover {
+  text-decoration: underline;
+}

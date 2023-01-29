@@ -66,12 +66,12 @@
       </div>
     </div>
   </div>
-  <div
-    class="empty-loading"
+  <a
+    class="show-posts"
     [routerLink]="['/posts/users', user.id]"
     *ngIf="!isLoading && user"
   >
     Show Posts
-  </div>
+  </a>
   <div class="empty-loading" *ngIf="isLoading">Loading profile...</div>
 </div>
