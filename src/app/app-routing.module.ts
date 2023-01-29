@@ -3,9 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'posts', pathMatch: 'full' },
   {
-    path: 'posts',
+    path: '',
     loadChildren: () =>
       import('./posts/posts.module').then((m) => m.PostsModule),
   },

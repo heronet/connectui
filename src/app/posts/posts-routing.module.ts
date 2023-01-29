@@ -4,8 +4,9 @@ import { PostComponent } from './post/post.component';
 import { PostsComponent } from './posts.component';
 
 const routes: Routes = [
-  { path: '', component: PostsComponent, pathMatch: 'full' },
-  { path: ':id', component: PostComponent },
+  { path: '', redirectTo: 'feed', pathMatch: 'full' },
+  { path: 'feed', component: PostsComponent },
+  { path: 'posts/:id', component: PostComponent },
 ];
 
 @NgModule({

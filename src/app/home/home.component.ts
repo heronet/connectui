@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.isDark = !this.isDark;
   }
   isFeed() {
-    return this.router.url === '/posts';
+    return this.router.url.includes('/feed');
   }
   isChat() {
     return this.router.url.includes('chats/');
