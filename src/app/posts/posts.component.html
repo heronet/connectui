@@ -1,6 +1,6 @@
 <div class="container">
   <app-create-post
-    *ngIf="authData"
+    *ngIf="authData && isFeed()"
     [avatarUrl]="authData.userAvatarUrl"
   ></app-create-post>
   <app-post-preview

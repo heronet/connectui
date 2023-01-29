@@ -6,7 +6,13 @@ import { PostsComponent } from './posts.component';
 const routes: Routes = [
   { path: '', redirectTo: 'feed', pathMatch: 'full' },
   { path: 'feed', component: PostsComponent },
-  { path: 'posts/:id', component: PostComponent },
+  {
+    path: 'posts',
+    children: [
+      { path: ':id', component: PostComponent },
+      { path: 'users/:id', component: PostsComponent },
+    ],
+  },
 ];
 
 @NgModule({

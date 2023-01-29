@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { AuthDto } from '../auth/authdto';
@@ -22,7 +23,9 @@ export class PostsComponent implements OnInit, OnDestroy {
   canLoadMore: boolean | undefined;
   constructor(
     private postsService: PostsService,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -39,23 +42,36 @@ export class PostsComponent implements OnInit, OnDestroy {
       next: (data) => (this.authData = data),
       error: (err) => console.log(err),
     });
-    this.getPosts();
+    if (this.isFeed()) {
+      this.getPosts();
+    } else {
+      this.route.params.subscribe({
+        next: (params) => {
+          this.getPosts(params['id']);
+        },
+      });
+    }
   }
-  getPosts() {
+  isFeed() {
+    return this.router.url.includes('/feed');
+  }
+  getPosts(userId: string | null = null) {
     this.isLoading = true;
-    this.postsService.getPosts(this.postsSkip, this.postsTake).subscribe({
-      next: (posts) => {
-        this.posts.push(...posts);
-        this.postsSkip += this.postsTake;
-        if (posts.length < this.postsTake) this.canLoadMore = false;
-        else this.canLoadMore = true;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        this.isLoading = false;
-        console.log(err);
-      },
-    });
+    this.postsService
+      .getPosts(this.postsSkip, this.postsTake, userId)
+      .subscribe({
+        next: (posts) => {
+          this.posts.push(...posts);
+          this.postsSkip += this.postsTake;
+          if (posts.length < this.postsTake) this.canLoadMore = false;
+          else this.canLoadMore = true;
+          this.isLoading = false;
+        },
+        error: (err) => {
+          this.isLoading = false;
+          console.log(err);
+        },
+      });
   }
   ngOnDestroy(): void {
     this.postsSub.unsubscribe();
