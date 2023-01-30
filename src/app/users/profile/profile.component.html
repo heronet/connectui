@@ -39,6 +39,10 @@
             <img src="/assets/chat.svg" alt="message" class="action-icon" />
             <span>Message</span>
           </a>
+          <a class="action-btn" [routerLink]="['/posts/users', user.id]">
+            <img src="/assets/chat.svg" alt="message" class="action-icon" />
+            <span>Posts</span>
+          </a>
         </div>
         <div class="empty-loading" *ngIf="isChatLoading">Working...</div>
       </div>
@@ -66,12 +70,5 @@
       </div>
     </div>
   </div>
-  <a
-    class="show-posts"
-    [routerLink]="['/posts/users', user.id]"
-    *ngIf="!isLoading && user"
-  >
-    Show Posts
-  </a>
   <div class="empty-loading" *ngIf="isLoading">Loading profile...</div>
 </div>
