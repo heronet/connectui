@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { AuthDto } from 'src/app/auth/authdto';
@@ -14,6 +15,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
   @Input() postId: string | undefined;
   isLoading = false;
   processingComment = false;
+  editCommentId: string | undefined;
   comments: Comment[] = [];
   authData: AuthDto | undefined;
   commentSub = new Subscription();
@@ -41,6 +43,33 @@ export class CommentsComponent implements OnInit, OnDestroy {
       error: (err) => {
         console.log(err);
         this.isLoading = false;
+      },
+    });
+  }
+  toggleEdit(id: string) {
+    if (!this.editCommentId) this.editCommentId = id;
+    else this.editCommentId = undefined;
+  }
+  editComment(form: NgForm) {
+    const commentText = form.value.commentText?.trim() ?? undefined;
+    if (!commentText || !this.editCommentId) return;
+    const comment: Partial<Comment> = {
+      id: this.editCommentId,
+      text: commentText,
+    };
+    this.processingComment = true;
+    this.postsService.editComment(comment).subscribe({
+      next: (newComment) => {
+        const commentIndex = this.comments.findIndex(
+          (c) => c.id === newComment.id
+        );
+        this.comments[commentIndex] = newComment;
+        this.processingComment = false;
+        this.editCommentId = undefined;
+      },
+      error: (err) => {
+        console.log(err);
+        this.processingComment = false;
       },
     });
   }

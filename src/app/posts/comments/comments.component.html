@@ -5,16 +5,42 @@
       alt="dummy"
       class="profile-img"
     />
-    <div class="content">
-      <div class="data">
+    <div
+      class="content"
+      [class.scale]="editCommentId && editCommentId === comment.id"
+    >
+      <div class="data" *ngIf="editCommentId !== comment.id">
         <div class="nametime">
           <span class="name">{{ comment.userName }}</span>
           <span class="time">{{ comment.time | date : "d MMM, h:mm a" }}</span>
         </div>
-        <div class="text">{{ comment.text }}</div>
+        <span class="text">{{ comment.text }}</span>
       </div>
+      <form
+        class="form text-box"
+        #f="ngForm"
+        (ngSubmit)="editComment(f)"
+        *ngIf="editCommentId === comment.id"
+      >
+        <textarea
+          class="text text-input"
+          name="commentText"
+          [ngModel]="comment.text"
+          rows="1"
+          autosize
+          placeholder="Edit comment"
+        ></textarea>
+        <button type="submit" class="btn" [disabled]="processingComment">
+          Save
+        </button>
+      </form>
       <div class="action" *ngIf="authData && authData.id === comment.userId">
-        <button>Edit</button>
+        <button (click)="toggleEdit(comment.id)">
+          <span *ngIf="editCommentId !== comment.id">Edit</span>
+          <span *ngIf="editCommentId && editCommentId === comment.id"
+            >Cancel</span
+          >
+        </button>
         <button
           (click)="deleteComment(comment.id)"
           [disabled]="processingComment"

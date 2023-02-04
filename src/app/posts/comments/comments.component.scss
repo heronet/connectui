@@ -52,3 +52,10 @@
   font-size: inherit;
   color: var(--text-secondary);
 }
+.form {
+  display: flex;
+  border-radius: 8px;
+}
+.scale {
+  flex: 1;
+}

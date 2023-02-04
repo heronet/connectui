@@ -76,6 +76,9 @@ export class PostsService {
       })
     );
   }
+  editComment(comment: Partial<Comment>) {
+    return this.http.put<Comment>(`${this.BASE_URL}/comments`, comment);
+  }
   deleteComment(id: string) {
     return this.http.delete(`${this.BASE_URL}/comments/${id}`);
   }
